@@ -28,7 +28,7 @@ createInertiaApp({
 
         new Vue({
             vuetify: new Vuetify({
-                theme: { dark: true }
+                theme: { dark: false }
             }),
             render: h => h(App, props),
         }).$mount(el)
