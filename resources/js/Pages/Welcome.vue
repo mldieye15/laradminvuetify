@@ -1,22 +1,15 @@
 <template >
-    <v-app>
-       <v-app-bar
-        app
-        flat
-        color="white"
-       >
-        <Header/>
-       </v-app-bar>
+    <SiteLayout>
        <v-content>
            <Hero/>
            <Galery/>
            <LatestPost/>
        </v-content>
-    </v-app>
+    </SiteLayout>
 </template>
 
 <script>
-import Header from './Layouts/Public/Header.vue';
+import SiteLayout from './Layouts/Public/SiteLayout.vue';
 import Hero from './Public/Hero.vue'
 import Galery from './Public/Galery.vue'
 import LatestPost from './Public/LatestPost.vue'
@@ -24,10 +17,10 @@ import LatestPost from './Public/LatestPost.vue'
 export default {
     name: 'Welcome',
     components:{
-        Header,
+        SiteLayout,
         Hero,
         Galery,
-        LatestPost
+        LatestPost,
     },
     data: () => ({
 

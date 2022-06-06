@@ -9,17 +9,21 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 
 import Vue from 'vue'
-import { createInertiaApp } from '@inertiajs/inertia-vue'
+import { createInertiaApp, Head, Link  } from '@inertiajs/inertia-vue'
 import Vuetify from 'vuetify' // path to vuetify export
 import 'vuetify/dist/vuetify.min.css'
+
 //import { ZiggyVue } from 'ziggy';
 //import { Ziggy } from './ziggy';
 
 createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
     resolve: name => require(`./Pages/${name}`),
     setup({ el, App, props, plugin }) {
         // for using ziggy
         Vue.mixin({ methods: { route } });
+        Vue.component('InertiaHead', Head)
+        Vue.component('InertiaLink', Link)
         //Vue.use(ZiggyVue);
         //Vue.use(Ziggy);
         //
@@ -28,7 +32,10 @@ createInertiaApp({
 
         new Vue({
             vuetify: new Vuetify({
-                theme: { dark: false }
+                theme: { dark: false },
+                icons: {
+                    iconfont: 'mdiSvg', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+                },
             }),
             render: h => h(App, props),
         }).$mount(el)

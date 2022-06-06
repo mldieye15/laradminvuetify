@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 
-class WelcomeController extends Controller
+class DashboardController extends Controller
 {
     public function index(){
-        return Inertia::render('Welcome');
+        return Inertia::render('App');
     }
 }
