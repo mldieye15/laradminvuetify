@@ -1,7 +1,12 @@
 <?php
 
 namespace Database\Seeders;
-
+use Database\Seeders\Localisation\ContinentSeeder;
+use Database\Seeders\Localisation\PaysSeeder;
+use Database\Seeders\Localisation\RegionSeeder;
+use Database\Seeders\Localisation\DepartementSeeder;
+use Database\Seeders\Localisation\CommuneSeeder;
+use Database\Seeders\Localisation\QuartierSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(ContinentSeeder::class);
+        $this->call(PaysSeeder::class);
+        $this->call(RegionSeeder::class);
+        $this->call(DepartementSeeder::class);
+        $this->call(CommuneSeeder::class);
+        $this->call(QuartierSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

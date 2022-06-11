@@ -5462,7 +5462,705 @@ __webpack_require__.r(__webpack_exports__);
         }],
         title: 'Promotions'
       }]
+      /*items: [
+              {
+                  action: 'mdi-folder-open',
+                  items: [
+                      { 
+                          title: 'Fédération',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Ligue régional',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Centre de formation',
+                          route: 'basicdata.index'
+                      },
+                  ],
+                  title: 'Textes & réglements',
+              },
+              {
+                  action: 'mdi-ticket',
+                  items: [
+                      { 
+                          title: 'Licences',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Commissions',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Equipe nationale',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'La fédération',
+                          route: 'basicdata.index'
+                      },
+                  ],
+                  title: 'Fédération',
+              },
+               {
+                  action: 'mdi-briefcase',
+                  items: [
+                      { 
+                          title: 'Ligue régionale',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Club',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Centre de formation',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Association',
+                          route: 'basicdata.index'
+                      },
+                  ],
+                  title: 'Structures sportive',
+              },
+              {
+                  action: 'mdi-human-male-female-child',
+                  items: [
+                      { title: 'Joueurs',
+                          route: 'basicdata.index'
+                      },
+                      { title: 'Médecins',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Entraîneurs',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Techniciens',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Mangers',
+                          route: 'basicdata.index'
+                      }
+                  ],
+                  title: 'Effective',
+              },
+              {
+                  action: 'mdi-google-controller',
+                  items: [
+                      { 
+                          title: 'Rencontre',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Résultats',
+                          route: 'basicdata.index'
+                      },
+                  ],
+                  title: 'Jeux',
+              },
+              {
+                  action: 'mdi-calendar-clock-outline',
+                  items: [
+                      {
+                          title: 'Calendrier',
+                          route: 'basicdata.index'
+                      },
+                      { title: 'Programmation match' },
+                  ],
+                  title: 'Planning',
+              },
+              {
+                  action: 'mdi-database-cog',
+                  items: [
+                      { 
+                          title: 'Localisation',
+                          route: 'app/intial-data/',
+                          
+                      },
+                  ],
+                  title: 'Données de base',
+              },
+              {
+                  action: 'mdi-cog-transfer',
+                  items: [
+                      { 
+                          title: 'Calendrier',
+                          route: 'basicdata.index'
+                      },
+                      { 
+                          title: 'Programmation match',
+                          route: 'basicdata.index'
+                      },
+                  ],
+                  title: 'Paramétrage',
+              },
+          ],*/
+
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Layouts_App_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/App/AppLayout.vue */ "./resources/js/Pages/Layouts/App/AppLayout.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Localisation',
+  components: {
+    AppLayout: _Layouts_App_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+
+  /*props: {
+      pays: Object
+  },*/
+  props: ['pays', 'regions'],
+  data: function data() {
+    return {
+      tab: null,
+      headers: [{
+        text: 'Nom complet',
+        value: 'libelle'
+      }, {
+        text: 'Nom',
+        value: 'sigle'
+      }, {
+        text: 'Indicatif',
+        value: 'indicatif'
+      }],
+      items: [{
+        text: 'Tableau de bord',
+        disabled: false,
+        href: '/dashboard'
+      }, {
+        text: 'Localisation',
+        disabled: true,
+        href: 'intial-data'
+      }],
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Pays.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Pays.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Layouts_App_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/App/AppLayout.vue */ "./resources/js/Pages/Layouts/App/AppLayout.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Pays',
+  components: {
+    AppLayout: _Layouts_App_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: ['pays'],
+  data: function data() {
+    return {
+      items: [{
+        text: 'Tableau de bord',
+        disabled: false,
+        href: '/dashboard'
+      }, {
+        text: 'Localisation',
+        disabled: true,
+        href: 'intial-data'
+      }, {
+        text: 'Pays',
+        disabled: true,
+        href: 'pays'
+      }],
+      //
+      search: '',
+      dialog: false,
+      dialogDelete: false,
+      headers: [{
+        text: 'Nom complet',
+        align: 'start',
+        sortable: false,
+        value: 'libelle'
+      }, {
+        text: 'Nom courante',
+        value: 'sigle'
+      }, {
+        text: 'Code à 2',
+        value: 'code_alpha2'
+      }, {
+        text: 'Code à 3',
+        value: 'code_alpha3'
+      }, {
+        text: 'Indicatif',
+        value: 'indicatif'
+      }, {
+        text: 'Drapeau',
+        value: 'flag'
+      }, {
+        text: 'Actions',
+        value: 'actions',
+        sortable: false
+      }],
+      desserts: [],
+      editedIndex: -1,
+      editedItem: {
+        libelle: '',
+        sigle: '',
+        code_alpha2: '',
+        code_alpha3: '',
+        indicatif: '',
+        flag: ''
+      },
+      defaultItem: {
+        libelle: '',
+        sigle: '',
+        code_alpha2: '',
+        code_alpha3: '',
+        indicatif: '',
+        flag: ''
+      } //
+
+    };
+  },
+  computed: {
+    formTitle: function formTitle() {
+      return this.editedIndex === -1 ? 'Nouveau' : 'Modification';
+    }
+  },
+  watch: {
+    dialog: function dialog(val) {
+      val || this.close();
+    },
+    dialogDelete: function dialogDelete(val) {
+      val || this.closeDelete();
+    }
+  },
+  created: function created() {
+    this.initialize();
+  },
+  methods: {
+    initialize: function initialize() {
+      this.desserts = pays;
+      /*[
+      {
+      libelle: 'République du Sénégal',
+      sigle: 'Sénégal',
+      code_alpha2: 'SN',
+      code_alpha3: 'SEN',
+      indicatif: '221',
+      flag: '',
+      },
+      {
+      libelle: 'République Islamique Mauritanie',
+      sigle: 'MAuritanie',
+      code_alpha2: 'MR',
+      code_alpha3: 'MRT',
+      indicatif: '222',
+      flag: '',
+      },
+      {
+      libelle: 'République Guinée Conankry',
+      sigle: 'Guinné Conakry',
+      code_alpha2: 'GC',
+      code_alpha3: 'GNY',
+      indicatif: '223',
+      flag: '',
+      },
+      {
+      libelle: 'République du Mali',
+      sigle: 'Mali',
+      code_alpha2: 'ML',
+      code_alpha3: 'MLI',
+      indicatif: '224',
+      flag: '',
+      },
+      {
+      libelle: 'République du Mali',
+      sigle: 'Mali',
+      code_alpha2: 'ML',
+      code_alpha3: 'MLI',
+      indicatif: '224',
+      flag: '',
+      },
+      {
+      libelle: 'République du Mali',
+      sigle: 'Mali',
+      code_alpha2: 'ML',
+      code_alpha3: 'MLI',
+      indicatif: '224',
+      flag: '',
+      },
+      {
+      libelle: 'République du Mali',
+      sigle: 'Mali',
+      code_alpha2: 'ML',
+      code_alpha3: 'MLI',
+      indicatif: '224',
+      flag: '',
+      },
+      {
+      libelle: 'République du Mali',
+      sigle: 'Mali',
+      code_alpha2: 'ML',
+      code_alpha3: 'MLI',
+      indicatif: '224',
+      flag: '',
+      },
+      {
+      libelle: 'République du Mali',
+      sigle: 'Mali',
+      code_alpha2: 'ML',
+      code_alpha3: 'MLI',
+      indicatif: '224',
+      flag: '',
+      },
+      {
+      libelle: 'République du Mali',
+      sigle: 'Mali',
+      code_alpha2: 'ML',
+      code_alpha3: 'MLI',
+      indicatif: '224',
+      flag: '',
+      },
+      ]*/
+    },
+    editItem: function editItem(item) {
+      this.editedIndex = this.desserts.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+    },
+    deleteItem: function deleteItem(item) {
+      this.editedIndex = this.desserts.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialogDelete = true;
+    },
+    deleteItemConfirm: function deleteItemConfirm() {
+      this.desserts.splice(this.editedIndex, 1);
+      this.closeDelete();
+    },
+    close: function close() {
+      var _this = this;
+
+      this.dialog = false;
+      this.$nextTick(function () {
+        _this.editedItem = Object.assign({}, _this.defaultItem);
+        _this.editedIndex = -1;
+      });
+    },
+    closeDelete: function closeDelete() {
+      var _this2 = this;
+
+      this.dialogDelete = false;
+      this.$nextTick(function () {
+        _this2.editedItem = Object.assign({}, _this2.defaultItem);
+        _this2.editedIndex = -1;
+      });
+    },
+    save: function save() {
+      if (this.editedIndex > -1) {
+        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+      } else {
+        this.desserts.push(this.editedItem);
+      }
+
+      this.close();
+    }
   }
 });
 
@@ -5480,6 +6178,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Layouts_Auth_AuthLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Layouts/Auth/AuthLayout */ "./resources/js/Pages/Layouts/Auth/AuthLayout.vue");
+//
 //
 //
 //
@@ -5918,25 +6617,181 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import Popup from './Popup.vue'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       drawer: true,
-      profile: __webpack_require__(/*! ../../../../images/02/img1.png */ "./resources/images/02/img1.png"),
-      links: [{
-        icon: 'mdi-view-dashboard',
-        text: 'Dashboard',
-        route: '/'
-      }, {
-        icon: 'mdi-folder-open',
-        text: 'My Project',
-        route: '/projects'
-      }, {
-        icon: 'mdi-account',
-        text: 'Team',
-        route: '/team'
-      }]
+      profile: __webpack_require__(/*! ../../../../images/02/img1.png */ "./resources/images/02/img1.png")
     };
   },
   components: {//Popup
@@ -11939,7 +12794,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.border[data-v-160bc2ac] {\n  border-left: 4px solid #0ba518;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.border[data-v-160bc2ac] {\n    border-left: 4px solid white;\n    color: white;\n}\n.nav-current[data-v-160bc2ac]{\n    border-right: 4px solid #FFEBEE;\n    font-style: italic;\n    color: #F3E5F5 !important\n}\n.no-current[data-v-160bc2ac]{\n    color: white !important\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35945,6 +36800,84 @@ component.options.__file = "resources/js/Pages/App/Dashboard.vue"
 
 /***/ }),
 
+/***/ "./resources/js/Pages/App/Localisation/Localisation.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/Pages/App/Localisation/Localisation.vue ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Localisation_vue_vue_type_template_id_2cde2430___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Localisation.vue?vue&type=template&id=2cde2430& */ "./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=template&id=2cde2430&");
+/* harmony import */ var _Localisation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Localisation.vue?vue&type=script&lang=js& */ "./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Localisation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Localisation_vue_vue_type_template_id_2cde2430___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Localisation_vue_vue_type_template_id_2cde2430___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/App/Localisation/Localisation.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/App/Localisation/Pays.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/Pages/App/Localisation/Pays.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Pays_vue_vue_type_template_id_276d6a1a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Pays.vue?vue&type=template&id=276d6a1a& */ "./resources/js/Pages/App/Localisation/Pays.vue?vue&type=template&id=276d6a1a&");
+/* harmony import */ var _Pays_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pays.vue?vue&type=script&lang=js& */ "./resources/js/Pages/App/Localisation/Pays.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Pays_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Pays_vue_vue_type_template_id_276d6a1a___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Pays_vue_vue_type_template_id_276d6a1a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/App/Localisation/Pays.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Auth/Login.vue":
 /*!*******************************************!*\
   !*** ./resources/js/Pages/Auth/Login.vue ***!
@@ -36529,6 +37462,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Localisation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Localisation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Localisation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/App/Localisation/Pays.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/App/Localisation/Pays.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pays_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Pays.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Pays.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pays_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Auth/Login.vue?vue&type=script&lang=js&":
 /*!********************************************************************!*\
   !*** ./resources/js/Pages/Auth/Login.vue?vue&type=script&lang=js& ***!
@@ -36823,6 +37788,40 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=template&id=2cde2430&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=template&id=2cde2430& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Localisation_vue_vue_type_template_id_2cde2430___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Localisation_vue_vue_type_template_id_2cde2430___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Localisation_vue_vue_type_template_id_2cde2430___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Localisation.vue?vue&type=template&id=2cde2430& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=template&id=2cde2430&");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/App/Localisation/Pays.vue?vue&type=template&id=276d6a1a&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/Pages/App/Localisation/Pays.vue?vue&type=template&id=276d6a1a& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pays_vue_vue_type_template_id_276d6a1a___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pays_vue_vue_type_template_id_276d6a1a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pays_vue_vue_type_template_id_276d6a1a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Pays.vue?vue&type=template&id=276d6a1a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Pays.vue?vue&type=template&id=276d6a1a&");
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Auth/Login.vue?vue&type=template&id=a2ac2cea&scoped=true&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/Pages/Auth/Login.vue?vue&type=template&id=a2ac2cea&scoped=true& ***!
@@ -37080,7 +38079,7 @@ var render = function () {
   return _c(
     "AppLayout",
     [
-      _c("v-content", { staticClass: "ma-4" }, [
+      _c("v-main", { staticClass: "ma-4" }, [
         _c("h2", { staticClass: "text-center" }, [
           _vm._v("Welcome,"),
           _vm.$page.props.user.name
@@ -37290,6 +38289,746 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=template&id=2cde2430&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Localisation.vue?vue&type=template&id=2cde2430& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "AppLayout",
+    [
+      _c(
+        "v-main",
+        { staticClass: "ma-3" },
+        [
+          _c("v-breadcrumbs", {
+            attrs: { items: _vm.items },
+            scopedSlots: _vm._u([
+              {
+                key: "item",
+                fn: function (ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-breadcrumbs-item",
+                      { attrs: { href: item.href, disabled: item.disabled } },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.text.toUpperCase()) +
+                            "\n            "
+                        ),
+                      ]
+                    ),
+                  ]
+                },
+              },
+            ]),
+          }),
+          _vm._v(" "),
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-tabs",
+                {
+                  attrs: {
+                    "background-color": "green darken-4",
+                    centered: "",
+                    dark: "",
+                  },
+                  model: {
+                    value: _vm.tab,
+                    callback: function ($$v) {
+                      _vm.tab = $$v
+                    },
+                    expression: "tab",
+                  },
+                },
+                [
+                  _c("v-tabs-slider"),
+                  _vm._v(" "),
+                  _c("v-tab", { attrs: { href: "#pays" } }, [_vm._v(" Pays ")]),
+                  _vm._v(" "),
+                  _c("v-tab", { attrs: { href: "#region" } }, [
+                    _vm._v(" Region "),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-tab", { attrs: { href: "#departement" } }, [
+                    _vm._v(" Départements "),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-tab", { attrs: { href: "#tab-4" } }, [
+                    _vm._v(" Commune "),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-tab", { attrs: { href: "#tab-5" } }, [
+                    _vm._v(" Quartiers "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-tabs-items",
+                {
+                  model: {
+                    value: _vm.tab,
+                    callback: function ($$v) {
+                      _vm.tab = $$v
+                    },
+                    expression: "tab",
+                  },
+                },
+                [
+                  _c(
+                    "v-tab-item",
+                    { attrs: { value: "pays" } },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { flat: "" } },
+                        [
+                          _c(
+                            "v-card-text",
+                            [
+                              _c("v-data-table", {
+                                staticClass: "elevation-1 ma-1",
+                                attrs: {
+                                  headers: _vm.headers,
+                                  items: _vm.pays,
+                                  "items-per-page": 5,
+                                  "sort-by": "libelle",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-tab-item",
+                    { attrs: { value: "region" } },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { flat: "" } },
+                        [
+                          _c(
+                            "v-card-text",
+                            [
+                              _c("v-data-table", {
+                                staticClass: "elevation-1 ma-1",
+                                attrs: {
+                                  headers: _vm.headers,
+                                  items: _vm.regions,
+                                  "items-per-page": 5,
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-tab-item",
+                    { attrs: { value: "departement" } },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { flat: "" } },
+                        [
+                          _c(
+                            "v-card-text",
+                            [
+                              _c("v-data-table", {
+                                staticClass: "elevation-1 ma-1",
+                                attrs: {
+                                  headers: _vm.headers,
+                                  items: _vm.regions,
+                                  "items-per-page": 5,
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Pays.vue?vue&type=template&id=276d6a1a&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/App/Localisation/Pays.vue?vue&type=template&id=276d6a1a& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "AppLayout",
+    [
+      _c(
+        "v-main",
+        { staticClass: "ma-4" },
+        [
+          _c("v-breadcrumbs", {
+            attrs: { items: _vm.items },
+            scopedSlots: _vm._u([
+              {
+                key: "item",
+                fn: function (ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-breadcrumbs-item",
+                      { attrs: { href: item.href, disabled: item.disabled } },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.text.toUpperCase()) +
+                            "\n            "
+                        ),
+                      ]
+                    ),
+                  ]
+                },
+              },
+            ]),
+          }),
+          _vm._v(" "),
+          _c("v-data-table", {
+            staticClass: "elevation-1",
+            attrs: {
+              headers: _vm.headers,
+              items: _vm.pays,
+              search: _vm.search,
+              "items-per-page": 5,
+              "sort-by": "calories",
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "top",
+                fn: function () {
+                  return [
+                    _c(
+                      "v-toolbar",
+                      { attrs: { flat: "" } },
+                      [
+                        _c("v-toolbar-title", [_vm._v("Liste des pays")]),
+                        _vm._v(" "),
+                        _c("v-divider", {
+                          staticClass: "mx-4",
+                          attrs: { inset: "", vertical: "" },
+                        }),
+                        _vm._v(" "),
+                        _c("v-text-field", {
+                          attrs: {
+                            "append-icon": "mdi-magnify",
+                            label: "Search",
+                            "single-line": "",
+                            "hide-details": "",
+                          },
+                          model: {
+                            value: _vm.search,
+                            callback: function ($$v) {
+                              _vm.search = $$v
+                            },
+                            expression: "search",
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("v-spacer"),
+                        _vm._v(" "),
+                        _c(
+                          "v-dialog",
+                          {
+                            attrs: { "max-width": "600px" },
+                            scopedSlots: _vm._u([
+                              {
+                                key: "activator",
+                                fn: function (ref) {
+                                  var on = ref.on
+                                  var attrs = ref.attrs
+                                  return [
+                                    _c(
+                                      "v-btn",
+                                      _vm._g(
+                                        _vm._b(
+                                          {
+                                            staticClass: "mb-2",
+                                            attrs: {
+                                              color: "primary",
+                                              dark: "",
+                                            },
+                                          },
+                                          "v-btn",
+                                          attrs,
+                                          false
+                                        ),
+                                        on
+                                      ),
+                                      [
+                                        _vm._v(
+                                          "\n                        Nouveau\n                        "
+                                        ),
+                                      ]
+                                    ),
+                                  ]
+                                },
+                              },
+                            ]),
+                            model: {
+                              value: _vm.dialog,
+                              callback: function ($$v) {
+                                _vm.dialog = $$v
+                              },
+                              expression: "dialog",
+                            },
+                          },
+                          [
+                            _vm._v(" "),
+                            _c(
+                              "v-card",
+                              [
+                                _c("v-card-title", [
+                                  _c("span", { staticClass: "text-h5" }, [
+                                    _vm._v(_vm._s(_vm.formTitle)),
+                                  ]),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "v-card-text",
+                                  [
+                                    _c(
+                                      "v-container",
+                                      [
+                                        _c(
+                                          "v-row",
+                                          [
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "6",
+                                                },
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    label: "Nom complet",
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.editedItem.libelle,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "libelle",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.libelle",
+                                                  },
+                                                }),
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "12",
+                                                  md: "6",
+                                                },
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    label: "Nom habituel",
+                                                  },
+                                                  model: {
+                                                    value: _vm.editedItem.sigle,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "sigle",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.sigle",
+                                                  },
+                                                }),
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "6",
+                                                  md: "4",
+                                                },
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: { label: "Code à 2" },
+                                                  model: {
+                                                    value:
+                                                      _vm.editedItem
+                                                        .code_alpha2,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "code_alpha2",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.code_alpha2",
+                                                  },
+                                                }),
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "6",
+                                                  md: "4",
+                                                },
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: { label: "Code à 3" },
+                                                  model: {
+                                                    value:
+                                                      _vm.editedItem
+                                                        .code_alpha3,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "code_alpha3",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.code_alpha3",
+                                                  },
+                                                }),
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "6",
+                                                  md: "4",
+                                                },
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: { label: "Indicatif" },
+                                                  model: {
+                                                    value:
+                                                      _vm.editedItem.indicatif,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "indicatif",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.indicatif",
+                                                  },
+                                                }),
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-col",
+                                              {
+                                                attrs: {
+                                                  cols: "12",
+                                                  sm: "10",
+                                                  md: "8",
+                                                },
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: { label: "Drapeau" },
+                                                  model: {
+                                                    value: _vm.editedItem.flag,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.editedItem,
+                                                        "flag",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "editedItem.flag",
+                                                  },
+                                                }),
+                                              ],
+                                              1
+                                            ),
+                                          ],
+                                          1
+                                        ),
+                                      ],
+                                      1
+                                    ),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-card-actions",
+                                  [
+                                    _c("v-spacer"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          color: "blue darken-1",
+                                          text: "",
+                                        },
+                                        on: { click: _vm.close },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            Cancel\n                        "
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          color: "blue darken-1",
+                                          text: "",
+                                        },
+                                        on: { click: _vm.save },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            Save\n                        "
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-dialog",
+                          {
+                            attrs: { "max-width": "500px" },
+                            model: {
+                              value: _vm.dialogDelete,
+                              callback: function ($$v) {
+                                _vm.dialogDelete = $$v
+                              },
+                              expression: "dialogDelete",
+                            },
+                          },
+                          [
+                            _c(
+                              "v-card",
+                              [
+                                _c("v-card-title", { staticClass: "text-h5" }, [
+                                  _vm._v(
+                                    "Are you sure you want to delete this item?"
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "v-card-actions",
+                                  [
+                                    _c("v-spacer"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          color: "blue darken-1",
+                                          text: "",
+                                        },
+                                        on: { click: _vm.closeDelete },
+                                      },
+                                      [_vm._v("Cancel")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          color: "blue darken-1",
+                                          text: "",
+                                        },
+                                        on: { click: _vm.deleteItemConfirm },
+                                      },
+                                      [_vm._v("OK")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("v-spacer"),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ]
+                },
+                proxy: true,
+              },
+              {
+                key: "item.actions",
+                fn: function (ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-icon",
+                      {
+                        staticClass: "mr-2",
+                        attrs: { small: "" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.editItem(item)
+                          },
+                        },
+                      },
+                      [_vm._v("\n                mdi-pencil\n            ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-icon",
+                      {
+                        attrs: { small: "" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.deleteItem(item)
+                          },
+                        },
+                      },
+                      [_vm._v("\n                mdi-delete\n            ")]
+                    ),
+                  ]
+                },
+              },
+              {
+                key: "no-data",
+                fn: function () {
+                  return [
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { color: "primary" },
+                        on: { click: _vm.initialize },
+                      },
+                      [_vm._v("\n                Reset\n            ")]
+                    ),
+                  ]
+                },
+                proxy: true,
+              },
+            ]),
+          }),
+        ],
+        1
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Auth/Login.vue?vue&type=template&id=a2ac2cea&scoped=true&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Auth/Login.vue?vue&type=template&id=a2ac2cea&scoped=true& ***!
@@ -37367,25 +39106,6 @@ var render = function () {
                                             },
                                           }),
                                           _vm._v(" "),
-                                          _vm.form.errors.email
-                                            ? _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "v-messages them--dark error--text subtitle-1",
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                                        " +
-                                                      _vm._s(
-                                                        _vm.form.errors.email
-                                                      ) +
-                                                      "\n                                    "
-                                                  ),
-                                                ]
-                                              )
-                                            : _vm._e(),
-                                          _vm._v(" "),
                                           _c(
                                             "v-row",
                                             {
@@ -37395,6 +39115,26 @@ var render = function () {
                                               },
                                             },
                                             [
+                                              _vm.form.errors.email
+                                                ? _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "v-messages them--dark error--text subtitle-1",
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                            " +
+                                                          _vm._s(
+                                                            _vm.form.errors
+                                                              .email
+                                                          ) +
+                                                          "\n                                        "
+                                                      ),
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
                                               _c(
                                                 "v-col",
                                                 {
@@ -38334,29 +40074,7 @@ var render = function () {
                 },
               ]),
             },
-            [
-              _vm._v(" "),
-              _c(
-                "v-list",
-                { attrs: { flat: "" } },
-                _vm._l(_vm.links, function (link) {
-                  return _c(
-                    "v-list-item",
-                    {
-                      key: link.text,
-                      attrs: {
-                        router: "",
-                        to: link.route,
-                        "active-class": "border",
-                      },
-                    },
-                    [_c("v-list-item-title", [_vm._v(_vm._s(link.text))])],
-                    1
-                  )
-                }),
-                1
-              ),
-            ],
+            [_vm._v(" "), _c("v-list", { attrs: { flat: "" } })],
             1
           ),
           _vm._v(" "),
@@ -38395,7 +40113,7 @@ var render = function () {
         "v-navigation-drawer",
         {
           staticClass: "red darken-4",
-          attrs: { dark: "", app: "" },
+          attrs: { dark: "", app: "", width: "300" },
           model: {
             value: _vm.drawer,
             callback: function ($$v) {
@@ -38441,33 +40159,856 @@ var render = function () {
           _c(
             "v-list",
             { attrs: { flat: "" } },
-            _vm._l(_vm.links, function (link) {
-              return _c(
+            [
+              _c(
                 "v-list-item",
-                {
-                  key: link.text,
-                  attrs: {
-                    router: "",
-                    to: link.route,
-                    "active-class": "border",
-                  },
-                },
+                { key: "Dashboard", attrs: { "active-class": "border" } },
                 [
                   _c(
                     "v-list-item-action",
-                    [_c("v-icon", [_vm._v(_vm._s(link.icon))])],
+                    [_c("v-icon", [_vm._v("mdi-view-dashboard")])],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v(_vm._s(link.text))])],
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          class: _vm.route().current("dashboard.index")
+                            ? "nav-current"
+                            : "no-current",
+                          attrs: { href: _vm.route("dashboard.index") },
+                        },
+                        [
+                          _c("v-list-item-title", {}, [
+                            _vm._v("Tableau de bord"),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ],
                     1
                   ),
                 ],
                 1
-              )
-            }),
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-group",
+                {
+                  attrs: {
+                    "active-class": "nav-current",
+                    "prepend-icon": "mdi-folder-open",
+                    "no-action": "",
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function () {
+                        return [
+                          _c(
+                            "v-list-item-content",
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v("Textes & réglements"),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Fédération")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v("Ligue régional"),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-group",
+                {
+                  attrs: {
+                    "active-class": "nav-current",
+                    "prepend-icon": "mdi-ticket",
+                    "no-action": "",
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function () {
+                        return [
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v("Fédération")])],
+                            1
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Licences")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Commissions")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v("Equipe nationale"),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v("La fédération"),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-group",
+                {
+                  attrs: {
+                    "active-class": "nav-current",
+                    "prepend-icon": "mdi-office-building",
+                    "no-action": "",
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function () {
+                        return [
+                          _c(
+                            "v-list-item-content",
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v("Structures sportive"),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v("Ligue régionale"),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Club")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v("Centre de formation"),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Association")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-group",
+                {
+                  attrs: {
+                    "active-class": "nav-current",
+                    "prepend-icon": "mdi-human-male-female-child",
+                    "no-action": "",
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function () {
+                        return [
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v("Effective")])],
+                            1
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Joueurs")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Entraîneurs")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Techniciens")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Mangers")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-group",
+                {
+                  attrs: {
+                    "active-class": "nav-current",
+                    "prepend-icon": "mdi-google-controller",
+                    "no-action": "",
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function () {
+                        return [
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v("Jeux")])],
+                            1
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Rencontre")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Résultats")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-group",
+                {
+                  attrs: {
+                    "active-class": "nav-current",
+                    "prepend-icon": "mdi-calendar-clock-outline",
+                    "no-action": "",
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function () {
+                        return [
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v("Planning")])],
+                            1
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Calendrier")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("welcome")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("welcome") },
+                            },
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v("Programmation match"),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-group",
+                {
+                  attrs: {
+                    "active-class": "nav-current",
+                    "prepend-icon": "mdi-database-cog",
+                    "no-action": "",
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function () {
+                        return [
+                          _c(
+                            "v-list-item-content",
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v("Données de base"),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("basicdata.index")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("basicdata.index") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Localisation")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("pays.index")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("pays.index") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Pays")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-group",
+                {
+                  attrs: {
+                    "active-class": "nav-current",
+                    "prepend-icon": "mdi-cog-transfer",
+                    "no-action": "",
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function () {
+                        return [
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v("Paramétrage")])],
+                            1
+                          ),
+                        ]
+                      },
+                      proxy: true,
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item",
+                    { attrs: { "active-class": "nav-current" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass: "mx-auto",
+                              class: _vm.route().current("basicdata.index")
+                                ? "nav-current"
+                                : "no-current",
+                              attrs: { href: _vm.route("basicdata.index") },
+                            },
+                            [_c("v-list-item-title", [_vm._v("Localisation")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
             1
           ),
         ],
@@ -97964,6 +100505,10 @@ var map = {
 	"./App.vue": "./resources/js/Pages/App.vue",
 	"./App/Dashboard": "./resources/js/Pages/App/Dashboard.vue",
 	"./App/Dashboard.vue": "./resources/js/Pages/App/Dashboard.vue",
+	"./App/Localisation/Localisation": "./resources/js/Pages/App/Localisation/Localisation.vue",
+	"./App/Localisation/Localisation.vue": "./resources/js/Pages/App/Localisation/Localisation.vue",
+	"./App/Localisation/Pays": "./resources/js/Pages/App/Localisation/Pays.vue",
+	"./App/Localisation/Pays.vue": "./resources/js/Pages/App/Localisation/Pays.vue",
 	"./Auth/Login": "./resources/js/Pages/Auth/Login.vue",
 	"./Auth/Login.vue": "./resources/js/Pages/Auth/Login.vue",
 	"./Auth/Register": "./resources/js/Pages/Auth/Register.vue",

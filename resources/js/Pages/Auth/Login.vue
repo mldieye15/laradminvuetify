@@ -11,10 +11,11 @@
                                     <v-card-text class="mt-12">
                                         <h1 class="text-center" >Espace de connexion</h1>
                                         <v-img :src="logo" aspect-ratio="1" max-width="160" max-height="160" class="mx-auto"></v-img>
-                                        <span class="v-messages them--dark error--text subtitle-1" v-if="form.errors.email">
-                                            {{ form.errors.email }}
-                                        </span>
+                                        
                                         <v-row align="center" justify="center">
+                                            <span class="v-messages them--dark error--text subtitle-1" v-if="form.errors.email">
+                                                {{ form.errors.email }}
+                                            </span>
                                             <v-col cols="12" sm="8">
                                                 <v-text-field
                                                     label="Email"

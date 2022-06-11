@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Localisation\LocalisationController;
+use App\Http\Controllers\Localisation\PaysController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +30,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 */
-Route::middleware('auth:sanctum')->name('dashboard.')->group(function() {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('app/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::group([
+        'prefix' => 'app/intial-data',
+        'namespace' => 'App\Http\Controllers\Localisation'
+    ],function(){
+        Route::get('/', [LocalisationController::class, 'index'])->name('basicdata.index');
+        // pays
+        Route::get('/pays', [PaysController::class, 'index'])->name('pays.index');
+    });
 });
