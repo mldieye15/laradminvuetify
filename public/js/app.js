@@ -5946,6 +5946,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Pays',
@@ -38821,8 +38825,13 @@ var render = function () {
                                                 },
                                               },
                                               [
-                                                _c("v-text-field", {
-                                                  attrs: { label: "Drapeau" },
+                                                _c("v-file-input", {
+                                                  attrs: {
+                                                    "show-size": "",
+                                                    counter: "",
+                                                    multiple: "",
+                                                    label: "Drapeau",
+                                                  },
                                                   model: {
                                                     value: _vm.editedItem.flag,
                                                     callback: function ($$v) {
@@ -38865,7 +38874,7 @@ var render = function () {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                            Cancel\n                        "
+                                          "\n                            Annuler\n                        "
                                         ),
                                       ]
                                     ),
@@ -38881,7 +38890,7 @@ var render = function () {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                            Save\n                        "
+                                          "\n                            Ajouter\n                        "
                                         ),
                                       ]
                                     ),
@@ -39991,7 +40000,7 @@ var render = function () {
         [
           _c("v-card-text", { staticClass: "py-2 white--text text-center" }, [
             _vm._v("\n      " + _vm._s(new Date().getFullYear()) + " — "),
-            _c("strong", [_vm._v("AAE IdeaPro")]),
+            _c("strong", [_vm._v("FB RIM")]),
           ]),
         ],
         1

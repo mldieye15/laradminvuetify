@@ -114,10 +114,14 @@
                                             sm="10"
                                             md="8"
                                         >
-                                            <v-text-field
-                                            v-model="editedItem.flag"
-                                            label="Drapeau"
-                                            ></v-text-field>
+                                             <v-file-input
+                                                show-size
+                                                counter
+                                                multiple
+                                                v-model="editedItem.flag"
+                                                label="Drapeau"
+                                            ></v-file-input>
+
                                         </v-col>
 
                                     </v-row>
@@ -131,14 +135,14 @@
                                 text
                                 @click="close"
                             >
-                                Cancel
+                                Annuler
                             </v-btn>
                             <v-btn
                                 color="blue darken-1"
                                 text
                                 @click="save"
                             >
-                                Save
+                                Ajouter
                             </v-btn>
                             </v-card-actions>
                         </v-card>
