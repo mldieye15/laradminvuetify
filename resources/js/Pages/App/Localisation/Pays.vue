@@ -1,48 +1,33 @@
 <template >
     <AppLayout>
-       <v-main class="ma-4">
-           <v-breadcrumbs :items="items">
-                <template v-slot:item="{ item }">
-                <v-breadcrumbs-item
-                    :href="item.href"
-                    :disabled="item.disabled"
-                >
-                    {{ item.text.toUpperCase() }}
-                </v-breadcrumbs-item>
-                </template>
-            </v-breadcrumbs>
-
-            <v-data-table
-                :headers="headers"
-                :items="pays"
-                :search="search"
-                :items-per-page="5"
-                sort-by="calories"
-                class="elevation-1"
+        <v-breadcrumbs :items="items">
+            <template v-slot:item="{ item }">
+            <v-breadcrumbs-item
+                :href="item.href"
+                :disabled="item.disabled"
             >
-                <template v-slot:top>
+                {{ item.text.toUpperCase() }}
+            </v-breadcrumbs-item>
+            </template>
+        </v-breadcrumbs>
+
+        <v-data-table
+            :headers="headers"
+            :items="pays"
+            :search="search"
+            :items-per-page="5"
+            sort-by="calories"
+            class="elevation-1"
+        >
+            <template v-slot:top>
                 <v-toolbar flat>
-                    <v-toolbar-title>Liste des pays</v-toolbar-title>
-                    <v-divider
-                        class="mx-4"
-                        inset
-                        vertical
-                    ></v-divider>
-                    <v-text-field
-                        v-model="search"
-                        append-icon="mdi-magnify"
-                        label="Search"
-                        single-line
-                        hide-details
-                    ></v-text-field>
+                    <v-toolbar-title></v-toolbar-title>
+                    <v-divider class="mx-4" inset vertical></v-divider>
+                    <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details ></v-text-field>
                     <v-spacer></v-spacer>
-                    <v-dialog
-                        v-model="dialog"
-                        max-width="600px"
-                    >
+                    <v-dialog v-model="dialog" max-width="600px" >
                         <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                color="primary"
+                            <v-btn color="primary"
                                 dark
                                 class="mb-2"
                                 v-bind="attrs"
@@ -58,109 +43,68 @@
 
                             <v-card-text>
                                 <v-container>
+                                    <v-alert v-if="$page.props.errors.libelle" v-model="alert" dismissible color="red" border="left" elevation="2" colored-border>
+                                        {{ $page.props.errors.libelle }}
+                                    </v-alert>
+                                    <!-- <v-from> -->
                                     <v-row>
-                                        <v-col
-                                            cols="12"
-                                            sm="12"
-                                            md="6"
-                                        >
-                                            <v-text-field
-                                                v-model="editedItem.libelle"
-                                                label="Nom complet"
-                                            ></v-text-field>
+                                        <v-col cols="12" sm="12" md="6" >
+                                            <v-select required v-model="form.continent" :items="continents" label="Cotinents" return-object single-line item-text="libelle"></v-select>
                                         </v-col>
-                                        <v-col
-                                            cols="12"
-                                            sm="12"
-                                            md="6"
-                                        >
-                                            <v-text-field
-                                            v-model="editedItem.sigle"
-                                            label="Nom habituel"
-                                            ></v-text-field>
+                                        <v-col cols="12" sm="12" md="6" >
+                                            <v-file-input required v-model="form.flag" label="Drapeau" @input="form.flag = $event.target.files[0]"></v-file-input>
                                         </v-col>
-                                        <v-col
-                                            cols="12"
-                                            sm="6"
-                                            md="4"
-                                        >
-                                            <v-text-field
-                                            v-model="editedItem.code_alpha2"
-                                            label="Code à 2"
-                                            ></v-text-field>
+                                        <v-col cols="12" sm="12" md="6" >
+                                            <v-text-field v-model="form.libelle" label="Nom complet" ></v-text-field>
                                         </v-col>
-                                        <v-col
-                                            cols="12"
-                                            sm="6"
-                                            md="4"
-                                        >
-                                            <v-text-field
-                                            v-model="editedItem.code_alpha3"
-                                            label="Code à 3"
-                                            ></v-text-field>
+                                        <v-col cols="12" sm="12" md="6" >
+                                            <v-text-field v-model="form.sigle" label="Nom habituel"></v-text-field>
                                         </v-col>
-                                        <v-col
-                                            cols="12"
-                                            sm="6"
-                                            md="4"
-                                        >
-                                            <v-text-field
-                                            v-model="editedItem.indicatif"
-                                            label="Indicatif"
-                                            ></v-text-field>
+                                        <v-col cols="12" sm="6" md="4">
+                                            <v-text-field v-model="form.code_alpha2" label="Code à 2"></v-text-field>
                                         </v-col>
-                                        <v-col
-                                            cols="12"
-                                            sm="10"
-                                            md="8"
-                                        >
-                                             <v-file-input
-                                                show-size
-                                                counter
-                                                multiple
-                                                v-model="editedItem.flag"
-                                                label="Drapeau"
-                                            ></v-file-input>
-
+                                        <v-col cols="12" sm="6" md="4" >
+                                            <v-text-field v-model="form.code_alpha3" label="Code à 3" ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="4" >
+                                            <v-text-field required v-model="form.indicatif" label="Indicatif"></v-text-field>
                                         </v-col>
 
                                     </v-row>
+                                    <!-- </v-from> -->
                                 </v-container>
                             </v-card-text>
 
                             <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn
-                                color="blue darken-1"
-                                text
-                                @click="close"
-                            >
-                                Annuler
-                            </v-btn>
-                            <v-btn
-                                color="blue darken-1"
-                                text
-                                @click="save"
-                            >
-                                Ajouter
-                            </v-btn>
+                                <v-spacer></v-spacer>
+                                <v-btn color="blue darken-1" text @click="close" >
+                                    Annuler
+                                </v-btn>
+                                <v-btn color="blue darken-1" text @click="save" >
+                                    Enregistrer
+                                </v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
                     <v-dialog v-model="dialogDelete" max-width="500px">
-                    <v-card>
-                        <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
-                        <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                        <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
-                        <v-spacer></v-spacer>
-                        </v-card-actions>
-                    </v-card>
+                        <v-card>
+                            <v-card-title class="text-h5">Êtes-vous certains de supprimer le pays?</v-card-title>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="blue darken-1" text @click="closeDelete">Annuler</v-btn>
+                                <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                        </v-card>
                     </v-dialog>
                 </v-toolbar>
-                </template>
-                <template v-slot:item.actions="{ item }">
+            </template>
+            <template v-slot:item.flag="{ item }">
+                <div class="m-1">
+                    <v-img :src="item.flag" :alt="item.flag" aspect-ratio="1" max-width="110" max-height="110" class="mx-auto"></v-img>
+                </div>
+          </template>
+            <template v-slot:item.actions="{ item }">
                 <v-icon
                     small
                     class="mr-2"
@@ -174,17 +118,16 @@
                 >
                     mdi-delete
                 </v-icon>
-                </template>
-                <template v-slot:no-data>
+            </template>
+            <template v-slot:no-data>
                 <v-btn
                     color="primary"
                     @click="initialize"
                 >
                     Reset
                 </v-btn>
-                </template>
-            </v-data-table>
-       </v-main>
+            </template>
+        </v-data-table>
     </AppLayout>
 </template>
 
@@ -195,7 +138,7 @@ export default {
     components:{
         AppLayout
     },
-    props:  ['pays'],
+    props:  ['pays', 'data', 'continents'],
     data () {
       return {
         items: [
@@ -216,6 +159,7 @@ export default {
             },
         ],
         //
+        alert: true,
         search: '',
         dialog: false,
         dialogDelete: false,
@@ -233,23 +177,29 @@ export default {
             { text: 'Drapeau', value: 'flag' },
             { text: 'Actions', value: 'actions', sortable: false },
         ],
-        desserts: [],
+        listePays: [],
         editedIndex: -1,
-        editedItem: {
-            libelle: '',
-            sigle: '',
-            code_alpha2: '',
+        form: this.$inertia.form({
+            libelle: null,
+            sigle: null,
+            code_alpha2: null,
             code_alpha3: '',
             indicatif: '',
-            flag: '',
+            flag: null,
+            continent: 1
+        }),
+        defaultContinent:{
+            id: 1,
+            libelle: 'Afrique'
         },
         defaultItem: {
-            libelle: '',
-            sigle: '',
-            code_alpha2: '',
+            libelle: null,
+            sigle: null,
+            code_alpha2: null,
             code_alpha3: '',
             indicatif: '',
-            flag: '',
+            flag: null,
+            continent: 1
         },
         //
       }
@@ -271,136 +221,57 @@ export default {
     },
 
     created () {
-      this.initialize()
+      //this.initialize()
     },
 
     methods: {
-      initialize () {
-        this.desserts =pays; /*[
-          {
-            libelle: 'République du Sénégal',
-            sigle: 'Sénégal',
-            code_alpha2: 'SN',
-            code_alpha3: 'SEN',
-            indicatif: '221',
-            flag: '',
-          },
-          {
-            libelle: 'République Islamique Mauritanie',
-            sigle: 'MAuritanie',
-            code_alpha2: 'MR',
-            code_alpha3: 'MRT',
-            indicatif: '222',
-            flag: '',
-          },
-          {
-            libelle: 'République Guinée Conankry',
-            sigle: 'Guinné Conakry',
-            code_alpha2: 'GC',
-            code_alpha3: 'GNY',
-            indicatif: '223',
-            flag: '',
-          },
-          {
-            libelle: 'République du Mali',
-            sigle: 'Mali',
-            code_alpha2: 'ML',
-            code_alpha3: 'MLI',
-            indicatif: '224',
-            flag: '',
-          },
-          {
-            libelle: 'République du Mali',
-            sigle: 'Mali',
-            code_alpha2: 'ML',
-            code_alpha3: 'MLI',
-            indicatif: '224',
-            flag: '',
-          },
-          {
-            libelle: 'République du Mali',
-            sigle: 'Mali',
-            code_alpha2: 'ML',
-            code_alpha3: 'MLI',
-            indicatif: '224',
-            flag: '',
-          },
-          {
-            libelle: 'République du Mali',
-            sigle: 'Mali',
-            code_alpha2: 'ML',
-            code_alpha3: 'MLI',
-            indicatif: '224',
-            flag: '',
-          },
-          {
-            libelle: 'République du Mali',
-            sigle: 'Mali',
-            code_alpha2: 'ML',
-            code_alpha3: 'MLI',
-            indicatif: '224',
-            flag: '',
-          },
-          {
-            libelle: 'République du Mali',
-            sigle: 'Mali',
-            code_alpha2: 'ML',
-            code_alpha3: 'MLI',
-            indicatif: '224',
-            flag: '',
-          },
-          {
-            libelle: 'République du Mali',
-            sigle: 'Mali',
-            code_alpha2: 'ML',
-            code_alpha3: 'MLI',
-            indicatif: '224',
-            flag: '',
-          },
-        ]*/
-      },
+        save () {
+            //console.log(this.data);
+            this.form.post('/app/intial-data/pays'); //route("image.store")
+            if (this.editedIndex > -1) {
+                Object.assign(this.pays[this.editedIndex], this.form)
+            } else {
+                this.pays.push(this.form)
+            }
+            this.close()
+        },
 
-      editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialog = true
-      },
+        editItem (item) {
+            //data._method = 'PUT';
+            //this.$inertia.post('/posts/' + data.id, data)
+            this.editedIndex = this.listePays.indexOf(item)
+            this.form = Object.assign({}, item)
+            this.dialog = true
+        },
 
-      deleteItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialogDelete = true
-      },
+        deleteItem (item) {
+            this.editedIndex = this.listePays.indexOf(item)
+            this.form = Object.assign({}, item)
+            this.dialogDelete = true
+        },
 
-      deleteItemConfirm () {
-        this.desserts.splice(this.editedIndex, 1)
-        this.closeDelete()
-      },
+        deleteItemConfirm () {
+            //data._method = 'DELETE';
+            //this.$inertia.post('/posts/' + data.id, data;
+            this.listePays.splice(this.editedIndex, 1)
+            this.closeDelete()
+        },
 
-      close () {
-        this.dialog = false
-        this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        })
-      },
+        close () {
+            this.dialog = false
+            this.$nextTick(() => {
+                this.form = Object.assign({}, this.defaultItem)
+                this.editedIndex = -1
+            })
+        },
 
-      closeDelete () {
-        this.dialogDelete = false
-        this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        })
-      },
-
-      save () {
-        if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
-        } else {
-          this.desserts.push(this.editedItem)
-        }
-        this.close()
-      },
+        closeDelete () {
+            this.dialogDelete = false
+            this.$nextTick(() => {
+                this.form = Object.assign({}, this.defaultItem)
+                this.editedIndex = -1
+            })
+        },
     },
 }
 </script>

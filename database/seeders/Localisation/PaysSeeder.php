@@ -23,7 +23,8 @@ class PaysSeeder extends Seeder
                     'code_alpha3' => 'MRT',
                     'indicatif' => '222',
                     'visible' => 0,
-                    'continent_id' => 1
+                    'continent_id' => 1,
+                    'flag' => 'flag-default.png'
                 ],
                 [
                     'libelle' => 'République du Sénégal',
@@ -32,7 +33,8 @@ class PaysSeeder extends Seeder
                     'code_alpha3' => '',
                     'indicatif' => '221',
                     'visible' => 1,
-                    'continent_id' => 1
+                    'continent_id' => 1,
+                    'flag' => 'flag-default.png'
                 ],
             ]
         );

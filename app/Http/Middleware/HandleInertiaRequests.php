@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
+//use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -38,6 +40,13 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'user' => fn() => auth()->user() ? auth()->user() : null,
+            'flash' => [
+                'message' => fn () => $request->session()->get('message')
+            ],
+            'errors' => function () {
+                return Session::get('errors') ? Session::get('errors')->getBag('default')->getMessages() : (object) [];
+            }
+            //'user' => fn() => auth()->user() ? auth()->user() : null,
         ]);
     }
 }

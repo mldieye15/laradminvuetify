@@ -5297,8 +5297,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'App',
@@ -5893,70 +5891,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Pays',
   components: {
     AppLayout: _Layouts_App_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['pays'],
+  props: ['pays', 'data', 'continents'],
   data: function data() {
     return {
       items: [{
@@ -5973,6 +5914,7 @@ __webpack_require__.r(__webpack_exports__);
         href: 'pays'
       }],
       //
+      alert: true,
       search: '',
       dialog: false,
       dialogDelete: false,
@@ -6001,23 +5943,29 @@ __webpack_require__.r(__webpack_exports__);
         value: 'actions',
         sortable: false
       }],
-      desserts: [],
+      listePays: [],
       editedIndex: -1,
-      editedItem: {
-        libelle: '',
-        sigle: '',
-        code_alpha2: '',
+      form: this.$inertia.form({
+        libelle: null,
+        sigle: null,
+        code_alpha2: null,
         code_alpha3: '',
         indicatif: '',
-        flag: ''
+        flag: null,
+        continent: 1
+      }),
+      defaultContinent: {
+        id: 1,
+        libelle: 'Afrique'
       },
       defaultItem: {
-        libelle: '',
-        sigle: '',
-        code_alpha2: '',
+        libelle: null,
+        sigle: null,
+        code_alpha2: null,
         code_alpha3: '',
         indicatif: '',
-        flag: ''
+        flag: null,
+        continent: 1
       } //
 
     };
@@ -6035,107 +5983,37 @@ __webpack_require__.r(__webpack_exports__);
       val || this.closeDelete();
     }
   },
-  created: function created() {
-    this.initialize();
+  created: function created() {//this.initialize()
   },
   methods: {
-    initialize: function initialize() {
-      this.desserts = pays;
-      /*[
-      {
-      libelle: 'République du Sénégal',
-      sigle: 'Sénégal',
-      code_alpha2: 'SN',
-      code_alpha3: 'SEN',
-      indicatif: '221',
-      flag: '',
-      },
-      {
-      libelle: 'République Islamique Mauritanie',
-      sigle: 'MAuritanie',
-      code_alpha2: 'MR',
-      code_alpha3: 'MRT',
-      indicatif: '222',
-      flag: '',
-      },
-      {
-      libelle: 'République Guinée Conankry',
-      sigle: 'Guinné Conakry',
-      code_alpha2: 'GC',
-      code_alpha3: 'GNY',
-      indicatif: '223',
-      flag: '',
-      },
-      {
-      libelle: 'République du Mali',
-      sigle: 'Mali',
-      code_alpha2: 'ML',
-      code_alpha3: 'MLI',
-      indicatif: '224',
-      flag: '',
-      },
-      {
-      libelle: 'République du Mali',
-      sigle: 'Mali',
-      code_alpha2: 'ML',
-      code_alpha3: 'MLI',
-      indicatif: '224',
-      flag: '',
-      },
-      {
-      libelle: 'République du Mali',
-      sigle: 'Mali',
-      code_alpha2: 'ML',
-      code_alpha3: 'MLI',
-      indicatif: '224',
-      flag: '',
-      },
-      {
-      libelle: 'République du Mali',
-      sigle: 'Mali',
-      code_alpha2: 'ML',
-      code_alpha3: 'MLI',
-      indicatif: '224',
-      flag: '',
-      },
-      {
-      libelle: 'République du Mali',
-      sigle: 'Mali',
-      code_alpha2: 'ML',
-      code_alpha3: 'MLI',
-      indicatif: '224',
-      flag: '',
-      },
-      {
-      libelle: 'République du Mali',
-      sigle: 'Mali',
-      code_alpha2: 'ML',
-      code_alpha3: 'MLI',
-      indicatif: '224',
-      flag: '',
-      },
-      {
-      libelle: 'République du Mali',
-      sigle: 'Mali',
-      code_alpha2: 'ML',
-      code_alpha3: 'MLI',
-      indicatif: '224',
-      flag: '',
-      },
-      ]*/
+    save: function save() {
+      //console.log(this.data);
+      this.form.post('/app/intial-data/pays'); //route("image.store")
+
+      if (this.editedIndex > -1) {
+        Object.assign(this.pays[this.editedIndex], this.form);
+      } else {
+        this.pays.push(this.form);
+      }
+
+      this.close();
     },
     editItem: function editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
-      this.editedItem = Object.assign({}, item);
+      //data._method = 'PUT';
+      //this.$inertia.post('/posts/' + data.id, data)
+      this.editedIndex = this.listePays.indexOf(item);
+      this.form = Object.assign({}, item);
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
-      this.editedItem = Object.assign({}, item);
+      this.editedIndex = this.listePays.indexOf(item);
+      this.form = Object.assign({}, item);
       this.dialogDelete = true;
     },
     deleteItemConfirm: function deleteItemConfirm() {
-      this.desserts.splice(this.editedIndex, 1);
+      //data._method = 'DELETE';
+      //this.$inertia.post('/posts/' + data.id, data;
+      this.listePays.splice(this.editedIndex, 1);
       this.closeDelete();
     },
     close: function close() {
@@ -6143,7 +6021,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.dialog = false;
       this.$nextTick(function () {
-        _this.editedItem = Object.assign({}, _this.defaultItem);
+        _this.form = Object.assign({}, _this.defaultItem);
         _this.editedIndex = -1;
       });
     },
@@ -6152,18 +6030,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this.dialogDelete = false;
       this.$nextTick(function () {
-        _this2.editedItem = Object.assign({}, _this2.defaultItem);
+        _this2.form = Object.assign({}, _this2.defaultItem);
         _this2.editedIndex = -1;
       });
-    },
-    save: function save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
-      } else {
-        this.desserts.push(this.editedItem);
-      }
-
-      this.close();
     }
   }
 });
@@ -6533,6 +6402,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6541,8 +6422,11 @@ __webpack_require__.r(__webpack_exports__);
     Header: _Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Footer: _Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  //data: () => ({}),
   data: function data() {
-    return {};
+    return {
+      alert: true
+    };
   }
 });
 
@@ -38080,20 +37964,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "AppLayout",
-    [
-      _c("v-main", { staticClass: "ma-4" }, [
-        _c("h2", { staticClass: "text-center" }, [
-          _vm._v("Welcome,"),
-          _vm.$page.props.user.name
-            ? _c("span", [_vm._v(_vm._s(_vm.$page.props.user.name))])
-            : _vm._e(),
-        ]),
-      ]),
-    ],
-    1
-  )
+  return _c("AppLayout", [
+    _c("h2", { staticClass: "text-center" }, [
+      _vm._v("Welcome,"),
+      _vm.$page.props.user.name
+        ? _c("span", [_vm._v(_vm._s(_vm.$page.props.user.name))])
+        : _vm._e(),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38522,332 +38400,379 @@ var render = function () {
   return _c(
     "AppLayout",
     [
-      _c(
-        "v-main",
-        { staticClass: "ma-4" },
-        [
-          _c("v-breadcrumbs", {
-            attrs: { items: _vm.items },
-            scopedSlots: _vm._u([
-              {
-                key: "item",
-                fn: function (ref) {
-                  var item = ref.item
-                  return [
-                    _c(
-                      "v-breadcrumbs-item",
-                      { attrs: { href: item.href, disabled: item.disabled } },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.text.toUpperCase()) +
-                            "\n            "
-                        ),
-                      ]
+      _c("v-breadcrumbs", {
+        attrs: { items: _vm.items },
+        scopedSlots: _vm._u([
+          {
+            key: "item",
+            fn: function (ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "v-breadcrumbs-item",
+                  { attrs: { href: item.href, disabled: item.disabled } },
+                  [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(item.text.toUpperCase()) +
+                        "\n        "
                     ),
                   ]
-                },
-              },
-            ]),
-          }),
-          _vm._v(" "),
-          _c("v-data-table", {
-            staticClass: "elevation-1",
-            attrs: {
-              headers: _vm.headers,
-              items: _vm.pays,
-              search: _vm.search,
-              "items-per-page": 5,
-              "sort-by": "calories",
+                ),
+              ]
             },
-            scopedSlots: _vm._u([
-              {
-                key: "top",
-                fn: function () {
-                  return [
+          },
+        ]),
+      }),
+      _vm._v(" "),
+      _c("v-data-table", {
+        staticClass: "elevation-1",
+        attrs: {
+          headers: _vm.headers,
+          items: _vm.pays,
+          search: _vm.search,
+          "items-per-page": 5,
+          "sort-by": "calories",
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "top",
+            fn: function () {
+              return [
+                _c(
+                  "v-toolbar",
+                  { attrs: { flat: "" } },
+                  [
+                    _c("v-toolbar-title"),
+                    _vm._v(" "),
+                    _c("v-divider", {
+                      staticClass: "mx-4",
+                      attrs: { inset: "", vertical: "" },
+                    }),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: {
+                        "append-icon": "mdi-magnify",
+                        label: "Search",
+                        "single-line": "",
+                        "hide-details": "",
+                      },
+                      model: {
+                        value: _vm.search,
+                        callback: function ($$v) {
+                          _vm.search = $$v
+                        },
+                        expression: "search",
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("v-spacer"),
+                    _vm._v(" "),
                     _c(
-                      "v-toolbar",
-                      { attrs: { flat: "" } },
-                      [
-                        _c("v-toolbar-title", [_vm._v("Liste des pays")]),
-                        _vm._v(" "),
-                        _c("v-divider", {
-                          staticClass: "mx-4",
-                          attrs: { inset: "", vertical: "" },
-                        }),
-                        _vm._v(" "),
-                        _c("v-text-field", {
-                          attrs: {
-                            "append-icon": "mdi-magnify",
-                            label: "Search",
-                            "single-line": "",
-                            "hide-details": "",
-                          },
-                          model: {
-                            value: _vm.search,
-                            callback: function ($$v) {
-                              _vm.search = $$v
-                            },
-                            expression: "search",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("v-spacer"),
-                        _vm._v(" "),
-                        _c(
-                          "v-dialog",
+                      "v-dialog",
+                      {
+                        attrs: { "max-width": "600px" },
+                        scopedSlots: _vm._u([
                           {
-                            attrs: { "max-width": "600px" },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "activator",
-                                fn: function (ref) {
-                                  var on = ref.on
-                                  var attrs = ref.attrs
-                                  return [
-                                    _c(
+                            key: "activator",
+                            fn: function (ref) {
+                              var on = ref.on
+                              var attrs = ref.attrs
+                              return [
+                                _c(
+                                  "v-btn",
+                                  _vm._g(
+                                    _vm._b(
+                                      {
+                                        staticClass: "mb-2",
+                                        attrs: { color: "primary", dark: "" },
+                                      },
                                       "v-btn",
-                                      _vm._g(
-                                        _vm._b(
-                                          {
-                                            staticClass: "mb-2",
-                                            attrs: {
-                                              color: "primary",
-                                              dark: "",
-                                            },
-                                          },
-                                          "v-btn",
-                                          attrs,
-                                          false
-                                        ),
-                                        on
-                                      ),
-                                      [
-                                        _vm._v(
-                                          "\n                        Nouveau\n                        "
-                                        ),
-                                      ]
+                                      attrs,
+                                      false
+                                    ),
+                                    on
+                                  ),
+                                  [
+                                    _vm._v(
+                                      "\n                        Nouveau\n                        "
                                     ),
                                   ]
-                                },
-                              },
-                            ]),
-                            model: {
-                              value: _vm.dialog,
-                              callback: function ($$v) {
-                                _vm.dialog = $$v
-                              },
-                              expression: "dialog",
+                                ),
+                              ]
                             },
                           },
+                        ]),
+                        model: {
+                          value: _vm.dialog,
+                          callback: function ($$v) {
+                            _vm.dialog = $$v
+                          },
+                          expression: "dialog",
+                        },
+                      },
+                      [
+                        _vm._v(" "),
+                        _c(
+                          "v-card",
                           [
+                            _c("v-card-title", [
+                              _c("span", { staticClass: "text-h5" }, [
+                                _vm._v(_vm._s(_vm.formTitle)),
+                              ]),
+                            ]),
                             _vm._v(" "),
                             _c(
-                              "v-card",
+                              "v-card-text",
                               [
-                                _c("v-card-title", [
-                                  _c("span", { staticClass: "text-h5" }, [
-                                    _vm._v(_vm._s(_vm.formTitle)),
-                                  ]),
-                                ]),
-                                _vm._v(" "),
                                 _c(
-                                  "v-card-text",
+                                  "v-container",
                                   [
+                                    _vm.$page.props.errors.libelle
+                                      ? _c(
+                                          "v-alert",
+                                          {
+                                            attrs: {
+                                              dismissible: "",
+                                              color: "red",
+                                              border: "left",
+                                              elevation: "2",
+                                              "colored-border": "",
+                                            },
+                                            model: {
+                                              value: _vm.alert,
+                                              callback: function ($$v) {
+                                                _vm.alert = $$v
+                                              },
+                                              expression: "alert",
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                    " +
+                                                _vm._s(
+                                                  _vm.$page.props.errors.libelle
+                                                ) +
+                                                "\n                                "
+                                            ),
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
                                     _c(
-                                      "v-container",
+                                      "v-row",
                                       [
                                         _c(
-                                          "v-row",
+                                          "v-col",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              sm: "12",
+                                              md: "6",
+                                            },
+                                          },
                                           [
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "6",
+                                            _c("v-select", {
+                                              attrs: {
+                                                required: "",
+                                                items: _vm.continents,
+                                                label: "Cotinents",
+                                                "return-object": "",
+                                                "single-line": "",
+                                                "item-text": "libelle",
+                                              },
+                                              model: {
+                                                value: _vm.form.continent,
+                                                callback: function ($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "continent",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.continent",
+                                              },
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-col",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              sm: "12",
+                                              md: "6",
+                                            },
+                                          },
+                                          [
+                                            _c("v-file-input", {
+                                              attrs: {
+                                                required: "",
+                                                label: "Drapeau",
+                                              },
+                                              on: {
+                                                input: function ($event) {
+                                                  _vm.form.flag =
+                                                    $event.target.files[0]
                                                 },
                                               },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Nom complet",
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.editedItem.libelle,
-                                                    callback: function ($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "libelle",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.libelle",
-                                                  },
-                                                }),
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "12",
-                                                  md: "6",
+                                              model: {
+                                                value: _vm.form.flag,
+                                                callback: function ($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "flag",
+                                                    $$v
+                                                  )
                                                 },
+                                                expression: "form.flag",
                                               },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: {
-                                                    label: "Nom habituel",
-                                                  },
-                                                  model: {
-                                                    value: _vm.editedItem.sigle,
-                                                    callback: function ($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "sigle",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.sigle",
-                                                  },
-                                                }),
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "6",
-                                                  md: "4",
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-col",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              sm: "12",
+                                              md: "6",
+                                            },
+                                          },
+                                          [
+                                            _c("v-text-field", {
+                                              attrs: { label: "Nom complet" },
+                                              model: {
+                                                value: _vm.form.libelle,
+                                                callback: function ($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "libelle",
+                                                    $$v
+                                                  )
                                                 },
+                                                expression: "form.libelle",
                                               },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: { label: "Code à 2" },
-                                                  model: {
-                                                    value:
-                                                      _vm.editedItem
-                                                        .code_alpha2,
-                                                    callback: function ($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "code_alpha2",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.code_alpha2",
-                                                  },
-                                                }),
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "6",
-                                                  md: "4",
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-col",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              sm: "12",
+                                              md: "6",
+                                            },
+                                          },
+                                          [
+                                            _c("v-text-field", {
+                                              attrs: { label: "Nom habituel" },
+                                              model: {
+                                                value: _vm.form.sigle,
+                                                callback: function ($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "sigle",
+                                                    $$v
+                                                  )
                                                 },
+                                                expression: "form.sigle",
                                               },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: { label: "Code à 3" },
-                                                  model: {
-                                                    value:
-                                                      _vm.editedItem
-                                                        .code_alpha3,
-                                                    callback: function ($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "code_alpha3",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.code_alpha3",
-                                                  },
-                                                }),
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "6",
-                                                  md: "4",
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-col",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              sm: "6",
+                                              md: "4",
+                                            },
+                                          },
+                                          [
+                                            _c("v-text-field", {
+                                              attrs: { label: "Code à 2" },
+                                              model: {
+                                                value: _vm.form.code_alpha2,
+                                                callback: function ($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "code_alpha2",
+                                                    $$v
+                                                  )
                                                 },
+                                                expression: "form.code_alpha2",
                                               },
-                                              [
-                                                _c("v-text-field", {
-                                                  attrs: { label: "Indicatif" },
-                                                  model: {
-                                                    value:
-                                                      _vm.editedItem.indicatif,
-                                                    callback: function ($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "indicatif",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.indicatif",
-                                                  },
-                                                }),
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-col",
-                                              {
-                                                attrs: {
-                                                  cols: "12",
-                                                  sm: "10",
-                                                  md: "8",
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-col",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              sm: "6",
+                                              md: "4",
+                                            },
+                                          },
+                                          [
+                                            _c("v-text-field", {
+                                              attrs: { label: "Code à 3" },
+                                              model: {
+                                                value: _vm.form.code_alpha3,
+                                                callback: function ($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "code_alpha3",
+                                                    $$v
+                                                  )
                                                 },
+                                                expression: "form.code_alpha3",
                                               },
-                                              [
-                                                _c("v-file-input", {
-                                                  attrs: {
-                                                    "show-size": "",
-                                                    counter: "",
-                                                    multiple: "",
-                                                    label: "Drapeau",
-                                                  },
-                                                  model: {
-                                                    value: _vm.editedItem.flag,
-                                                    callback: function ($$v) {
-                                                      _vm.$set(
-                                                        _vm.editedItem,
-                                                        "flag",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "editedItem.flag",
-                                                  },
-                                                }),
-                                              ],
-                                              1
-                                            ),
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-col",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              sm: "6",
+                                              md: "4",
+                                            },
+                                          },
+                                          [
+                                            _c("v-text-field", {
+                                              attrs: {
+                                                required: "",
+                                                label: "Indicatif",
+                                              },
+                                              model: {
+                                                value: _vm.form.indicatif,
+                                                callback: function ($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "indicatif",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.indicatif",
+                                              },
+                                            }),
                                           ],
                                           1
                                         ),
@@ -38857,107 +38782,39 @@ var render = function () {
                                   ],
                                   1
                                 ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-card-actions",
-                                  [
-                                    _c("v-spacer"),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          color: "blue darken-1",
-                                          text: "",
-                                        },
-                                        on: { click: _vm.close },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                            Annuler\n                        "
-                                        ),
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          color: "blue darken-1",
-                                          text: "",
-                                        },
-                                        on: { click: _vm.save },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                            Ajouter\n                        "
-                                        ),
-                                      ]
-                                    ),
-                                  ],
-                                  1
-                                ),
                               ],
                               1
                             ),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-dialog",
-                          {
-                            attrs: { "max-width": "500px" },
-                            model: {
-                              value: _vm.dialogDelete,
-                              callback: function ($$v) {
-                                _vm.dialogDelete = $$v
-                              },
-                              expression: "dialogDelete",
-                            },
-                          },
-                          [
+                            _vm._v(" "),
                             _c(
-                              "v-card",
+                              "v-card-actions",
                               [
-                                _c("v-card-title", { staticClass: "text-h5" }, [
-                                  _vm._v(
-                                    "Are you sure you want to delete this item?"
-                                  ),
-                                ]),
+                                _c("v-spacer"),
                                 _vm._v(" "),
                                 _c(
-                                  "v-card-actions",
+                                  "v-btn",
+                                  {
+                                    attrs: { color: "blue darken-1", text: "" },
+                                    on: { click: _vm.close },
+                                  },
                                   [
-                                    _c("v-spacer"),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          color: "blue darken-1",
-                                          text: "",
-                                        },
-                                        on: { click: _vm.closeDelete },
-                                      },
-                                      [_vm._v("Cancel")]
+                                    _vm._v(
+                                      "\n                                Annuler\n                            "
                                     ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          color: "blue darken-1",
-                                          text: "",
-                                        },
-                                        on: { click: _vm.deleteItemConfirm },
-                                      },
-                                      [_vm._v("OK")]
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: { color: "blue darken-1", text: "" },
+                                    on: { click: _vm.save },
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                Enregistrer\n                            "
                                     ),
-                                    _vm._v(" "),
-                                    _c("v-spacer"),
-                                  ],
-                                  1
+                                  ]
                                 ),
                               ],
                               1
@@ -38968,65 +38825,146 @@ var render = function () {
                       ],
                       1
                     ),
-                  ]
-                },
-                proxy: true,
-              },
-              {
-                key: "item.actions",
-                fn: function (ref) {
-                  var item = ref.item
-                  return [
-                    _c(
-                      "v-icon",
-                      {
-                        staticClass: "mr-2",
-                        attrs: { small: "" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.editItem(item)
-                          },
-                        },
-                      },
-                      [_vm._v("\n                mdi-pencil\n            ")]
-                    ),
                     _vm._v(" "),
                     _c(
-                      "v-icon",
+                      "v-dialog",
                       {
-                        attrs: { small: "" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.deleteItem(item)
+                        attrs: { "max-width": "500px" },
+                        model: {
+                          value: _vm.dialogDelete,
+                          callback: function ($$v) {
+                            _vm.dialogDelete = $$v
                           },
+                          expression: "dialogDelete",
                         },
                       },
-                      [_vm._v("\n                mdi-delete\n            ")]
+                      [
+                        _c(
+                          "v-card",
+                          [
+                            _c("v-card-title", { staticClass: "text-h5" }, [
+                              _vm._v(
+                                "Êtes-vous certains de supprimer le pays?"
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "v-card-actions",
+                              [
+                                _c("v-spacer"),
+                                _vm._v(" "),
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: { color: "blue darken-1", text: "" },
+                                    on: { click: _vm.closeDelete },
+                                  },
+                                  [_vm._v("Annuler")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: { color: "blue darken-1", text: "" },
+                                    on: { click: _vm.deleteItemConfirm },
+                                  },
+                                  [_vm._v("OK")]
+                                ),
+                                _vm._v(" "),
+                                _c("v-spacer"),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
                     ),
-                  ]
-                },
-              },
-              {
-                key: "no-data",
-                fn: function () {
-                  return [
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: { color: "primary" },
-                        on: { click: _vm.initialize },
+                  ],
+                  1
+                ),
+              ]
+            },
+            proxy: true,
+          },
+          {
+            key: "item.flag",
+            fn: function (ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "div",
+                  { staticClass: "m-1" },
+                  [
+                    _c("v-img", {
+                      staticClass: "mx-auto",
+                      attrs: {
+                        src: item.flag,
+                        alt: item.flag,
+                        "aspect-ratio": "1",
+                        "max-width": "110",
+                        "max-height": "110",
                       },
-                      [_vm._v("\n                Reset\n            ")]
-                    ),
-                  ]
-                },
-                proxy: true,
-              },
-            ]),
-          }),
-        ],
-        1
-      ),
+                    }),
+                  ],
+                  1
+                ),
+              ]
+            },
+          },
+          {
+            key: "item.actions",
+            fn: function (ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "v-icon",
+                  {
+                    staticClass: "mr-2",
+                    attrs: { small: "" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.editItem(item)
+                      },
+                    },
+                  },
+                  [_vm._v("\n                mdi-pencil\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-icon",
+                  {
+                    attrs: { small: "" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.deleteItem(item)
+                      },
+                    },
+                  },
+                  [_vm._v("\n                mdi-delete\n            ")]
+                ),
+              ]
+            },
+          },
+          {
+            key: "no-data",
+            fn: function () {
+              return [
+                _c(
+                  "v-btn",
+                  {
+                    attrs: { color: "primary" },
+                    on: { click: _vm.initialize },
+                  },
+                  [_vm._v("\n                Reset\n            ")]
+                ),
+              ]
+            },
+            proxy: true,
+          },
+        ]),
+      }),
     ],
     1
   )
@@ -39960,8 +39898,14 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "v-app",
-    [_c("Header"), _vm._v(" "), _vm._t("default"), _vm._v(" "), _c("Footer")],
-    2
+    [
+      _c("Header"),
+      _vm._v(" "),
+      _c("v-main", { staticClass: "ma-4" }, [_vm._t("default")], 2),
+      _vm._v(" "),
+      _c("Footer"),
+    ],
+    1
   )
 }
 var staticRenderFns = []

@@ -39,5 +39,6 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::get('/', [LocalisationController::class, 'index'])->name('basicdata.index');
         // pays
         Route::get('/pays', [PaysController::class, 'index'])->name('pays.index');
+        Route::post('/pays', [PaysController::class, 'store'])->name('pays.store');
     });
 });
