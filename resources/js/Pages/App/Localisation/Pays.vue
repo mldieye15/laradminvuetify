@@ -49,7 +49,7 @@
                                     <!-- <v-from> -->
                                     <v-row>
                                         <v-col cols="12" sm="12" md="6" >
-                                            <v-select required v-model="selectedContinent" :items="continents" label="Cotinents" item-text="libelle" item-value="id" single-line return-object></v-select>
+                                            <v-select  v-model="form.continent" :items="continents" label="Cotinents" item-text="libelle" item-value="id" single-line return-object></v-select>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-text-field v-model="form.libelle" label="Nom complet" ></v-text-field>
@@ -64,10 +64,11 @@
                                             <v-text-field v-model="form.code_alpha3" label="Code à 3" ></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4" >
-                                            <v-text-field required v-model="form.indicatif" label="Indicatif"></v-text-field>
+                                            <v-text-field  v-model="form.indicatif" label="Indicatif"></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
-                                            <v-file-input required v-model="form.flag" label="Drapeau" @input="form.flag = $event.target.files[0]"></v-file-input>
+                                            <v-file-input v-model="form.flag" label="Drapeau" v-if="editedIndex > -1 && form.flag!= null" @input="form.flag"></v-file-input>
+                                            <v-file-input v-model="form.flag" label="Drapeau" v-else @input="form.flag = $event.target.files[0]"></v-file-input>
                                             <v-img :v-show="editedIndex >-1" :src="form.flag" :alt="form.flag" aspect-ratio="1" max-width="90" max-height="90" class="ma-1"></v-img>
                                         </v-col>
                                     </v-row>
@@ -203,7 +204,6 @@ export default {
             flag: null,
             continent: null
         },
-        //
       }
     },
 
@@ -241,12 +241,12 @@ export default {
                     code_alpha3: this.form.code_alpha3,
                     indicatif: this.form.indicatif,
                     flag: this.form.flag,
-                    continent: this.selectedContinent
+                    continent: this.form.continent //this.selectedContinent
                 })
             } else {
                 //this.form.post('/app/intial-data/pays'); // this.route('login')
                 this.form.continent = this.selectedContinent
-                this.form.post(this.route('pays.store') ); 
+                this.form.post(this.route('pays.store') );
                 this.pays.push(this.form)
             }
             this.close()
@@ -255,8 +255,13 @@ export default {
         editItem (item) {
             this.editedIndex = this.pays.indexOf(item)
             this.selectedContinent = this.pays[this.editedIndex].continent;
+            console.log(this.selectedContinent);
+            //this.selectedContinent.id = this.pays[this.editedIndex].continent.id;
+            //this.selectedContinent.libelle = this.pays[this.editedIndex].continent.libelle;
+            //console.log(this.pays[this.editedIndex].continent);
             this.form = Object.assign({}, item)
             //Object.assign(this.selectedContinent, this.form.continent);
+            //console.log(this.selectedContinent);
             this.dialog = true
         },
 

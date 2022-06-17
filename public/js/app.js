@@ -5892,6 +5892,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5968,8 +5969,7 @@ __webpack_require__.r(__webpack_exports__);
         indicatif: '',
         flag: null,
         continent: null
-      } //
-
+      }
     };
   },
   computed: {
@@ -6002,7 +6002,8 @@ __webpack_require__.r(__webpack_exports__);
           code_alpha3: this.form.code_alpha3,
           indicatif: this.form.indicatif,
           flag: this.form.flag,
-          continent: this.selectedContinent
+          continent: this.form.continent //this.selectedContinent
+
         });
       } else {
         //this.form.post('/app/intial-data/pays'); // this.route('login')
@@ -6016,7 +6017,12 @@ __webpack_require__.r(__webpack_exports__);
     editItem: function editItem(item) {
       this.editedIndex = this.pays.indexOf(item);
       this.selectedContinent = this.pays[this.editedIndex].continent;
+      console.log(this.selectedContinent); //this.selectedContinent.id = this.pays[this.editedIndex].continent.id;
+      //this.selectedContinent.libelle = this.pays[this.editedIndex].continent.libelle;
+      //console.log(this.pays[this.editedIndex].continent);
+
       this.form = Object.assign({}, item); //Object.assign(this.selectedContinent, this.form.continent);
+      //console.log(this.selectedContinent);
 
       this.dialog = true;
     },
@@ -38589,7 +38595,6 @@ var render = function () {
                                           [
                                             _c("v-select", {
                                               attrs: {
-                                                required: "",
                                                 items: _vm.continents,
                                                 label: "Cotinents",
                                                 "item-text": "libelle",
@@ -38598,11 +38603,15 @@ var render = function () {
                                                 "return-object": "",
                                               },
                                               model: {
-                                                value: _vm.selectedContinent,
+                                                value: _vm.form.continent,
                                                 callback: function ($$v) {
-                                                  _vm.selectedContinent = $$v
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "continent",
+                                                    $$v
+                                                  )
                                                 },
-                                                expression: "selectedContinent",
+                                                expression: "form.continent",
                                               },
                                             }),
                                           ],
@@ -38732,10 +38741,7 @@ var render = function () {
                                           },
                                           [
                                             _c("v-text-field", {
-                                              attrs: {
-                                                required: "",
-                                                label: "Indicatif",
-                                              },
+                                              attrs: { label: "Indicatif" },
                                               model: {
                                                 value: _vm.form.indicatif,
                                                 callback: function ($$v) {
@@ -38762,29 +38768,43 @@ var render = function () {
                                             },
                                           },
                                           [
-                                            _c("v-file-input", {
-                                              attrs: {
-                                                required: "",
-                                                label: "Drapeau",
-                                              },
-                                              on: {
-                                                input: function ($event) {
-                                                  _vm.form.flag =
-                                                    $event.target.files[0]
-                                                },
-                                              },
-                                              model: {
-                                                value: _vm.form.flag,
-                                                callback: function ($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "flag",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression: "form.flag",
-                                              },
-                                            }),
+                                            _vm.editedIndex > -1 &&
+                                            _vm.form.flag != null
+                                              ? _c("v-file-input", {
+                                                  attrs: { label: "Drapeau" },
+                                                  on: { input: _vm.form.flag },
+                                                  model: {
+                                                    value: _vm.form.flag,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "flag",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "form.flag",
+                                                  },
+                                                })
+                                              : _c("v-file-input", {
+                                                  attrs: { label: "Drapeau" },
+                                                  on: {
+                                                    input: function ($event) {
+                                                      _vm.form.flag =
+                                                        $event.target.files[0]
+                                                    },
+                                                  },
+                                                  model: {
+                                                    value: _vm.form.flag,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "flag",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "form.flag",
+                                                  },
+                                                }),
                                             _vm._v(" "),
                                             _c("v-img", {
                                               staticClass: "ma-1",

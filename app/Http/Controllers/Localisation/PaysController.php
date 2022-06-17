@@ -30,10 +30,11 @@ class PaysController extends Controller
                 'visible' => $item->visible,
                 'flag' => asset('storage/pays/'.$item->flag),
                 'map' => asset('storage/pays/', $item->map),
-                'continent' => json_encode([
+                'continent' => $item->continent->toJson()
+                 /*json_encode([
                     'id' => $item->continent->id,
                     'libelle' => $item->continent->libelle
-                ]) //$item->continent
+                ])$ $item->continent->toJson() */
             ];
         });
         $continents = Continent::all()->map(function($item){
@@ -86,15 +87,27 @@ class PaysController extends Controller
      * @return \Illuminate\Http\Response
     */
     public function update($pays, PaysRequest $request){
-        $flag_path = '';
+
         //$extenetsion = (explode('.', $pays->flag))[1];
-        //$nom 
+        //$nom
         $onePays = Pays::findOrFail($pays);
+        $flag_path = $onePays->flag;
         if ($request->hasFile('flag')) {
-            //Storage::delete('public/pays/'.$pays->flag);
+            //  supression
+            if($onePays->flag != 'flag-default.png'){
+                Storage::delete('public/pays/'.$onePays->flag);
+            }
             $flag_path = $request->file('flag')->store('pays', 'public');
             $flag_path = (explode('pays/', $flag_path))[1];
+            //$onePays->flag = $flag_path;
         }
+        //
+        if(isset($request->continent['id']) && $request->continent['id']!=null && $request->continent['id']!=0){
+            $continent = $request->continent['id'];
+        }else{
+            $continent = $onePays->continent->id;
+        }
+        //$continent = ($request->has('continent') &&  $request->continent['id']!=null && $request->continent['id']!=0) ? $request->continent['id'] : $onePays->continent;
 
         $onePays->update([
             'libelle' => $request->libelle, //$request->libelle,
@@ -102,8 +115,8 @@ class PaysController extends Controller
             'code_alpha2' => $request->code_alpha2,
             'code_alpha3' =>$request->code_alpha3,
             'indicatif' => $request->indicatif,
-            //'flag' => $flag_path ? '',
-            'continent_id' => $request->continent['id']
+            'flag' => $flag_path,
+            'continent_id' => $continent
         ]);
         return Redirect::route('pays.index');
     }
