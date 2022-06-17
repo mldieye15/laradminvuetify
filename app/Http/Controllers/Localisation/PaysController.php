@@ -7,6 +7,7 @@ use App\Http\Requests\Localisation\PaysRequest;
 use App\Models\Localisation\Continent;
 use App\Models\Localisation\Pays;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -29,7 +30,10 @@ class PaysController extends Controller
                 'visible' => $item->visible,
                 'flag' => asset('storage/pays/'.$item->flag),
                 'map' => asset('storage/pays/', $item->map),
-                'continent' => $item->continent->libelle
+                'continent' => json_encode([
+                    'id' => $item->continent->id,
+                    'libelle' => $item->continent->libelle
+                ]) //$item->continent
             ];
         });
         $continents = Continent::all()->map(function($item){
@@ -78,10 +82,30 @@ class PaysController extends Controller
      * Metre à jour un pays.
      *
      * @param  \App\Http\Requests\Localisation\PaysRequest  $request
+     * @param  int $pays
      * @return \Illuminate\Http\Response
     */
-    public function update(PaysRequest $request){
-        return null;
+    public function update($pays, PaysRequest $request){
+        $flag_path = '';
+        //$extenetsion = (explode('.', $pays->flag))[1];
+        //$nom 
+        $onePays = Pays::findOrFail($pays);
+        if ($request->hasFile('flag')) {
+            //Storage::delete('public/pays/'.$pays->flag);
+            $flag_path = $request->file('flag')->store('pays', 'public');
+            $flag_path = (explode('pays/', $flag_path))[1];
+        }
+
+        $onePays->update([
+            'libelle' => $request->libelle, //$request->libelle,
+            'sigle' => $request->sigle,
+            'code_alpha2' => $request->code_alpha2,
+            'code_alpha3' =>$request->code_alpha3,
+            'indicatif' => $request->indicatif,
+            //'flag' => $flag_path ? '',
+            'continent_id' => $request->continent['id']
+        ]);
+        return Redirect::route('pays.index');
     }
 
     /**

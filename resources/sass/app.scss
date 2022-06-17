@@ -11,3 +11,9 @@
 //@import url('https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css');
 //
 @import "main";
+
+.v-label  > .required.sign {
+    color: darkred;
+    font-weight: bold;
+    margin-left: .25em;
+}

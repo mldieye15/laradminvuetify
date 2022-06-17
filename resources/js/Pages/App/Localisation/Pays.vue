@@ -49,10 +49,7 @@
                                     <!-- <v-from> -->
                                     <v-row>
                                         <v-col cols="12" sm="12" md="6" >
-                                            <v-select required v-model="form.continent" :items="continents" label="Cotinents" return-object single-line item-text="libelle"></v-select>
-                                        </v-col>
-                                        <v-col cols="12" sm="12" md="6" >
-                                            <v-file-input required v-model="form.flag" label="Drapeau" @input="form.flag = $event.target.files[0]"></v-file-input>
+                                            <v-select required v-model="selectedContinent" :items="continents" label="Cotinents" item-text="libelle" item-value="id" single-line return-object></v-select>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-text-field v-model="form.libelle" label="Nom complet" ></v-text-field>
@@ -69,7 +66,10 @@
                                         <v-col cols="12" sm="6" md="4" >
                                             <v-text-field required v-model="form.indicatif" label="Indicatif"></v-text-field>
                                         </v-col>
-
+                                        <v-col cols="12" sm="12" md="6" >
+                                            <v-file-input required v-model="form.flag" label="Drapeau" @input="form.flag = $event.target.files[0]"></v-file-input>
+                                            <v-img :v-show="editedIndex >-1" :src="form.flag" :alt="form.flag" aspect-ratio="1" max-width="90" max-height="90" class="ma-1"></v-img>
+                                        </v-col>
                                     </v-row>
                                     <!-- </v-from> -->
                                 </v-container>
@@ -133,6 +133,8 @@
 
 <script>
 import AppLayout from '../../Layouts/App/AppLayout.vue';
+import { Inertia } from '@inertiajs/inertia';
+
 export default {
     name: 'Pays',
     components:{
@@ -186,9 +188,9 @@ export default {
             code_alpha3: '',
             indicatif: '',
             flag: null,
-            continent: 1
+            continent: this.selectedContinent
         }),
-        defaultContinent:{
+        selectedContinent:{
             id: 1,
             libelle: 'Afrique'
         },
@@ -199,7 +201,7 @@ export default {
             code_alpha3: '',
             indicatif: '',
             flag: null,
-            continent: 1
+            continent: null
         },
         //
       }
@@ -226,26 +228,40 @@ export default {
 
     methods: {
         save () {
-            //console.log(this.data);
-            this.form.post('/app/intial-data/pays'); //route("image.store")
             if (this.editedIndex > -1) {
-                Object.assign(this.pays[this.editedIndex], this.form)
+                //this.form._method = 'PUT';
+                //this.$inertia.post('/app/intial-data/pays/' + this.form.id, this.form)
+                //Object.assign(this.pays[this.editedIndex], this.form);
+                Object.assign(this.pays[this.editedIndex], this.form);
+                Inertia.post(`/app/intial-data/pays/${this.form.id}`, {
+                    _method: 'put',
+                    libelle: this.form.libelle,
+                    sigle: this.form.sigle,
+                    code_alpha2: this.form.code_alpha2,
+                    code_alpha3: this.form.code_alpha3,
+                    indicatif: this.form.indicatif,
+                    flag: this.form.flag,
+                    continent: this.selectedContinent
+                })
             } else {
+                //this.form.post('/app/intial-data/pays'); // this.route('login')
+                this.form.continent = this.selectedContinent
+                this.form.post(this.route('pays.store') ); 
                 this.pays.push(this.form)
             }
             this.close()
         },
 
         editItem (item) {
-            //data._method = 'PUT';
-            //this.$inertia.post('/posts/' + data.id, data)
-            this.editedIndex = this.listePays.indexOf(item)
+            this.editedIndex = this.pays.indexOf(item)
+            this.selectedContinent = this.pays[this.editedIndex].continent;
             this.form = Object.assign({}, item)
+            //Object.assign(this.selectedContinent, this.form.continent);
             this.dialog = true
         },
 
         deleteItem (item) {
-            this.editedIndex = this.listePays.indexOf(item)
+            this.editedIndex = this.pays.indexOf(item)
             this.form = Object.assign({}, item)
             this.dialogDelete = true
         },

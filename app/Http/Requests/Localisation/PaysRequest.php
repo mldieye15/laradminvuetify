@@ -30,8 +30,8 @@ class PaysRequest extends FormRequest
             'code_alpha2' => 'nullable|size:2',
             'code_alpha3' => 'nullable|size:3',
             //'visible' => 'boolean',
-            'map' => 'image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
-            'flag' => 'image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
+            'map' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
+            'flag' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
         ];
     }
 }

@@ -5758,6 +5758,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Layouts_App_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/App/AppLayout.vue */ "./resources/js/Pages/Layouts/App/AppLayout.vue");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 //
 //
 //
@@ -5891,6 +5892,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Pays',
@@ -5952,9 +5954,9 @@ __webpack_require__.r(__webpack_exports__);
         code_alpha3: '',
         indicatif: '',
         flag: null,
-        continent: 1
+        continent: this.selectedContinent
       }),
-      defaultContinent: {
+      selectedContinent: {
         id: 1,
         libelle: 'Afrique'
       },
@@ -5965,7 +5967,7 @@ __webpack_require__.r(__webpack_exports__);
         code_alpha3: '',
         indicatif: '',
         flag: null,
-        continent: 1
+        continent: null
       } //
 
     };
@@ -5987,26 +5989,39 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     save: function save() {
-      //console.log(this.data);
-      this.form.post('/app/intial-data/pays'); //route("image.store")
-
       if (this.editedIndex > -1) {
+        //this.form._method = 'PUT';
+        //this.$inertia.post('/app/intial-data/pays/' + this.form.id, this.form)
+        //Object.assign(this.pays[this.editedIndex], this.form);
         Object.assign(this.pays[this.editedIndex], this.form);
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/app/intial-data/pays/".concat(this.form.id), {
+          _method: 'put',
+          libelle: this.form.libelle,
+          sigle: this.form.sigle,
+          code_alpha2: this.form.code_alpha2,
+          code_alpha3: this.form.code_alpha3,
+          indicatif: this.form.indicatif,
+          flag: this.form.flag,
+          continent: this.selectedContinent
+        });
       } else {
+        //this.form.post('/app/intial-data/pays'); // this.route('login')
+        this.form.continent = this.selectedContinent;
+        this.form.post(this.route('pays.store'));
         this.pays.push(this.form);
       }
 
       this.close();
     },
     editItem: function editItem(item) {
-      //data._method = 'PUT';
-      //this.$inertia.post('/posts/' + data.id, data)
-      this.editedIndex = this.listePays.indexOf(item);
-      this.form = Object.assign({}, item);
+      this.editedIndex = this.pays.indexOf(item);
+      this.selectedContinent = this.pays[this.editedIndex].continent;
+      this.form = Object.assign({}, item); //Object.assign(this.selectedContinent, this.form.continent);
+
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
-      this.editedIndex = this.listePays.indexOf(item);
+      this.editedIndex = this.pays.indexOf(item);
       this.form = Object.assign({}, item);
       this.dialogDelete = true;
     },
@@ -38577,57 +38592,17 @@ var render = function () {
                                                 required: "",
                                                 items: _vm.continents,
                                                 label: "Cotinents",
-                                                "return-object": "",
-                                                "single-line": "",
                                                 "item-text": "libelle",
+                                                "item-value": "id",
+                                                "single-line": "",
+                                                "return-object": "",
                                               },
                                               model: {
-                                                value: _vm.form.continent,
+                                                value: _vm.selectedContinent,
                                                 callback: function ($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "continent",
-                                                    $$v
-                                                  )
+                                                  _vm.selectedContinent = $$v
                                                 },
-                                                expression: "form.continent",
-                                              },
-                                            }),
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-col",
-                                          {
-                                            attrs: {
-                                              cols: "12",
-                                              sm: "12",
-                                              md: "6",
-                                            },
-                                          },
-                                          [
-                                            _c("v-file-input", {
-                                              attrs: {
-                                                required: "",
-                                                label: "Drapeau",
-                                              },
-                                              on: {
-                                                input: function ($event) {
-                                                  _vm.form.flag =
-                                                    $event.target.files[0]
-                                                },
-                                              },
-                                              model: {
-                                                value: _vm.form.flag,
-                                                callback: function ($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "flag",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression: "form.flag",
+                                                expression: "selectedContinent",
                                               },
                                             }),
                                           ],
@@ -38771,6 +38746,55 @@ var render = function () {
                                                   )
                                                 },
                                                 expression: "form.indicatif",
+                                              },
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-col",
+                                          {
+                                            attrs: {
+                                              cols: "12",
+                                              sm: "12",
+                                              md: "6",
+                                            },
+                                          },
+                                          [
+                                            _c("v-file-input", {
+                                              attrs: {
+                                                required: "",
+                                                label: "Drapeau",
+                                              },
+                                              on: {
+                                                input: function ($event) {
+                                                  _vm.form.flag =
+                                                    $event.target.files[0]
+                                                },
+                                              },
+                                              model: {
+                                                value: _vm.form.flag,
+                                                callback: function ($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "flag",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.flag",
+                                              },
+                                            }),
+                                            _vm._v(" "),
+                                            _c("v-img", {
+                                              staticClass: "ma-1",
+                                              attrs: {
+                                                "v-show": _vm.editedIndex > -1,
+                                                src: _vm.form.flag,
+                                                alt: _vm.form.flag,
+                                                "aspect-ratio": "1",
+                                                "max-width": "90",
+                                                "max-height": "90",
                                               },
                                             }),
                                           ],

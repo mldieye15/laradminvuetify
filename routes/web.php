@@ -40,5 +40,6 @@ Route::middleware('auth:sanctum')->group(function() {
         // pays
         Route::get('/pays', [PaysController::class, 'index'])->name('pays.index');
         Route::post('/pays', [PaysController::class, 'store'])->name('pays.store');
+        Route::put('/pays/{pays}', [PaysController::class, 'update'])->name('pays.update');
     });
 });
