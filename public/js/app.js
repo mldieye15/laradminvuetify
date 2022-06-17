@@ -6017,13 +6017,8 @@ __webpack_require__.r(__webpack_exports__);
     editItem: function editItem(item) {
       this.editedIndex = this.pays.indexOf(item);
       this.selectedContinent = this.pays[this.editedIndex].continent;
-      console.log(this.selectedContinent); //this.selectedContinent.id = this.pays[this.editedIndex].continent.id;
-      //this.selectedContinent.libelle = this.pays[this.editedIndex].continent.libelle;
-      //console.log(this.pays[this.editedIndex].continent);
-
-      this.form = Object.assign({}, item); //Object.assign(this.selectedContinent, this.form.continent);
-      //console.log(this.selectedContinent);
-
+      console.log(this.selectedContinent);
+      this.form = Object.assign({}, item);
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
@@ -6032,8 +6027,8 @@ __webpack_require__.r(__webpack_exports__);
       this.dialogDelete = true;
     },
     deleteItemConfirm: function deleteItemConfirm() {
-      //data._method = 'DELETE';
-      //this.$inertia.post('/posts/' + data.id, data;
+      //this.$inertia.delete(this.route('users.destroy'), user))
+      this.$inertia["delete"]("/app/intial-data/pays/".concat(this.pays[this.editedIndex].id));
       this.listePays.splice(this.editedIndex, 1);
       this.closeDelete();
     },

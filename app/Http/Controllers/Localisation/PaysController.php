@@ -87,9 +87,6 @@ class PaysController extends Controller
      * @return \Illuminate\Http\Response
     */
     public function update($pays, PaysRequest $request){
-
-        //$extenetsion = (explode('.', $pays->flag))[1];
-        //$nom
         $onePays = Pays::findOrFail($pays);
         $flag_path = $onePays->flag;
         if ($request->hasFile('flag')) {
@@ -101,13 +98,13 @@ class PaysController extends Controller
             $flag_path = (explode('pays/', $flag_path))[1];
             //$onePays->flag = $flag_path;
         }
+
         //
         if(isset($request->continent['id']) && $request->continent['id']!=null && $request->continent['id']!=0){
             $continent = $request->continent['id'];
         }else{
             $continent = $onePays->continent->id;
         }
-        //$continent = ($request->has('continent') &&  $request->continent['id']!=null && $request->continent['id']!=0) ? $request->continent['id'] : $onePays->continent;
 
         $onePays->update([
             'libelle' => $request->libelle, //$request->libelle,
@@ -118,16 +115,24 @@ class PaysController extends Controller
             'flag' => $flag_path,
             'continent_id' => $continent
         ]);
+
         return Redirect::route('pays.index');
     }
 
     /**
      * Supprimer un pays.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  int $pays
      * @return \Illuminate\Http\Response
     */
-    public function destroy(Request $request){
-        return null;
+    public function destroy($pays){
+        $onePays = Pays::findOrFail($pays);
+        if($onePays->flag != 'flag-default.png'){
+            Storage::delete('public/pays/'.$onePays->flag);
+        }
+
+        $onePays->delete();
+
+        return Redirect::route('pays.index');
     }
 }
