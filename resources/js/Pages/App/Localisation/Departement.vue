@@ -43,29 +43,34 @@
 
                             <v-card-text>
                                 <v-container>
-                                    <v-alert v-if="$page.props.errors.libelle" v-model="alert" dismissible color="red" border="left" elevation="2" colored-border>
+                                    <!--<v-alert v-if="$page.props.errors.libelle " v-model="alert" dismissible color="red" border="left" elevation="2" colored-border>
                                         {{ $page.props.errors.libelle }}
-                                    </v-alert>
+                                    </v-alert>-->
                                     <v-row>
                                         <v-col cols="12" sm="12" md="6" >
-                                            <v-select  v-model="selectedRegion" :items="regions" label="Région" item-text="sigle" item-value="id" single-line return-object></v-select>
+                                            <v-select v-model="selectedRegion" :items="regions" label="Région" item-text="sigle" item-value="id" single-line return-object></v-select>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-text-field v-model="form.libelle" label="Nom complet" ></v-text-field>
+                                            <span v-if="errors.libelle" class="font-weight-light red--text">{{ errors.libelle[0] }}</span>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-text-field v-model="form.sigle" label="Nom habituel"></v-text-field>
+                                            <span v-if="errors.sigle" class="font-weight-light red--text">{{ errors.sigle[0] }}</span>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4">
                                             <v-text-field v-model="form.codification" label="Codification"></v-text-field>
+                                            <span v-if="errors.codification" class="font-weight-light red--text">{{ errors.codification[0] }}</span>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4" >
                                             <v-text-field  v-model="form.indicatif" label="Indicatif"></v-text-field>
+                                            <span v-if="errors.indicatif" class="font-weight-light red--text">{{ errors.indicatif[0] }}</span>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-file-input v-model="form.map" label="Carte" v-if="editedIndex > -1 && form.map!= null" @input="form.map"></v-file-input>
                                             <v-file-input v-model="form.map" label="Carte" v-else @input="form.map = $event.target.files[0]"></v-file-input>
                                             <v-img :v-show="editedIndex >-1" :src="form.map" :alt="form.map" aspect-ratio="1" max-width="90" max-height="90" class="ma-1"></v-img>
+                                            <span v-if="errors.map" class="font-weight-light red--text">{{ errors.map[0] }}</span>
                                         </v-col>
                                     </v-row>
                                 </v-container>
@@ -142,7 +147,7 @@ export default {
     components:{
         AppLayout
     },
-    props:  ['departements', 'data', 'regions'],
+    props:  ['departements', 'errors', 'regions'],
     data () {
       return {
         items: [
@@ -240,10 +245,22 @@ export default {
                 })
             } else {
                 this.form.region = this.selectedRegion
-                this.form.post(this.route('departements.store') );
+                Inertia.post(`/app/intial-data/departements`, {
+                    _method: 'post',
+                    libelle: this.form.libelle,
+                    sigle: this.form.sigle,
+                    codification: this.form.codification,
+                    indicatif: this.form.indicatif,
+                    map: this.form.map,
+                    region: this.selectedRegion
+                })
                 this.departements.push(this.form)
             }
-            this.close()
+
+            if(this.isErrorEmpty(this.errors)){
+                this.close()
+            }
+
         },
 
         editItem (item) {
@@ -267,19 +284,24 @@ export default {
 
         close () {
             this.dialog = false
-            this.$nextTick(() => {
-                this.form = Object.assign({}, this.defaultItem)
-                this.editedIndex = -1
-            })
+            this.form = Object.assign({}, this.defaultItem)
+            this.editedIndex = -1
         },
 
         closeDelete () {
             this.dialogDelete = false
-            this.$nextTick(() => {
-                this.form = Object.assign({}, this.defaultItem)
-                this.editedIndex = -1
-            })
+            this.form = Object.assign({}, this.defaultItem)
+            this.editedIndex = -1
         },
+
+        isErrorEmpty(object) {
+            var isEmpty = true;
+            for (keys in object) {
+                isEmpty = false;
+                break;
+            }
+            return isEmpty;
+        }
     },
 }
 </script>

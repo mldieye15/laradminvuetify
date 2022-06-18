@@ -43,32 +43,38 @@
 
                             <v-card-text>
                                 <v-container>
-                                    <v-alert v-if="$page.props.errors.libelle" v-model="alert" dismissible color="red" border="left" elevation="2" colored-border>
+                                    <!--<v-alert v-if="$page.props.errors.libelle" v-model="alert" dismissible color="red" border="left" elevation="2" colored-border>
                                         {{ $page.props.errors.libelle }}
-                                    </v-alert>
+                                    </v-alert>-->
                                     <v-row>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-select  v-model="selectedContinent" :items="continents" label="Cotinents" item-text="libelle" item-value="id" single-line return-object></v-select>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-text-field v-model="form.libelle" label="Nom complet" ></v-text-field>
+                                            <span v-if="errors.libelle" class="font-weight-light red--text">{{ errors.libelle[0] }}</span>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-text-field v-model="form.sigle" label="Nom habituel"></v-text-field>
+                                            <span v-if="errors.sigle" class="font-weight-light red--text">{{ errors.sigle[0] }}</span>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4">
                                             <v-text-field v-model="form.code_alpha2" label="Code à 2"></v-text-field>
+                                            <span v-if="errors.code_alpha2" class="font-weight-light red--text">{{ errors.code_alpha2[0] }}</span>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4" >
                                             <v-text-field v-model="form.code_alpha3" label="Code à 3" ></v-text-field>
+                                            <span v-if="errors.code_alpha3" class="font-weight-light red--text">{{ errors.code_alpha3[0] }}</span>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4" >
                                             <v-text-field  v-model="form.indicatif" label="Indicatif"></v-text-field>
+                                            <span v-if="errors.indicatif" class="font-weight-light red--text">{{ errors.indicatif[0] }}</span>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-file-input v-model="form.flag" label="Drapeau" v-if="editedIndex > -1 && form.flag!= null" @input="form.flag"></v-file-input>
                                             <v-file-input v-model="form.flag" label="Drapeau" v-else @input="form.flag = $event.target.files[0]"></v-file-input>
                                             <v-img :v-show="editedIndex >-1" :src="form.flag" :alt="form.flag" aspect-ratio="1" max-width="90" max-height="90" class="ma-1"></v-img>
+                                            <span v-if="errors.flag" class="font-weight-light red--text">{{ errors.flag[0] }}</span>
                                         </v-col>
                                     </v-row>
                                 </v-container>
@@ -144,7 +150,7 @@ export default {
     components:{
         AppLayout
     },
-    props:  ['pays', 'data', 'continents'],
+    props:  ['pays', 'errors', 'continents'],
     data () {
       return {
         items: [
@@ -164,7 +170,6 @@ export default {
                 href: 'pays',
             },
         ],
-        //
         alert: true,
         search: '',
         dialog: false,
@@ -245,10 +250,22 @@ export default {
                 })
             } else {
                 this.form.continent = this.selectedContinent
-                this.form.post(this.route('pays.store') );
+                //this.form.post(this.route('pays.store') );
+                Inertia.post(`/app/intial-data/pays`, {
+                    _method: 'post',
+                    libelle: this.form.libelle,
+                    sigle: this.form.sigle,
+                    code_alpha2: this.form.code_alpha2,
+                    code_alpha3: this.form.code_alpha3,
+                    indicatif: this.form.indicatif,
+                    flag: this.form.flag,
+                    continent: this.selectedContinent
+                })
                 this.pays.push(this.form)
             }
-            this.close()
+            if(this.isErrorEmpty(this.errors)){
+                this.close()
+            }
         },
 
         editItem (item) {
@@ -272,19 +289,32 @@ export default {
 
         close () {
             this.dialog = false
-            this.$nextTick(() => {
+            this.form = Object.assign({}, this.defaultItem)
+            this.editedIndex = -1
+            /*this.$nextTick(() => {
                 this.form = Object.assign({}, this.defaultItem)
                 this.editedIndex = -1
-            })
+            })*/
         },
 
         closeDelete () {
             this.dialogDelete = false
-            this.$nextTick(() => {
+            this.form = Object.assign({}, this.defaultItem)
+            this.editedIndex = -1
+            /*this.$nextTick(() => {
                 this.form = Object.assign({}, this.defaultItem)
                 this.editedIndex = -1
-            })
+            })*/
         },
+
+        isErrorEmpty(object) {
+            var isEmpty = true;
+            for (keys in object) {
+                isEmpty = false;
+                break; // exiting since we found that the object is not empty
+            }
+            return isEmpty;
+        }
     },
 }
 </script>

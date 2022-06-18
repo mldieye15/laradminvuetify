@@ -54,7 +54,7 @@ class DepartementController extends Controller
      * @return \Illuminate\Http\Response
     */
     public function store(DepartementRequest $request){
-        $map_path = '';
+        $map_path = 'map-default.png';
         if ($request->hasFile('map')) {
             $request->validate([
                 'map' => 'image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB

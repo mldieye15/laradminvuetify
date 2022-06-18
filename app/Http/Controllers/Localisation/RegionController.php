@@ -50,11 +50,11 @@ class RegionController extends Controller
     /**
      * Ajouter une région.
      *
-     * @param  \App\Http\Requests\Localisation\DepartementRequest  $request
+     * @param  \App\Http\Requests\Localisation\RegionRequest  $request
      * @return \Illuminate\Http\Response
     */
-    public function store(DepartementRequest $request){
-        $map_path = '';
+    public function store(RegionRequest $request){
+        $map_path = 'map-default.png';
         if ($request->hasFile('map')) {
             $request->validate([
                 'map' => 'image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
@@ -65,7 +65,7 @@ class RegionController extends Controller
         }
 
         Region::create([
-            'libelle' => $request->libelle, //$request->libelle,
+            'libelle' => $request->libelle,
             'sigle' => $request->sigle,
             'codification' => $request->codification,
             'indicatif' => $request->indicatif,

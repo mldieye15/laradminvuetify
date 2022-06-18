@@ -5755,6 +5755,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5762,7 +5767,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     AppLayout: _Layouts_App_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['departements', 'data', 'regions'],
+  props: ['departements', 'errors', 'regions'],
   data: function data() {
     var _defaultItem;
 
@@ -5861,11 +5866,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       } else {
         this.form.region = this.selectedRegion;
-        this.form.post(this.route('departements.store'));
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/app/intial-data/departements", {
+          _method: 'post',
+          libelle: this.form.libelle,
+          sigle: this.form.sigle,
+          codification: this.form.codification,
+          indicatif: this.form.indicatif,
+          map: this.form.map,
+          region: this.selectedRegion
+        });
         this.departements.push(this.form);
       }
 
-      this.close();
+      if (this.isErrorEmpty(this.errors)) {
+        this.close();
+      }
     },
     editItem: function editItem(item) {
       this.editedIndex = this.departements.indexOf(item);
@@ -5884,22 +5899,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.closeDelete();
     },
     close: function close() {
-      var _this = this;
-
       this.dialog = false;
-      this.$nextTick(function () {
-        _this.form = Object.assign({}, _this.defaultItem);
-        _this.editedIndex = -1;
-      });
+      this.form = Object.assign({}, this.defaultItem);
+      this.editedIndex = -1;
     },
     closeDelete: function closeDelete() {
-      var _this2 = this;
-
       this.dialogDelete = false;
-      this.$nextTick(function () {
-        _this2.form = Object.assign({}, _this2.defaultItem);
-        _this2.editedIndex = -1;
-      });
+      this.form = Object.assign({}, this.defaultItem);
+      this.editedIndex = -1;
+    },
+    isErrorEmpty: function isErrorEmpty(object) {
+      var isEmpty = true;
+
+      for (keys in object) {
+        isEmpty = false;
+        break;
+      }
+
+      return isEmpty;
     }
   }
 });
@@ -6197,6 +6214,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6204,7 +6227,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AppLayout: _Layouts_App_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['pays', 'data', 'continents'],
+  props: ['pays', 'errors', 'continents'],
   data: function data() {
     return {
       items: [{
@@ -6220,7 +6243,6 @@ __webpack_require__.r(__webpack_exports__);
         disabled: true,
         href: 'pays'
       }],
-      //
       alert: true,
       search: '',
       dialog: false,
@@ -6306,12 +6328,24 @@ __webpack_require__.r(__webpack_exports__);
           continent: this.selectedContinent
         });
       } else {
-        this.form.continent = this.selectedContinent;
-        this.form.post(this.route('pays.store'));
+        this.form.continent = this.selectedContinent; //this.form.post(this.route('pays.store') );
+
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/app/intial-data/pays", {
+          _method: 'post',
+          libelle: this.form.libelle,
+          sigle: this.form.sigle,
+          code_alpha2: this.form.code_alpha2,
+          code_alpha3: this.form.code_alpha3,
+          indicatif: this.form.indicatif,
+          flag: this.form.flag,
+          continent: this.selectedContinent
+        });
         this.pays.push(this.form);
       }
 
-      this.close();
+      if (this.isErrorEmpty(this.errors)) {
+        this.close();
+      }
     },
     editItem: function editItem(item) {
       this.editedIndex = this.pays.indexOf(item);
@@ -6330,22 +6364,32 @@ __webpack_require__.r(__webpack_exports__);
       this.closeDelete();
     },
     close: function close() {
-      var _this = this;
-
       this.dialog = false;
-      this.$nextTick(function () {
-        _this.form = Object.assign({}, _this.defaultItem);
-        _this.editedIndex = -1;
-      });
+      this.form = Object.assign({}, this.defaultItem);
+      this.editedIndex = -1;
+      /*this.$nextTick(() => {
+          this.form = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+      })*/
     },
     closeDelete: function closeDelete() {
-      var _this2 = this;
-
       this.dialogDelete = false;
-      this.$nextTick(function () {
-        _this2.form = Object.assign({}, _this2.defaultItem);
-        _this2.editedIndex = -1;
-      });
+      this.form = Object.assign({}, this.defaultItem);
+      this.editedIndex = -1;
+      /*this.$nextTick(() => {
+          this.form = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+      })*/
+    },
+    isErrorEmpty: function isErrorEmpty(object) {
+      var isEmpty = true;
+
+      for (keys in object) {
+        isEmpty = false;
+        break; // exiting since we found that the object is not empty
+      }
+
+      return isEmpty;
     }
   }
 });
@@ -6502,6 +6546,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6509,7 +6555,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     AppLayout: _Layouts_App_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['regions', 'data', 'pays'],
+  props: ['regions', 'errors', 'pays'],
   data: function data() {
     var _defaultItem;
 
@@ -6607,12 +6653,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           pays: this.selectedPays
         });
       } else {
-        this.form.pays = this.selectedPays;
-        this.form.post(this.route('regions.store'));
+        this.form.pays = this.selectedPays; //this.form.post(this.route('regions.store') );
+
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/app/intial-data/regions", {
+          _method: 'post',
+          libelle: this.form.libelle,
+          sigle: this.form.sigle,
+          codification: this.form.codification,
+          indicatif: this.form.indicatif,
+          map: this.form.map,
+          pays: this.selectedPays
+        });
         this.regions.push(this.form);
       }
 
-      this.close();
+      if (this.isErrorEmpty(this.errors)) {
+        this.close();
+      }
     },
     editItem: function editItem(item) {
       this.editedIndex = this.regions.indexOf(item);
@@ -6632,22 +6689,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.closeDelete();
     },
     close: function close() {
-      var _this = this;
-
       this.dialog = false;
-      this.$nextTick(function () {
-        _this.form = Object.assign({}, _this.defaultItem);
-        _this.editedIndex = -1;
-      });
+      this.form = Object.assign({}, this.defaultItem);
+      this.editedIndex = -1;
     },
     closeDelete: function closeDelete() {
-      var _this2 = this;
-
       this.dialogDelete = false;
-      this.$nextTick(function () {
-        _this2.form = Object.assign({}, _this2.defaultItem);
-        _this2.editedIndex = -1;
-      });
+      this.form = Object.assign({}, this.defaultItem);
+      this.editedIndex = -1;
+    },
+    isErrorEmpty: function isErrorEmpty(object) {
+      var isEmpty = true;
+
+      for (keys in object) {
+        isEmpty = false;
+        break;
+      }
+
+      return isEmpty;
     }
   }
 });
@@ -39211,37 +39270,6 @@ var render = function () {
                                 _c(
                                   "v-container",
                                   [
-                                    _vm.$page.props.errors.libelle
-                                      ? _c(
-                                          "v-alert",
-                                          {
-                                            attrs: {
-                                              dismissible: "",
-                                              color: "red",
-                                              border: "left",
-                                              elevation: "2",
-                                              "colored-border": "",
-                                            },
-                                            model: {
-                                              value: _vm.alert,
-                                              callback: function ($$v) {
-                                                _vm.alert = $$v
-                                              },
-                                              expression: "alert",
-                                            },
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                    " +
-                                                _vm._s(
-                                                  _vm.$page.props.errors.libelle
-                                                ) +
-                                                "\n                                "
-                                            ),
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
                                     _c(
                                       "v-row",
                                       [
@@ -39300,6 +39328,23 @@ var render = function () {
                                                 expression: "form.libelle",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.libelle
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors.libelle[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -39328,6 +39373,23 @@ var render = function () {
                                                 expression: "form.sigle",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.sigle
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors.sigle[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -39356,6 +39418,24 @@ var render = function () {
                                                 expression: "form.codification",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.codification
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors
+                                                          .codification[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -39384,6 +39464,23 @@ var render = function () {
                                                 expression: "form.indicatif",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.indicatif
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors.indicatif[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -39447,6 +39544,21 @@ var render = function () {
                                                 "max-height": "90",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.map
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(_vm.errors.map[0])
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40019,37 +40131,6 @@ var render = function () {
                                 _c(
                                   "v-container",
                                   [
-                                    _vm.$page.props.errors.libelle
-                                      ? _c(
-                                          "v-alert",
-                                          {
-                                            attrs: {
-                                              dismissible: "",
-                                              color: "red",
-                                              border: "left",
-                                              elevation: "2",
-                                              "colored-border": "",
-                                            },
-                                            model: {
-                                              value: _vm.alert,
-                                              callback: function ($$v) {
-                                                _vm.alert = $$v
-                                              },
-                                              expression: "alert",
-                                            },
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                    " +
-                                                _vm._s(
-                                                  _vm.$page.props.errors.libelle
-                                                ) +
-                                                "\n                                "
-                                            ),
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
                                     _c(
                                       "v-row",
                                       [
@@ -40108,6 +40189,23 @@ var render = function () {
                                                 expression: "form.libelle",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.libelle
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors.libelle[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40136,6 +40234,23 @@ var render = function () {
                                                 expression: "form.sigle",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.sigle
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors.sigle[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40164,6 +40279,24 @@ var render = function () {
                                                 expression: "form.code_alpha2",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.code_alpha2
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors
+                                                          .code_alpha2[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40192,6 +40325,24 @@ var render = function () {
                                                 expression: "form.code_alpha3",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.code_alpha3
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors
+                                                          .code_alpha3[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40220,6 +40371,23 @@ var render = function () {
                                                 expression: "form.indicatif",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.indicatif
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors.indicatif[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40283,6 +40451,21 @@ var render = function () {
                                                 "max-height": "90",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.flag
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(_vm.errors.flag[0])
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40645,37 +40828,6 @@ var render = function () {
                                 _c(
                                   "v-container",
                                   [
-                                    _vm.$page.props.errors.libelle
-                                      ? _c(
-                                          "v-alert",
-                                          {
-                                            attrs: {
-                                              dismissible: "",
-                                              color: "red",
-                                              border: "left",
-                                              elevation: "2",
-                                              "colored-border": "",
-                                            },
-                                            model: {
-                                              value: _vm.alert,
-                                              callback: function ($$v) {
-                                                _vm.alert = $$v
-                                              },
-                                              expression: "alert",
-                                            },
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                    " +
-                                                _vm._s(
-                                                  _vm.$page.props.errors.libelle
-                                                ) +
-                                                "\n                                "
-                                            ),
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
                                     _c(
                                       "v-row",
                                       [
@@ -40734,6 +40886,23 @@ var render = function () {
                                                 expression: "form.libelle",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.libelle
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors.libelle[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40762,6 +40931,23 @@ var render = function () {
                                                 expression: "form.sigle",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.sigle
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors.sigle[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40790,6 +40976,24 @@ var render = function () {
                                                 expression: "form.codification",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.codification
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors
+                                                          .codification[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40818,6 +41022,23 @@ var render = function () {
                                                 expression: "form.indicatif",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.indicatif
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.errors.indicatif[0]
+                                                      )
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),
@@ -40881,6 +41102,21 @@ var render = function () {
                                                 "max-height": "90",
                                               },
                                             }),
+                                            _vm._v(" "),
+                                            _vm.errors.map
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-light red--text",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(_vm.errors.map[0])
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e(),
                                           ],
                                           1
                                         ),

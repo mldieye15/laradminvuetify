@@ -56,7 +56,7 @@ class PaysController extends Controller
      * @return \Illuminate\Http\Response
     */
     public function store(PaysRequest $request){
-        $flag_path = '';
+        $flag_path = 'flag-default.png';
         if ($request->hasFile('flag')) {
             $request->validate([
                 'flag' => 'image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
