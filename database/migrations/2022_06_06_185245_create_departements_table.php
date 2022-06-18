@@ -21,7 +21,7 @@ class CreateDepartementsTable extends Migration
             $table->string('indicatif',10)->nullable();
             $table->boolean('visible')->default(0);
             $table->text('map')->nullable();
-            $table->foreignId('region_id')->constrained('regions');
+            $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
             $table->unique(['region_id', 'libelle']) ;
             $table->timestamps();
         });

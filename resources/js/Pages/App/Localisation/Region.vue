@@ -13,7 +13,7 @@
 
         <v-data-table
             :headers="headers"
-            :items="pays"
+            :items="regions"
             :search="search"
             :items-per-page="5"
             sort-by="calories"
@@ -48,7 +48,7 @@
                                     </v-alert>
                                     <v-row>
                                         <v-col cols="12" sm="12" md="6" >
-                                            <v-select  v-model="selectedContinent" :items="continents" label="Cotinents" item-text="libelle" item-value="id" single-line return-object></v-select>
+                                            <v-select  v-model="selectedPays" :items="pays" label="Pays" item-text="sigle" item-value="id" single-line return-object></v-select>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
                                             <v-text-field v-model="form.libelle" label="Nom complet" ></v-text-field>
@@ -57,18 +57,15 @@
                                             <v-text-field v-model="form.sigle" label="Nom habituel"></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4">
-                                            <v-text-field v-model="form.code_alpha2" label="Code à 2"></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6" md="4" >
-                                            <v-text-field v-model="form.code_alpha3" label="Code à 3" ></v-text-field>
+                                            <v-text-field v-model="form.codification" label="Codification"></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4" >
                                             <v-text-field  v-model="form.indicatif" label="Indicatif"></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="6" >
-                                            <v-file-input v-model="form.flag" label="Drapeau" v-if="editedIndex > -1 && form.flag!= null" @input="form.flag"></v-file-input>
-                                            <v-file-input v-model="form.flag" label="Drapeau" v-else @input="form.flag = $event.target.files[0]"></v-file-input>
-                                            <v-img :v-show="editedIndex >-1" :src="form.flag" :alt="form.flag" aspect-ratio="1" max-width="90" max-height="90" class="ma-1"></v-img>
+                                            <v-file-input v-model="form.map" label="Carte" v-if="editedIndex > -1 && form.map!= null" @input="form.map"></v-file-input>
+                                            <v-file-input v-model="form.map" label="Carte" v-else @input="form.map = $event.target.files[0]"></v-file-input>
+                                            <v-img :v-show="editedIndex >-1" :src="form.map" :alt="form.map" aspect-ratio="1" max-width="90" max-height="90" class="ma-1"></v-img>
                                         </v-col>
                                     </v-row>
                                 </v-container>
@@ -87,7 +84,7 @@
                     </v-dialog>
                     <v-dialog v-model="dialogDelete" max-width="500px">
                         <v-card>
-                            <v-card-title class="text-h6">Cette action va supprimer les régions rattachés à ce pays.<br>Êtes-vous certains de supprimer le pays?</v-card-title>
+                            <v-card-title class="text-h6">Cette action va supprimer les départements rattachés à cette région.<br>Êtes-vous certains de supprimer la région?</v-card-title>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
                                 <v-btn color="blue darken-1" text @click="closeDelete">Annuler</v-btn>
@@ -98,16 +95,17 @@
                     </v-dialog>
                 </v-toolbar>
             </template>
-            <template v-slot:item.continent="{ item }">
+            <template v-slot:item.pays="{ item }">
                 <div class="m-1">
-                    {{JSON.parse(item.continent).libelle}}
+                    {{JSON.parse(item.pays).sigle}}
                 </div>
             </template>
-            <template v-slot:item.flag="{ item }">
+            <template v-slot:item.map="{ item }">
                 <div class="m-1">
-                    <v-img :src="item.flag" :alt="item.flag" aspect-ratio="1" max-width="110" max-height="110" class="mx-auto"></v-img>
+                    <v-img :src="item.map" :alt="item.map" aspect-ratio="1" max-width="110" max-height="110" class="mx-auto"></v-img>
                 </div>
-            </template>
+          </template>
+
             <template v-slot:item.actions="{ item }">
                 <v-icon
                     small
@@ -140,11 +138,11 @@ import AppLayout from '../../Layouts/App/AppLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
 
 export default {
-    name: 'Pays',
+    name: 'Region',
     components:{
         AppLayout
     },
-    props:  ['pays', 'data', 'continents'],
+    props:  ['regions', 'data', 'pays'],
     data () {
       return {
         items: [
@@ -159,53 +157,51 @@ export default {
                 href: 'intial-data',
             },
             {
-                text: 'Pays',
+                text: 'Regions',
                 disabled: true,
-                href: 'pays',
+                href: 'regions',
             },
         ],
-        //
         alert: true,
         search: '',
         dialog: false,
         dialogDelete: false,
         headers: [
             {
-            text: 'Nom complet',
+            text: 'Nom',
             align: 'start',
             sortable: false,
             value: 'libelle',
             },
-            { text: 'Nom courante', value: 'sigle' },
-            { text: 'Code à 2', value: 'code_alpha2' },
-            { text: 'Code à 3', value: 'code_alpha3' },
-            { text: 'Continent', value: 'continent' },
-            { text: 'Drapeau', value: 'flag' },
+            { text: 'Sigle', value: 'sigle' },
+            { text: 'Codification', value: 'codification' },
+            { text: 'Indicatif', value: 'indicatif' },
+            { text: 'Pays', value: 'pays' },
+            { text: 'Carte', value: 'map' },
             { text: 'Actions', value: 'actions', sortable: false },
         ],
-        listePays: [],
+        listeRegion: [],
         editedIndex: -1,
         form: this.$inertia.form({
             libelle: null,
             sigle: null,
-            code_alpha2: null,
-            code_alpha3: '',
+            codification: null,
             indicatif: '',
-            flag: null,
-            continent: this.selectedContinent
+            map: null,
+            pays: this.selectedPays
         }),
-        selectedContinent:{
+        selectedPays:{
             id: 1,
-            libelle: 'Afrique'
+            sigle: 'Mauritanie'
         },
         defaultItem: {
             libelle: null,
             sigle: null,
-            code_alpha2: null,
-            code_alpha3: '',
+            codification: null,
             indicatif: '',
-            flag: null,
-            continent: null
+            indicatif: '',
+            map: null,
+            pays: null
         },
       }
     },
@@ -232,41 +228,41 @@ export default {
     methods: {
         save () {
             if (this.editedIndex > -1) {
-                Object.assign(this.pays[this.editedIndex], this.form);
-                Inertia.post(`/app/intial-data/pays/${this.form.id}`, {
+                Object.assign(this.regions[this.editedIndex], this.form);
+                Inertia.post(`/app/intial-data/regions/${this.form.id}`, {
                     _method: 'put',
                     libelle: this.form.libelle,
                     sigle: this.form.sigle,
-                    code_alpha2: this.form.code_alpha2,
-                    code_alpha3: this.form.code_alpha3,
+                    codification: this.form.codification,
                     indicatif: this.form.indicatif,
-                    flag: this.form.flag,
-                    continent: this.selectedContinent
+                    map: this.form.map,
+                    pays: this.selectedPays
                 })
             } else {
-                this.form.continent = this.selectedContinent
-                this.form.post(this.route('pays.store') );
-                this.pays.push(this.form)
+                this.form.pays = this.selectedPays
+                this.form.post(this.route('regions.store') );
+                this.regions.push(this.form)
             }
             this.close()
         },
 
         editItem (item) {
-            this.editedIndex = this.pays.indexOf(item)
-            this.selectedContinent = JSON.parse(this.pays[this.editedIndex].continent);
+            this.editedIndex = this.regions.indexOf(item)
+            this.selectedPays = JSON.parse(this.regions[this.editedIndex].pays);
+            console.log(this.selectedPays);
             this.form = Object.assign({}, item)
             this.dialog = true
         },
 
         deleteItem (item) {
-            this.editedIndex = this.pays.indexOf(item)
+            this.editedIndex = this.regions.indexOf(item)
             this.form = Object.assign({}, item)
             this.dialogDelete = true
         },
 
         deleteItemConfirm () {
-            this.$inertia.delete(`/app/intial-data/pays/${this.pays[this.editedIndex].id}`);
-            this.listePays.splice(this.editedIndex, 1)
+            this.$inertia.delete(`/app/intial-data/regions/${this.regions[this.editedIndex].id}`);
+            this.listeRegion.splice(this.editedIndex, 1)
             this.closeDelete()
         },
 

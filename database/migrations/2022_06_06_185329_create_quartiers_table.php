@@ -21,7 +21,7 @@ class CreateQuartiersTable extends Migration
             $table->string('indicatif',10)->nullable();
             $table->boolean('visible')->default(0);
             $table->text('map')->nullable();
-            $table->foreignId('commune_id')->constrained('communes');
+            $table->foreignId('commune_id')->constrained('communes')->onDelete('cascade');
             $table->unique(['commune_id', 'libelle']) ;
             $table->timestamps();
         });

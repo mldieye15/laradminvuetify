@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Localisation\LocalisationController;
 use App\Http\Controllers\Localisation\PaysController;
+use App\Http\Controllers\Localisation\RegionController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,5 +43,10 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/pays', [PaysController::class, 'store'])->name('pays.store');
         Route::put('/pays/{pays}', [PaysController::class, 'update'])->name('pays.update');
         Route::delete('/pays/{pays}', [PaysController::class, 'destroy'])->name('pays.destroy');
+        // regions
+        Route::get('/regions', [RegionController::class, 'index'])->name('regions.index');
+        Route::post('/regions', [RegionController::class, 'store'])->name('regions.store');
+        Route::put('/regions/{region}', [RegionController::class, 'update'])->name('regions.update');
+        Route::delete('/regions/{region}', [RegionController::class, 'destroy'])->name('regions.destroy');
     });
 });

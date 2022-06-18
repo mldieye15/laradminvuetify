@@ -21,7 +21,7 @@ class CreateCommunesTable extends Migration
             $table->string('indicatif',10)->nullable();
             $table->boolean('visible')->default(0);
             $table->text('map')->nullable();
-            $table->foreignId('departement_id')->constrained('departements');
+            $table->foreignId('departement_id')->constrained('departements')->onDelete('cascade');
             $table->unique(['departement_id', 'libelle']) ;
             $table->timestamps();
         });

@@ -21,7 +21,7 @@ class CreateRegionsTable extends Migration
             $table->string('indicatif',10)->nullable(); //
             $table->boolean('visible')->default(0);
             $table->text('map')->nullable();
-            $table->foreignId('pays_id')->constrained('pays');
+            $table->foreignId('pays_id')->constrained('pays')->onDelete('cascade');
             $table->unique(['pays_id', 'libelle']) ;
             $table->timestamps();
         });

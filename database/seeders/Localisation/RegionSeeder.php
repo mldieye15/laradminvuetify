@@ -22,7 +22,8 @@ class RegionSeeder extends Seeder
                     'codification' => 'DK',
                     'indicatif' => '8',
                     'visible' => 1,
-                    'pays_id' => 2
+                    'pays_id' => 2,
+                    'map' => 'map-default.png'
                 ],
                 [
                     'libelle' => 'Région de Saint-louis',
@@ -30,7 +31,8 @@ class RegionSeeder extends Seeder
                     'codification' => 'SL',
                     'indicatif' => '9',
                     'visible' => 1,
-                    'pays_id' => 2
+                    'pays_id' => 2,
+                    'map' => 'map-default.png'
                 ],
                 [
                     'libelle' => 'Région d\'Adrar',
@@ -38,7 +40,8 @@ class RegionSeeder extends Seeder
                     'codification' => 'ADR',
                     'indicatif' => '12',
                     'visible' => 1,
-                    'pays_id' => 1
+                    'pays_id' => 1,
+                    'map' => 'map-default.png'
                 ],
             ]
         );

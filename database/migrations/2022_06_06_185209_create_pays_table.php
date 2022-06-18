@@ -24,7 +24,7 @@ class CreatePaysTable extends Migration
             $table->boolean('visible')->default(1);
             $table->text('flag')->nullable();
             $table->text('map')->nullable();
-            $table->foreignIdFor(Continent::class);
+            $table->foreignIdFor(Continent::class)->onDelete('cascade') ;
             $table->timestamps();
         });
     }
