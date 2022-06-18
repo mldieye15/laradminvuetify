@@ -16,7 +16,7 @@ class CreateRegionsTable extends Migration
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
             $table->string('libelle', 50);  // Région de Dakar
-            $table->string('sigle',30)->nullable();  // Dakar
+            $table->string('sigle',30);  // Dakar
             $table->string('codification',10)->nullable();  // DK
             $table->string('indicatif',10)->nullable(); //
             $table->boolean('visible')->default(0);

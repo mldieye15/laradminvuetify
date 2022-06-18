@@ -16,7 +16,7 @@ class CreateCommunesTable extends Migration
         Schema::create('communes', function (Blueprint $table) {
             $table->id();
             $table->string('libelle', 50);
-            $table->string('sigle',30)->nullable();
+            $table->string('sigle',30);
             $table->string('codification',10)->nullable();
             $table->string('indicatif',10)->nullable();
             $table->boolean('visible')->default(0);

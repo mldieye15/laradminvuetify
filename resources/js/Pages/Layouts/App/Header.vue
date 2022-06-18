@@ -216,6 +216,11 @@
                         <inertia-link class="mx-auto" :href="route('regions.index')" :class="route().current('regions.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Régions</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
+                <v-list-item active-class="nav-current">
+                    <v-list-item-content>
+                        <inertia-link class="mx-auto" :href="route('departements.index')" :class="route().current('departements.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Départements</v-list-item-title></inertia-link>
+                    </v-list-item-content>
+                </v-list-item>
              </v-list-group>
 
              <v-list-group  active-class="nav-current"  prepend-icon="mdi-cog-transfer" no-action >

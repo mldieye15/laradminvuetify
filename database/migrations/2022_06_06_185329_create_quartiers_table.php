@@ -16,7 +16,7 @@ class CreateQuartiersTable extends Migration
         Schema::create('quartiers', function (Blueprint $table) {
             $table->id();
             $table->string('libelle', 40);
-            $table->string('sigle',20)->nullable();
+            $table->string('sigle',20);
             $table->string('codification',10)->nullable();
             $table->string('indicatif',10)->nullable();
             $table->boolean('visible')->default(0);

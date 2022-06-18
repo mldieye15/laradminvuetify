@@ -24,12 +24,12 @@ class DepartementRequest extends FormRequest
     public function rules()
     {
         return [
-            'libelle' => 'alpha_dash|required|max:50|min:2',
-            'sigle' => 'alpha_dash|max:30|min:2',
-            'codification' => 'alpha_dash|max:10',
-            'indicatif' => 'alpha_dash|max:10',
+            'libelle' => 'required|max:80|min:2',
+            'sigle' => 'required|max:40',
+            'codification' => 'nullable|max:10',
+            'indicatif' => 'nullable|max:10',
             'visible' => 'boolean',
-            'map' => 'image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
+            'region_id' => 'exists:App\Models\Localisation\Region,id'
         ];
     }
 }

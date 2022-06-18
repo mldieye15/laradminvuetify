@@ -50,10 +50,10 @@ class RegionController extends Controller
     /**
      * Ajouter une région.
      *
-     * @param  \App\Http\Requests\Localisation\RegionRequest  $request
+     * @param  \App\Http\Requests\Localisation\DepartementRequest  $request
      * @return \Illuminate\Http\Response
     */
-    public function store(RegionRequest $request){
+    public function store(DepartementRequest $request){
         $map_path = '';
         if ($request->hasFile('map')) {
             $request->validate([
@@ -79,7 +79,7 @@ class RegionController extends Controller
     /**
      * Metre à jour une région.
      *
-     * @param  \App\Http\Requests\Localisation\PaysRequest  $request
+     * @param  \App\Http\Requests\Localisation\RegionRequest  $request
      * @param  int $region
      * @return \Illuminate\Http\Response
     */
@@ -107,7 +107,7 @@ class RegionController extends Controller
             'codification' => $request->codification,
             'indicatif' => $request->indicatif,
             'map' => $map_path,
-            'continent_id' => $request->pays['id']
+            'pays_id' => $request->pays['id']
         ]);
 
         return Redirect::route('regions.index');

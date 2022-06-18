@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Localisation\DepartementController;
 use App\Http\Controllers\Localisation\LocalisationController;
 use App\Http\Controllers\Localisation\PaysController;
 use App\Http\Controllers\Localisation\RegionController;
@@ -48,5 +49,10 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/regions', [RegionController::class, 'store'])->name('regions.store');
         Route::put('/regions/{region}', [RegionController::class, 'update'])->name('regions.update');
         Route::delete('/regions/{region}', [RegionController::class, 'destroy'])->name('regions.destroy');
+        // departements
+        Route::get('/departements', [DepartementController::class, 'index'])->name('departements.index');
+        Route::post('/departements', [DepartementController::class, 'store'])->name('departements.store');
+        Route::put('/departements/{departement}', [DepartementController::class, 'update'])->name('departements.update');
+        Route::delete('/departements/{departement}', [DepartementController::class, 'destroy'])->name('departements.destroy');
     });
 });

@@ -25,12 +25,11 @@ class RegionRequest extends FormRequest
     {
         return [
             'libelle' => 'required|max:80|min:2',
-            'sigle' => 'nullable|max:40',
+            'sigle' => 'required|max:40',
             'codification' => 'nullable|max:10',
             'indicatif' => 'nullable|max:10',
             'visible' => 'boolean',
             'pays_id' => 'exists:App\Models\Localisation\Pays,id'
-            //'map' => 'image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
         ];
     }
 }
