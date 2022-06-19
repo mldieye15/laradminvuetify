@@ -221,6 +221,16 @@
                         <inertia-link class="mx-auto" :href="route('departements.index')" :class="route().current('departements.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Départements</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
+                <v-list-item active-class="nav-current">
+                    <v-list-item-content>
+                        <inertia-link class="mx-auto" :href="route('communes.index')" :class="route().current('communes.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Communes</v-list-item-title></inertia-link>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item active-class="nav-current">
+                    <v-list-item-content>
+                        <inertia-link class="mx-auto" :href="route('quartiers.index')" :class="route().current('quartiers.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Quartiers</v-list-item-title></inertia-link>
+                    </v-list-item-content>
+                </v-list-item>
              </v-list-group>
 
              <v-list-group  active-class="nav-current"  prepend-icon="mdi-cog-transfer" no-action >

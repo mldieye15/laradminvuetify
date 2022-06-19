@@ -21,7 +21,8 @@ class CommuneSeeder extends Seeder
                     'sigle' => 'Gounass',
                     'codification' => 'MEDGUNAS',
                     'visible' => 1,
-                    'departement_id' => 3
+                    'departement_id' => 3,
+                    'map' => 'map-default.png'
                 ]
             ]
         );

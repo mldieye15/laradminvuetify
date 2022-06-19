@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Localisation\CommuneController;
 use App\Http\Controllers\Localisation\DepartementController;
 use App\Http\Controllers\Localisation\LocalisationController;
 use App\Http\Controllers\Localisation\PaysController;
+use App\Http\Controllers\Localisation\QuartierController;
 use App\Http\Controllers\Localisation\RegionController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -54,5 +56,15 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/departements', [DepartementController::class, 'store'])->name('departements.store');
         Route::put('/departements/{departement}', [DepartementController::class, 'update'])->name('departements.update');
         Route::delete('/departements/{departement}', [DepartementController::class, 'destroy'])->name('departements.destroy');
+        // communes
+        Route::get('/communes', [CommuneController::class, 'index'])->name('communes.index');
+        Route::post('/communes', [CommuneController::class, 'store'])->name('communes.store');
+        Route::put('/communes/{commune}', [CommuneController::class, 'update'])->name('communes.update');
+        Route::delete('/communes/{commune}', [CommuneController::class, 'destroy'])->name('communes.destroy');
+        // quartiers
+        Route::get('/quartiers', [QuartierController::class, 'index'])->name('quartiers.index');
+        Route::post('/quartiers', [CommuneController::class, 'store'])->name('quartiers.store');
+        Route::put('/quartiers/{quartier}', [CommuneController::class, 'update'])->name('quartiers.update');
+        Route::delete('/quartiers/{quartier}', [CommuneController::class, 'destroy'])->name('quartiers.destroy');
     });
 });

@@ -26,8 +26,8 @@ class Commune extends Model
         'map'
     ];
 
-    public function department(){
-        return $this->belongsTo(Department::class);
+    public function departement(){
+        return $this->belongsTo(Departement::class);
     }
 
     public function quartiers(){
