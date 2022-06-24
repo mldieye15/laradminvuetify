@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Federation\FederationController;
 use App\Http\Controllers\Localisation\CommuneController;
 use App\Http\Controllers\Localisation\DepartementController;
 use App\Http\Controllers\Localisation\LocalisationController;
@@ -66,5 +67,17 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/quartiers', [CommuneController::class, 'store'])->name('quartiers.store');
         Route::put('/quartiers/{quartier}', [CommuneController::class, 'update'])->name('quartiers.update');
         Route::delete('/quartiers/{quartier}', [CommuneController::class, 'destroy'])->name('quartiers.destroy');
+    });
+
+    Route::group([
+        'prefix' => 'app/fede',
+        'namespace' => 'App\Http\Controllers\Federation'
+    ],function(){
+        //  federations
+        Route::get('/federations', [FederationController::class, 'index'])->name('federations.index');
+        Route::post('/federations', [FederationController::class, 'store'])->name('federations.store');
+        Route::put('/federations/{federation}', [FederationController::class, 'update'])->name('federations.update');
+        Route::delete('/federations/{federation}', [FederationController::class, 'destroy'])->name('federations.destroy');
+
     });
 });

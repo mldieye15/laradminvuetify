@@ -1,6 +1,9 @@
 <?php
 
 namespace Database\Seeders;
+
+use Database\Seeders\Federation\FederationSeeder;
+use Database\Seeders\Federation\SportSeeder;
 use Database\Seeders\Localisation\ContinentSeeder;
 use Database\Seeders\Localisation\PaysSeeder;
 use Database\Seeders\Localisation\RegionSeeder;
@@ -24,6 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartementSeeder::class);
         $this->call(CommuneSeeder::class);
         $this->call(QuartierSeeder::class);
+        $this->call(SportSeeder::class);
+        $this->call(FederationSeeder::class);
         $this->call(UserSeeder::class);
     }
 }

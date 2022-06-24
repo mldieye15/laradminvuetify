@@ -48,7 +48,7 @@ class QuartierController extends Controller
     }
 
     /**
-     * Ajouter une commune.
+     * Ajouter un quartier.
      *
      * @param  \App\Http\Requests\Localisation\QuartierRequest  $request
      * @return \Illuminate\Http\Response

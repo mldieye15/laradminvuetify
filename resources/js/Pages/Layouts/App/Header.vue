@@ -53,193 +53,193 @@
                      <v-icon >mdi-view-dashboard</v-icon>
                   </v-list-item-action>
                   <v-list-item-content >
-                      <inertia-link :href="route('dashboard.index')" :class="route().current('dashboard.index') ? 'nav-current' : 'no-current'"><v-list-item-title v-text="">Tableau de bord</v-list-item-title></inertia-link>
+                      <inertia-link :href="route('dashboard.index')" :class="route().current('dashboard.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Tableau de bord</v-list-item-title></inertia-link>
                   </v-list-item-content>
               </v-list-item>
 
-              <v-list-group  active-class="nav-current"  prepend-icon="mdi-folder-open" no-action>
+              <v-list-group prepend-icon="mdi-folder-open" no-action>
                 <template v-slot:activator>
                     <v-list-item-content>
                         <v-list-item-title>Textes & réglements</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Fédération</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Ligue régional</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
              </v-list-group>
 
-             <v-list-group  active-class="nav-current"  prepend-icon="mdi-ticket" no-action >
+             <v-list-group prepend-icon="mdi-ticket" no-action >
                 <template v-slot:activator>
                     <v-list-item-content>
                         <v-list-item-title>Fédération</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Licences</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Commissions</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Equipe nationale</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >La fédération</v-list-item-title></inertia-link>
+                        <inertia-link class="mx-auto" :href="route('federations.index')" :class="route().current('federations.index') ? 'nav-current' : 'no-current'"><v-list-item-title >La fédération</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
              </v-list-group>
 
-             <v-list-group  active-class="nav-current"  prepend-icon="mdi-office-building" no-action >
+             <v-list-group prepend-icon="mdi-office-building" no-action >
                 <template v-slot:activator>
                     <v-list-item-content>
                         <v-list-item-title>Structures sportive</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Ligue régionale</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Club</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Centre de formation</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Association</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
              </v-list-group>
 
-             <v-list-group  active-class="nav-current"  prepend-icon="mdi-human-male-female-child" no-action >
+             <v-list-group prepend-icon="mdi-human-male-female-child" no-action >
                 <template v-slot:activator>
                     <v-list-item-content>
                         <v-list-item-title>Effective</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Joueurs</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Entraîneurs</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Techniciens</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Mangers</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
              </v-list-group>
 
-             <v-list-group  active-class="nav-current"  prepend-icon="mdi-google-controller" no-action >
+             <v-list-group prepend-icon="mdi-google-controller" no-action >
                 <template v-slot:activator>
                     <v-list-item-content>
                         <v-list-item-title>Jeux</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Rencontre</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Résultats</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
              </v-list-group>
 
-             <v-list-group  active-class="nav-current"  prepend-icon="mdi-calendar-clock-outline" no-action >
+             <v-list-group prepend-icon="mdi-calendar-clock-outline" no-action >
                 <template v-slot:activator>
                     <v-list-item-content>
                         <v-list-item-title>Planning</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Calendrier</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Programmation match</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
              </v-list-group>
 
-             <v-list-group  active-class="nav-current"  prepend-icon="mdi-database-cog" no-action >
-                <template v-slot:activator>
+             <v-list-group prepend-icon="mdi-database-cog" no-action >
+                <template v-slot:activator >
                     <v-list-item-content>
                         <v-list-item-title>Données de base</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <v-list-item active-class="nav-current">
+                <!--<v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('basicdata.index')" :class="route().current('basicdata.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Localisation</v-list-item-title></inertia-link>
                     </v-list-item-content>
-                </v-list-item>
-                <v-list-item active-class="nav-current">
+                </v-list-item>-->
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('pays.index')" :class="route().current('pays.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Pays</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('regions.index')" :class="route().current('regions.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Régions</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('departements.index')" :class="route().current('departements.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Départements</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('communes.index')" :class="route().current('communes.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Communes</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('quartiers.index')" :class="route().current('quartiers.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Quartiers</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
              </v-list-group>
 
-             <v-list-group  active-class="nav-current"  prepend-icon="mdi-cog-transfer" no-action >
+             <v-list-group prepend-icon="mdi-cog-transfer" no-action >
                 <template v-slot:activator>
                     <v-list-item-content>
                         <v-list-item-title>Paramétrage</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <v-list-item active-class="nav-current">
+                <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('basicdata.index')" :class="route().current('basicdata.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Localisation</v-list-item-title></inertia-link>
                     </v-list-item-content>
@@ -259,6 +259,12 @@ export default {
             profile: require('../../../../images/02/img1.png'),
         }
     },
+
+    created () {
+        //const elmt = document.getElementsByClassName('nav-current');
+        //console.log(elmt);
+    },
+
     components: {
         //Popup
     },
