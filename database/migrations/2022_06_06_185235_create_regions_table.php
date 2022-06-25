@@ -19,7 +19,7 @@ class CreateRegionsTable extends Migration
             $table->string('sigle',30);  // Dakar
             $table->string('codification',10)->nullable();  // DK
             $table->string('indicatif',10)->nullable(); //
-            $table->boolean('visible')->default(0);
+            $table->boolean('visible')->default(1);
             $table->text('map')->nullable();
             $table->foreignId('pays_id')->constrained('pays')->onDelete('cascade');
             $table->unique(['pays_id', 'libelle']) ;

@@ -22,7 +22,7 @@ class PaysSeeder extends Seeder
                     'code_alpha2' => 'MR',
                     'code_alpha3' => 'MRT',
                     'indicatif' => '222',
-                    'visible' => 0,
+                    'current' => 1,
                     'continent_id' => 1,
                     'flag' => 'flag-default.png'
                 ],
@@ -32,7 +32,7 @@ class PaysSeeder extends Seeder
                     'code_alpha2' => 'SN',
                     'code_alpha3' => '',
                     'indicatif' => '221',
-                    'visible' => 1,
+                    'current' => 0,
                     'continent_id' => 1,
                     'flag' => 'flag-default.png'
                 ],

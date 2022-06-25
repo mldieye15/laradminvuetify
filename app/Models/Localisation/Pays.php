@@ -25,7 +25,8 @@ class Pays extends Model
         'continent_id',
         'visible',
         'flag',
-        'map'
+        'map',
+        'current'
     ];
 
     public function continent(){

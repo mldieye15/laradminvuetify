@@ -19,7 +19,7 @@ class CreateQuartiersTable extends Migration
             $table->string('sigle',20);
             $table->string('codification',10)->nullable();
             $table->string('indicatif',10)->nullable();
-            $table->boolean('visible')->default(0);
+            $table->boolean('visible')->default(1);
             $table->text('map')->nullable();
             $table->foreignId('commune_id')->constrained('communes')->onDelete('cascade');
             $table->unique(['commune_id', 'libelle']) ;

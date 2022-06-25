@@ -19,7 +19,7 @@ class CreateCommunesTable extends Migration
             $table->string('sigle',30);
             $table->string('codification',10)->nullable();
             $table->string('indicatif',10)->nullable();
-            $table->boolean('visible')->default(0);
+            $table->boolean('visible')->default(1);
             $table->text('map')->nullable();
             $table->foreignId('departement_id')->constrained('departements')->onDelete('cascade');
             $table->unique(['departement_id', 'libelle']) ;

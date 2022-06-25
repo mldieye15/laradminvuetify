@@ -20,8 +20,9 @@ class CreatePaysTable extends Migration
             $table->string('sigle',40); //  Séngal
             $table->string('code_alpha2',2)->nullable();    // sn
             $table->string('code_alpha3',3)->nullable();    // sen
-            $table->string('indicatif',10)->nullable(); ;    // 221
+            $table->string('indicatif',10)->nullable();     // 221
             $table->boolean('visible')->default(1);
+            $table->boolean('current')->default(0);
             $table->text('flag')->nullable();
             $table->text('map')->nullable();
             $table->foreignIdFor(Continent::class)->onDelete('cascade');

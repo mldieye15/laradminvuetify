@@ -20,15 +20,13 @@ class QuartierSeeder extends Seeder
                     'libelle' => 'Quartier Médina Gounass',
                     'sigle' => 'Gounass',
                     'codification' => 'MEDGUNAS',
-                    'visible' => 1,
-                    'commune_id' => 1
+                    'commune_id' => 3
                 ],
                 [
                     'libelle' => 'Quartier Parc Gounass',
                     'sigle' => 'Parc',
                     'codification' => 'PARCGUNAS',
-                    'visible' => 1,
-                    'commune_id' => 1
+                    'commune_id' => 3
                 ]
             ]
         );

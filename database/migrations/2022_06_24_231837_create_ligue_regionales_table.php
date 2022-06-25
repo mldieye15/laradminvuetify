@@ -19,7 +19,7 @@ class CreateLigueRegionalesTable extends Migration
             $table->string('sigle',20)->unique('uq_sigle_ligue_regio');
             $table->foreignId('federation_id')->constrained('federations')->onDelete('cascade');
             $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
-            $table->boolean('visible')->default(0);
+            $table->boolean('visible')->default(1);
             $table->string('email')->unique('uq_email_ligue_regio');
             $table->string('adresse', 255);
             $table->string('telephone',20);
