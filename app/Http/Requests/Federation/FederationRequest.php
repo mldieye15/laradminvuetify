@@ -27,6 +27,7 @@ class FederationRequest extends FormRequest
             'libelle' => 'required|max:255',
             'sigle' => 'required|max:20',
             'sport_id' => 'exists:App\Models\Federation\Sport,id',
+            'pays_id' => 'exists:App\Models\Localisation\Pays,id',
             'email' => 'required|email|unique:federations',
             'adresse' => 'required|max:255',
             'telephone' => 'required|max:20',

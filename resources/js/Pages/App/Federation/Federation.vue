@@ -59,7 +59,7 @@
                                     <v-card-subtitle>Présentation</v-card-subtitle>
                                 </v-expansion-panel-header>
                                 <v-expansion-panel-content>
-                                    <v-card class="px-2 py-1" elevation="0">
+                                    <v-card class="px-1 py-1" elevation="0">
                                         <v-row>
                                             <v-col cols="6">
                                                 <v-list-item-content>

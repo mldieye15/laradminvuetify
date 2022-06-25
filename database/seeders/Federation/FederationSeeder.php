@@ -20,6 +20,7 @@ class FederationSeeder extends Seeder
                     'libelle' => 'Fédération de Basketball',
                     'sigle' => 'FB-RIM',
                     'sport_id' => 1,
+                    'pays_id' => 1,
                     'visible' => 1,
                     'email' => 'fb.rim@gmail.com',
                     'adresse' => 'Nouakchout, Rue Ould Ahmad 202',

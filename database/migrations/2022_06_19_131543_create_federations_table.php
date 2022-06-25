@@ -18,6 +18,7 @@ class CreateFederationsTable extends Migration
             $table->string('libelle', 255)->unique('uq_lib_fede');
             $table->string('sigle',20)->unique('uq_sigle_fede');
             $table->foreignId('sport_id')->constrained('sports')->onDelete('cascade');
+            $table->foreignId('pays_id')->constrained('pays')->onDelete('cascade');
             $table->boolean('visible')->default(0);
             $table->string('email')->unique('uq_email_fede');
             $table->string('adresse', 255);

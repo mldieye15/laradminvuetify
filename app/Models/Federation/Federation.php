@@ -2,6 +2,7 @@
 
 namespace App\Models\Federation;
 
+use App\Models\Localisation\Pays;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,7 @@ class Federation extends Model
         'libelle',
         'sigle',
         'sport_id',
+        'pays_id',
         'logo',
         'sologan',
         'adresse',
@@ -40,5 +42,9 @@ class Federation extends Model
 
     public function sport(){
         return $this->belongsTo(Sport::class);
+    }
+
+    public function pays(){
+        return $this->belongsTo(Pays::class);
     }
 }
