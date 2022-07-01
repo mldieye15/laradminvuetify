@@ -37,6 +37,7 @@ class CreateLigueRegionalesTable extends Migration
             $table->string('telegram')->nullable();
             $table->string('instagram')->nullable();
             $table->string('tiktok')->nullable();
+            $table->unique(['federation_id', 'region_id']);
             $table->timestamps();
         });
     }

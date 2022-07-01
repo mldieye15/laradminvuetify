@@ -5,52 +5,49 @@ namespace App\Http\Controllers\Federation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Localisation\QuartierRequest;
 use App\Models\Federation\Federation;
-use App\Models\Localisation\Commune;
 use App\Models\Localisation\Quartier;
+use App\Services\Federation\FederationService;
+use App\Services\Federation\LigueRegionaleService;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class FederationController extends Controller
 {
+
+    /**
+     * @var service
+     * @var ligRegService
+    */
+    protected $service;
+    protected $ligRegService;
+
+    /**
+     * FederationController Constructor
+     *
+     * @param FederationService $service
+     * @param LigueRegionaleService $ligRegService
+     *
+     */
+    public function __construct(FederationService $service, LigueRegionaleService $ligRegService )
+    {
+        $this->service = $service;
+        $this->ligRegService = $ligRegService;
+    }
+
+
     /**
      * Retourne la fédération.
      *
      * @return \Illuminate\Http\Response
     */
     public function index(){
-        $federation = Federation::where('visible',1)->get()->map(function ($item){
-            return [
-                'id' => $item->id,
-                'libelle' => $item->libelle,
-                'sigle' => $item->sigle,
-                'email' => $item->email,
-                'adresse' => $item->adresse,
-                'telephone' => $item->telephone,
-                'sologan' => $item->sologan,
-                'fax' => $item->fax,
-                'date_creation' => $item->date_creation,
-                'recipisse_numero' => $item->recipisse_numero,
-                'recipisse_date' => $item->recipisse_date,
-                'recipisse_url' => $item->recipisse_url,
-                'reglement_int_url' => $item->reglement_int_url,
-                'page_web' => $item->page_web,
-                'facebook' => $item->facebook,
-                'whatsapp' => $item->whatsapp,
-                'telegram' => $item->telegram,
-                'instagram' => $item->instagram,
-                'tiktok' => $item->tiktok,
-                'logo' => asset('storage/federations/'.$item->logo),
-                'sport' => json_encode([
-                    'id' => $item->sport->id,
-                    'libelle' => $item->sport->libelle,
-                ])
-            ];
-        })
-        ;
+        $federation = $this->service->getFederation();
+        $ligueRegionale = $this->ligRegService->allFormatted();
 
         return Inertia::render('App/Federation/Federation', [
             'federation' => $federation,
+            'ligueRegionale' => $ligueRegionale,
         ]);
     }
 

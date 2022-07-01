@@ -176,7 +176,7 @@ export default {
     components:{
         AppLayout
     },
-    props:  ['federation', 'errors'],
+    props:  ['federation', 'ligueRegionale', 'errors'],
     data () {
       return {
         items: [

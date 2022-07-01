@@ -37,6 +37,7 @@ class CreateFederationsTable extends Migration
             $table->string('telegram')->nullable();
             $table->string('instagram')->nullable();
             $table->string('tiktok')->nullable();
+            $table->unique(['pays_id', 'sport_id']);
             $table->timestamps();
         });
     }

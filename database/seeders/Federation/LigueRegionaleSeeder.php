@@ -2,10 +2,10 @@
 
 namespace Database\Seeders\Federation;
 
-use App\Models\Federation\Federation;
+use App\Models\Federation\LigueRegionale;
 use Illuminate\Database\Seeder;
 
-class LigueRegionale extends Seeder
+class LigueRegionaleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class LigueRegionale extends Seeder
      */
     public function run()
     {
-        Federation::insert(
+        LigueRegionale::insert(
             [
                 [
                     'libelle' => 'Ligue régional Adrar',

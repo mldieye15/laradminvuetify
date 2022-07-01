@@ -22,7 +22,7 @@ class CreateDepartementsTable extends Migration
             $table->boolean('visible')->default(1);
             $table->text('map')->nullable();
             $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
-            $table->unique(['region_id', 'libelle']) ;
+            $table->unique(['region_id', 'libelle']);
             $table->timestamps();
         });
     }
