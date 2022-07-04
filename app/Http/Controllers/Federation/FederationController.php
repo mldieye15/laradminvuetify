@@ -43,7 +43,7 @@ class FederationController extends Controller
     */
     public function index(){
         $federation = $this->service->getFederation();
-        $ligueRegionale = $this->ligRegService->allFormatted();
+        $ligueRegionale = $this->ligRegService->simplifiedLigReg();
 
         return Inertia::render('App/Federation/Federation', [
             'federation' => $federation,

@@ -101,6 +101,11 @@
                         <inertia-link class="mx-auto" :href="route('federations.index')" :class="route().current('federations.index') ? 'nav-current' : 'no-current'"><v-list-item-title >La fédération</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
+                <v-list-item>
+                    <v-list-item-content>
+                        <inertia-link class="mx-auto" :href="route('ligregio.index')" :class="route().current('ligregio.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Ligue régionale</v-list-item-title></inertia-link>
+                    </v-list-item-content>
+                </v-list-item>
              </v-list-group>
 
              <v-list-group prepend-icon="mdi-office-building" no-action >
@@ -109,11 +114,6 @@
                         <v-list-item-title>Structures sportive</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <v-list-item>
-                    <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Ligue régionale</v-list-item-title></inertia-link>
-                    </v-list-item-content>
-                </v-list-item>
                 <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Club</v-list-item-title></inertia-link>

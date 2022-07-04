@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Federation\FederationController;
+use App\Http\Controllers\Federation\LigueRegionalController;
 use App\Http\Controllers\Localisation\CommuneController;
 use App\Http\Controllers\Localisation\DepartementController;
 use App\Http\Controllers\Localisation\LocalisationController;
@@ -74,10 +75,17 @@ Route::middleware('auth:sanctum')->group(function() {
         'namespace' => 'App\Http\Controllers\Federation'
     ],function(){
         //  federations
-        Route::get('/federations', [FederationController::class, 'index'])->name('federations.index');
-        Route::post('/federations', [FederationController::class, 'store'])->name('federations.store');
-        Route::put('/federations/{federation}', [FederationController::class, 'update'])->name('federations.update');
+        Route::get('/federations',                 [FederationController::class, 'index'])->name('federations.index');
+        Route::post('/federations',                [FederationController::class, 'store'])->name('federations.store');
+        Route::put('/federations/{federation}',    [FederationController::class, 'update'])->name('federations.update');
         Route::delete('/federations/{federation}', [FederationController::class, 'destroy'])->name('federations.destroy');
+
+        //  ligue-regional
+        Route::get('/lig-regio',            [LigueRegionalController::class, 'index'])->name('ligregio.index');
+        Route::get('/lig-regio/{ligue}',    [LigueRegionalController::class, 'show'])->name('ligregio.show');
+        Route::post('/lig-regio',           [LigueRegionalController::class, 'store'])->name('ligregio.store');
+        Route::put('/lig-regio/{ligue}',    [LigueRegionalController::class, 'update'])->name('ligregio.update');
+        Route::delete('/lig-regio/{ligue}', [LigueRegionalController::class, 'destroy'])->name('ligregio.destroy');
 
     });
 });

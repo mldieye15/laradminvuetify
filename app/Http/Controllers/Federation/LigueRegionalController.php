@@ -5,21 +5,39 @@ namespace App\Http\Controllers\Federation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Localisation\QuartierRequest;
 use App\Models\Federation\Federation;
-use App\Models\Localisation\Commune;
 use App\Models\Localisation\Quartier;
+use App\Services\Federation\LigueRegionaleService;
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class LigueRegionalController extends Controller
 {
+   /**
+    * @var service
+   */
+   protected $service;
+
+   /**
+    * FederationController Constructor
+    *
+    * @param LigueRegionaleService $service
+    *
+    */
+   public function __construct(LigueRegionaleService $service )
+   {
+       $this->service = $service;
+   }
+
     /**
-     * Retourne la fédération.
+     * Retourne les ligues régionales.
      *
      * @return \Illuminate\Http\Response
     */
     public function index(){
-        $federation = Federation::where('visible',1)->get()->map(function ($item){
+        $ligueRegionales = $this->service->allFormatted();
+        /*$federation = Federation::where('visible',1)->get()->map(function ($item){
             return [
                 'id' => $item->id,
                 'libelle' => $item->libelle,
@@ -47,10 +65,25 @@ class LigueRegionalController extends Controller
                 ])
             ];
         })
-        ;
+        ;*/
 
-        return Inertia::render('App/Federation/Federation', [
-            'federation' => $federation,
+        return Inertia::render('App/Federation/LigueRegional/Index', [
+            'ligueRegionales' => $ligueRegionales,
+        ]);
+    }
+
+    /**
+     * Retourne les ligues régionales.
+     *
+     *  @param $ligue
+     *  @return \Illuminate\Http\Response
+    */
+    public function show($ligue){
+        $ligueRegionale = $this->service->getById($ligue);
+
+        return Inertia::render('App/Federation/LigueRegional/Details', [
+            'ligueRegionale' => $ligueRegionale,
+            'ligue' => $ligue,
         ]);
     }
 

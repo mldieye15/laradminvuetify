@@ -64,6 +64,31 @@ class LigueRegionaleService {
                 'region' => json_encode([
                     'id' => $item->region->id,
                     'libelle' => $item->region->libelle,
+                    'sigle' => $item->region->sigle,
+                ])
+            ];
+        });
+    }
+
+    /**
+     * Retourne la fédération activée dans la base de données.
+     *
+     * @return String
+     */
+    public function simplifiedLigReg()
+    {
+        return $this->dao->getAll()->map(function ($item){
+            return [
+                'id' => $item->id,
+                'libelle' => $item->libelle,
+                'sigle' => $item->sigle,
+                'email' => $item->email,
+                'adresse' => $item->adresse,
+                'telephone' => $item->telephone,
+                //'logo' => asset('storage/ligueregional/'.$item->logo),
+                'region' => json_encode([
+                    'id' => $item->region->id,
+                    'sigle' => $item->region->sigle,
                 ])
             ];
         });

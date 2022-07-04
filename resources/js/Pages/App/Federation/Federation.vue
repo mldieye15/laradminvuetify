@@ -1,16 +1,6 @@
 <template >
     <AppLayout>
-        <v-breadcrumbs :items="items">
-            <template v-slot:item="{ item }">
-            <v-breadcrumbs-item
-                :href="item.href"
-                :disabled="item.disabled"
-            >
-                {{ item.text.toUpperCase() }}
-            </v-breadcrumbs-item>
-            </template>
-        </v-breadcrumbs>
-
+        <Breadcrumbs :breadcrumbs="items"/>
         <v-card>
             <v-tabs
                 v-model="tab"
@@ -25,23 +15,19 @@
                     Présentation
                 </v-tab>
 
-                <v-tab href="#tab-2">
-                    Missions
+                <v-tab href="#ligue-regio">
+                    Ligue Régionales
                 </v-tab>
 
-                <v-tab href="#tab-3">
-                    Moyens
+                <v-tab href="#struct-sport">
+                    Structures sportive
                 </v-tab>
 
-                <v-tab href="#tab-4">
-                    Textes
+                <v-tab href="#staff">
+                    Staffs
                 </v-tab>
 
-                <v-tab href="#tab-5">
-                    Fonction
-                </v-tab>
-
-                <v-tab href="#tab-6">
+                <v-tab href="#activites">
                     Activités
                 </v-tab>
             </v-tabs>
@@ -96,71 +82,86 @@
 
                             <v-expansion-panel>
                                 <v-expansion-panel-header>
-                                    <v-card-subtitle>Ligues régionales</v-card-subtitle>
-                                </v-expansion-panel-header>
-                                <v-expansion-panel-content>
-                                    COntente
-                                </v-expansion-panel-content>
-                            </v-expansion-panel>
-                            <v-expansion-panel>
-                                <v-expansion-panel-header>
                                     <v-card-subtitle>Commissions</v-card-subtitle>
                                 </v-expansion-panel-header>
                                 <v-expansion-panel-content>
-                                    COntente
-                                </v-expansion-panel-content>
-                            </v-expansion-panel>
-                            <v-expansion-panel>
-                                <v-expansion-panel-header>
-                                    <v-card-subtitle>Activités</v-card-subtitle>
-                                </v-expansion-panel-header>
-                                <v-expansion-panel-content>
-                                    COntente
+                                    <v-data-table
+                                        :headers="headers"
+                                        :items="ligueRegionale"
+                                        :search="searchLigue"
+                                        :items-per-page="5"
+                                        sort-by="calories"
+                                        class="elevation-1"
+                                    >
+                                        <template v-slot:item.region="{ item }">
+                                            <div class="m-1">
+                                                {{JSON.parse(item.region).sigle}}
+                                            </div>
+                                        </template>
+                                        <template v-slot:item.actions="{ item }">
+                                            <inertia-link class="mx-auto" :href="`/app/fede/lig-regio/${item.id}`" ><v-icon small class="mr-2" >mdi-eye</v-icon></inertia-link>
+                                        </template>
+                                    </v-data-table>
                                 </v-expansion-panel-content>
                             </v-expansion-panel>
                         </v-expansion-panels>
-                        <!--<v-card class="px-2">
-                            <v-row>
-                                <v-col cols="6">
-                                    <v-list-item-content>
-                                        <v-list-item-title class="text-h5">
-                                        {{item.libelle}} <span class="subtitle-1">({{item.sigle}})</span>
-                                        </v-list-item-title>
-                                        <v-list-item-subtitle>Adresse: <span class="subtitle-2">{{item.adresse}}</span>. -- Email: <span class="subtitle-2">{{item.email}}</span></v-list-item-subtitle>
-                                        <v-list-item-subtitle>Téléphone: <span class="subtitle-2">{{item.telephone}}</span>. -- Fax: <span class="subtitle-2">{{item.fax}}</span></v-list-item-subtitle>
-                                    </v-list-item-content>
-                                    <v-avatar size="110" class="mx-auto">
-                                        <img :src="item.logo" alt="Logo FB RIM">
-                                    </v-avatar>
-                                    <v-list-item-content>
-                                        <v-list-item-subtitle>Communauté: <span><v-icon>mdi-twitter</v-icon></span> &nbsp;&nbsp;<span><v-icon>mdi-facebook</v-icon></span> &nbsp;</v-list-item-subtitle>
-                                    </v-list-item-content>
-                                </v-col>
-                                <v-col cols="6">
-                                    <v-list-item-content>
-                                        <v-list-item-title class="text-h5">
-                                        {{item.libelle}} <span class="subtitle-1">({{item.sigle}})</span>
-                                        </v-list-item-title>
-                                        <v-list-item-subtitle>Adresse: <span class="subtitle-2">{{item.adresse}}</span>. -- Email: <span class="subtitle-2">{{item.email}}</span></v-list-item-subtitle>
-                                        <v-list-item-subtitle>Téléphone: <span class="subtitle-2">{{item.telephone}}</span>. -- Fax: <span class="subtitle-2">{{item.fax}}</span></v-list-item-subtitle>
-                                    </v-list-item-content>
-                                    <v-card-text></v-card-text>
-                                    <v-avatar size="110" class="mx-auto">
-                                        <img :src="item.logo" alt="Logo FB RIM">
-                                    </v-avatar>
-                                </v-col>
-                            </v-row>
-                        </v-card>-->
                     </v-container>
                 </v-tab-item>
+
                 <v-tab-item
-                    v-for="i in 5"
-                    :key="i"
-                    :value="'tab-' + i"
+                    value="ligue-regio"
+                    v-for='item in federation'
+                    :key='item._id'
                 >
-                    <v-card flat>
-                        <v-card-text>{{ text }}</v-card-text>
-                    </v-card>
+                    <v-container>
+                        <v-data-table
+                            :headers="headers"
+                            :items="ligueRegionale"
+                            :search="searchLigue"
+                            :items-per-page="5"
+                            sort-by="calories"
+                            class="elevation-1"
+                        >
+                            <template v-slot:item.region="{ item }">
+                                <div class="m-1">
+                                    {{JSON.parse(item.region).sigle}}
+                                </div>
+                            </template>
+                            <template v-slot:item.actions="{ item }">
+                                <inertia-link class="mx-auto" :href="`/app/fede/lig-regio/${item.id}`" ><v-icon small class="mr-2" >mdi-eye</v-icon></inertia-link>
+                            </template>
+                        </v-data-table>
+                    </v-container>
+                </v-tab-item>
+
+                <v-tab-item
+                    value="struct-sport"
+                    v-for='item in federation'
+                    :key='item._id'
+                >
+                    <v-container>
+                        Club<br/>Centre de formation<br/>Association
+                    </v-container>
+                </v-tab-item>
+
+                <v-tab-item
+                    value="staff"
+                    v-for='item in federation'
+                    :key='item._id'
+                >
+                    <v-container>
+                        Staff
+                    </v-container>
+                </v-tab-item>
+
+                <v-tab-item
+                    value="activites"
+                    v-for='item in federation'
+                    :key='item._id'
+                >
+                    <v-container>
+                        Activités
+                    </v-container>
                 </v-tab-item>
             </v-tabs-items>
         </v-card>
@@ -170,31 +171,42 @@
 <script>
 import AppLayout from '../../Layouts/App/AppLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
+import Breadcrumbs from '../../../components/Breadcrumbs.vue';
 
 export default {
     name: 'Federation',
     components:{
-        AppLayout
-    },
+    AppLayout,
+    Breadcrumbs
+},
     props:  ['federation', 'ligueRegionale', 'errors'],
     data () {
       return {
+        searchLigue: '',
         items: [
             {
                 text: 'Tableau de bord',
                 disabled: false,
-                href: '/dashboard',
+                route: 'dashboard.index',
             },
             {
                 text: 'Fédération',
                 disabled: true,
-                href: '/app/fede',
-            },
+                route: 'federations.index',
+            }
+        ],
+        //
+        headers: [
             {
-                text: 'Liste',
-                disabled: true,
-                href: '/federations',
+            text: 'Sigle',
+            align: 'start',
+            sortable: false,
+            value: 'sigle',
             },
+            { text: 'Email', value: 'email' },
+            { text: 'Adresse', value: 'adresse' },
+            { text: 'Région', value: 'region' },
+            { text: 'Actions', value: 'actions', sortable: false },
         ],
         tab: null,
         text: 'Contenu',
