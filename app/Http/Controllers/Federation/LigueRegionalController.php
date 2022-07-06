@@ -88,6 +88,15 @@ class LigueRegionalController extends Controller
     }
 
     /**
+     * Retourne la,page de création d'un nouveau régional.
+     *  @return \Illuminate\Http\Response
+    */
+    public function create(){
+        return Inertia::render('App/Federation/LigueRegional/New', [
+        ]);
+    }
+
+    /**
      * Ajouter une fédération.
      *
      * @param  \App\Http\Requests\Localisation\QuartierRequest  $request

@@ -2,8 +2,6 @@
     <v-app>
         <Header/>
             <v-main class="ma-4">
-
-
                 <!-- icon="mdi-twitter" -->
                 <!--<v-alert v-if="$page.props.flash.message" v-model="alert" dismissible color="primary" border="left" elevation="2" colored-border>
                     {{ $page.props.flash.message }}
@@ -23,26 +21,26 @@
 <script>
 import Header from './Header.vue';
 import Footer from './Footer.vue';
-import Breadcrumbs from '../../../components/Breadcrumbs.vue'
+//import Breadcrumbs from '../../../components/Breadcrumbs.vue'
 
 export default {
     name: 'AppLayout',
     components:{
         Header,
         Footer,
-        Breadcrumbs
+        //Breadcrumbs
     },
-    props:  ['breadcrumbs'],
+    //props:  ['breadcrumbs'],
     //data: () => ({}),
     data() {
         return {
             //breadcrumbs: this.breadcrumbs
         }
     },
-    watch: {
+    /*watch: {
         breadcrumbs: function() {
             breadcrumbs: this.breadcrumbs
         }
-    }
+    }*/
 }
 </script>
