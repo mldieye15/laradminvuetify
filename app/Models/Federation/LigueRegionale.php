@@ -10,6 +10,8 @@ class LigueRegionale extends Model
 {
     use HasFactory;
 
+    protected $table = 'ligue_regionales';
+
     /**
      * The attributes that are mass assignable.
      *

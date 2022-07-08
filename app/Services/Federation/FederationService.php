@@ -25,7 +25,7 @@ class FederationService {
     /**
      * Retourne tous les ligues régionales..
      *
-     * @return String
+     * @return array
      */
     public function getAll()
     {
@@ -35,7 +35,7 @@ class FederationService {
     /**
      * Retourne la fédération activée dans la base de données.
      *
-     * @return String
+     * @return App\Models\Federation\Federation
      */
     public function getFederation()
     {
@@ -70,10 +70,25 @@ class FederationService {
     }
 
     /**
+     * Retourne l'id et le libellé de la fédératio uniquement.
+     *
+     * @return App\Models\Federation\Federation
+     */
+    public function simplifiedFede()
+    {
+        return $this->dao->simplifiedFede()->map(function ($item){
+            return [
+                'id' => $item->id,
+                'libelle' => $item->libelle,
+            ];
+        });
+    }
+
+    /**
      * Recupérer un ligue regional par son id.
      *
      * @param $id
-     * @return String
+     * @return App\Models\Federation\Federation
      */
     public function getById($id)
     {
@@ -84,7 +99,7 @@ class FederationService {
      * Enregistrer un ligue régional
      *
      * @param array $data
-     * @return String
+     * @return App\Models\Federation\Federation
      */
     public function add($data)
     {
@@ -111,7 +126,7 @@ class FederationService {
      * Metre à jour un ligue régional
      *
      * @param array $data
-     * @return String
+     * @return App\Models\Federation\Federation
      */
     public function maj($data, $id)
     {
@@ -130,7 +145,7 @@ class FederationService {
      * Supprimer un ligue regional par son id.
      *
      * @param $id
-     * @return String
+     * @return mixed
      */
     public function delById($id)
     {

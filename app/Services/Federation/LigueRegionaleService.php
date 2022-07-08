@@ -4,6 +4,7 @@ namespace App\Services\Federation;
 
 use App\Repositories\Federation\LigueRegionaleRepository;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 use InvalidArgumentException;
 
 class LigueRegionaleService {
@@ -71,6 +72,21 @@ class LigueRegionaleService {
     }
 
     /**
+     * Recupérer les regions qui n'ont pas de ligue régional.
+     *
+     * @return String
+     */
+    public function regionSansLigRegio()
+    {
+        return $this->dao->regionSansLigRegio();/*->map(function ($item){
+            return [
+                'id' => $item->id,
+                'sigle' => $item->sigle,
+            ];
+        });*/
+    }
+
+    /**
      * Retourne la fédération activée dans la base de données.
      *
      * @return String
@@ -100,6 +116,45 @@ class LigueRegionaleService {
      * @param $id
      * @return String
      */
+    public function getByIdTransformed($id)
+    {
+        return $this->dao->getById($id)->map(function ($item){
+            return [
+                'id' => $item->id,
+                'libelle' => $item->libelle,
+                'sigle' => $item->sigle,
+                'email' => $item->email,
+                'adresse' => $item->adresse,
+                'telephone' => $item->telephone,
+                'sologan' => $item->sologan,
+                'fax' => $item->fax,
+                'date_creation' => $item->date_creation,
+                'recipisse_numero' => $item->recipisse_numero,
+                'recipisse_date' => $item->recipisse_date,
+                'recipisse_url' => $item->recipisse_url,
+                'reglement_int_url' => $item->reglement_int_url,
+                'page_web' => $item->page_web,
+                'facebook' => $item->facebook,
+                'whatsapp' => $item->whatsapp,
+                'telegram' => $item->telegram,
+                'instagram' => $item->instagram,
+                'tiktok' => $item->tiktok,
+                'logo' => asset('storage/ligueregional/'.$item->logo),
+                'region' => json_encode([
+                    'id' => $item->region->id,
+                    'libelle' => $item->region->libelle,
+                    'sigle' => $item->region->sigle,
+                ])
+            ];
+        });
+    }
+
+    /**
+     * Recupérer un ligue regional par son id.
+     *
+     * @param $id
+     * @return String
+     */
     public function getById($id)
     {
         return $this->dao->getById($id);
@@ -109,25 +164,70 @@ class LigueRegionaleService {
      * Enregistrer un ligue régional
      *
      * @param array $data
+     * @param int $federation
      * @return String
      */
-    public function add($data)
+    public function add($request, $federation)
     {
-        /*$validator = Validator::make($data, [
-            'title' => 'required',
-            'description' => 'required'
+        $map_path = 'map-default.jpg';
+        if ($request->hasFile('logo')) {
+            $request->validate([
+                'logo' => 'image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
+            ]);
+
+            $map_path = $request->file('logo')->store('ligueregional', 'public');
+            $map_path = (explode('ligueregional/', $map_path))[1];
+        }
+
+        $data = $request->only([
+            'libelle','sigle','adresse','telephone','email','date_creation','page_web','instagram','page_web'
         ]);
 
-        if ($validator->fails()) {
-            throw new InvalidArgumentException($validator->errors()->first());
-        }*/
+        try {
+            $result = $this->dao->addLigReg($data, $map_path, $request->region['id'], $federation);
+        } catch (Exception $e) {
+            throw new InvalidArgumentException('Ajout impossible');
+        }
+
+        return $result;
+    }
+
+    /**
+     * Enregistrer un ligue régional
+     *
+     * @param array $data
+     * @param int $federation
+     * @return String
+     */
+    public function maj($request, $id)
+    {
+        $ligue = $this->dao->getById($id) ;
+
+        $map_path = $ligue->logo;
+
+        if ($request->hasFile('logo')) {
+            $request->validate([
+                'logo' => 'image|mimes:jpg,jpeg,png,svg|max:5120',
+            ]);
+
+            //  supression du map rataché autre que le map par défaut
+            if($ligue->map != 'map-default.jpg'){
+                Storage::delete('public/ligueregional/'.$ligue->map);
+            }
+
+            $map_path = $request->file('logo')->store('ligueregional', 'public');
+            $map_path = (explode('ligueregional/', $map_path))[1];
+        }
+
+        $data = $request->only([
+            'libelle','sigle','adresse','telephone','email','date_creation','page_web','instagram','page_web'
+        ]);
 
         try {
-            $result = $this->dao->save($data);
+            $result = $this->dao->maj($data, $ligue, $map_path);//($data, $map_path, $request->region['id'], $federation);
         } catch (Exception $e) {
             throw new InvalidArgumentException('Mise à jour impossible');
         }
-        //$result = $this->dao->save($data);
 
         return $result;
     }
@@ -138,10 +238,10 @@ class LigueRegionaleService {
      * @param array $data
      * @return String
      */
-    public function maj($data, $id)
+    public function update($data, $id)
     {
         try {
-            $result = $this->dao->update($data, $id);
+            $result = null;//$this->dao->update($data, $id);
         } catch (Exception $e) {
             throw new InvalidArgumentException('Mise à jour impossible');
         }

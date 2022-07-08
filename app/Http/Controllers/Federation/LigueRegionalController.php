@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Federation;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Localisation\QuartierRequest;
-use App\Models\Federation\Federation;
+use App\Http\Requests\Federation\LigueRegionalRequest;
+use App\Models\Federation\LigueRegionale;
 use App\Models\Localisation\Quartier;
+use App\Services\Federation\FederationService;
 use App\Services\Federation\LigueRegionaleService;
-use Illuminate\Http\Client\Request;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -20,14 +22,21 @@ class LigueRegionalController extends Controller
    protected $service;
 
    /**
+    * @var fedeService
+   */
+  protected $fedeService;
+
+   /**
     * FederationController Constructor
     *
-    * @param LigueRegionaleService $service
+    * @param App\Services\Federation\FederationService $fedeService
+    * @param App\Services\Federation\LigueRegionaleService $service
     *
     */
-   public function __construct(LigueRegionaleService $service )
+   public function __construct(LigueRegionaleService $service, FederationService $fedeService )
    {
        $this->service = $service;
+       $this->fedeService = $fedeService;
    }
 
     /**
@@ -36,39 +45,35 @@ class LigueRegionalController extends Controller
      * @return \Illuminate\Http\Response
     */
     public function index(){
+        //dd($this->fedeService->simplifiedFede()[0]['id']);
         $ligueRegionales = $this->service->allFormatted();
-        /*$federation = Federation::where('visible',1)->get()->map(function ($item){
-            return [
-                'id' => $item->id,
-                'libelle' => $item->libelle,
-                'sigle' => $item->sigle,
-                'email' => $item->email,
-                'adresse' => $item->adresse,
-                'telephone' => $item->telephone,
-                'sologan' => $item->sologan,
-                'fax' => $item->fax,
-                'date_creation' => $item->date_creation,
-                'recipisse_numero' => $item->recipisse_numero,
-                'recipisse_date' => $item->recipisse_date,
-                'recipisse_url' => $item->recipisse_url,
-                'reglement_int_url' => $item->reglement_int_url,
-                'page_web' => $item->page_web,
-                'facebook' => $item->facebook,
-                'whatsapp' => $item->whatsapp,
-                'telegram' => $item->telegram,
-                'instagram' => $item->instagram,
-                'tiktok' => $item->tiktok,
-                'logo' => asset('storage/ligueregional/'.$item->logo),
-                'sport' => json_encode([
-                    'id' => $item->sport->id,
-                    'libelle' => $item->sport->libelle,
-                ])
-            ];
-        })
-        ;*/
 
         return Inertia::render('App/Federation/LigueRegional/Index', [
             'ligueRegionales' => $ligueRegionales,
+        ]);
+    }
+
+    /**
+     * Retourne la page de création d'un nouveau régional.
+     *  @return \Illuminate\Http\Response
+    */
+    public function create(){
+        $regionSansLigRegio = $this->service->regionSansLigRegio();
+
+        return Inertia::render('App/Federation/LigueRegional/New', [
+            'regionSansLigRegio' => $regionSansLigRegio
+        ]);
+    }
+
+    /**
+     * Retourne la page de création d'un nouveau régional.
+     *  @return \Illuminate\Http\Response
+    */
+    public function edit(Request $request){
+        $ligueRegionale = $this->service->getByIdTransformed($request->ligue);
+
+        return Inertia::render('App/Federation/LigueRegional/Edit', [
+            'ligueRegionale' => $ligueRegionale
         ]);
     }
 
@@ -88,95 +93,89 @@ class LigueRegionalController extends Controller
     }
 
     /**
-     * Retourne la,page de création d'un nouveau régional.
-     *  @return \Illuminate\Http\Response
-    */
-    public function create(){
-        return Inertia::render('App/Federation/LigueRegional/New', [
-        ]);
-    }
-
-    /**
-     * Ajouter une fédération.
+     * Ajouter un ligue régional.
      *
-     * @param  \App\Http\Requests\Localisation\QuartierRequest  $request
+     * @param  \App\Http\Requests\Federation\LigueRegionalRequest  $request
      * @return \Illuminate\Http\Response
     */
-    public function store(QuartierRequest $request){
-        $map_path = 'map-default.png';
-        if ($request->hasFile('map')) {
-            $request->validate([
-                'map' => 'image|mimes:jpg,jpeg,png,svg|max:5120', // 5MB
-            ]);
-
-            $map_path = $request->file('map')->store('quartiers', 'public');
-            $map_path = (explode('quartiers/', $map_path))[1];
+    public function store(LigueRegionalRequest $request)
+    {
+        $federation = $this->fedeService->simplifiedFede();
+        try {
+            $result['data'] = $this->service->add($request, $federation[0]['id']);
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
         }
 
-        Federation::create([
-            'libelle' => $request->libelle,
-            'sigle' => $request->sigle,
-            'codification' => $request->codification,
-            'indicatif' => $request->indicatif,
-            'map' => $map_path,
-            'commune_id' => $request->commune['id']
-        ]);
-
-        return Redirect::route('quartiers.index');
+        return Redirect::route('ligregio.index');
     }
 
     /**
-     * Metre à jour un quartier.
+     * Metre à jour un ligue régional.
      *
-     * @param  \App\Http\Requests\Localisation\QuartierRequest  $request
-     * @param  int $quartier
+     * @param  \App\Http\Requests\Federation\LigueRegionalRequest  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
     */
-    public function update($quartier, QuartierRequest $request){
-        $oneQuartier = Quartier::findOrFail($quartier);
+    public function update($id, LigueRegionalRequest $request){
+        $ligue = LigueRegionale::findOrFail($id) ;
 
-        $map_path = $oneQuartier->map;
-        if ($request->hasFile('map')) {
+        $map_path = $ligue->logo;
+        if ($request->hasFile('logo')) {
             $request->validate([
-                'map' => 'image|mimes:jpg,jpeg,png,svg|max:5120',
+                'logo' => 'image|mimes:jpg,jpeg,png,svg|max:5120',
             ]);
 
             //  supression du map rataché autre que le map par défaut
-            if($oneQuartier->map != 'map-default.png'){
-                Storage::delete('public/quartiers/'.$oneQuartier->map);
+            if($ligue->map != 'map-default.jpg'){
+                Storage::delete('public/ligueregional/'.$ligue->map);
             }
 
-            $map_path = $request->file('map')->store('quartiers', 'public');
-            $map_path = (explode('quartiers/', $map_path))[1];
+            $map_path = $request->file('logo')->store('ligueregional', 'public');
+            $map_path = (explode('ligueregional/', $map_path))[1];
         }
 
-        $oneQuartier->update([
-            'libelle' => $request->libelle,
-            'sigle' => $request->sigle,
-            'codification' => $request->codification,
-            'indicatif' => $request->indicatif,
-            'map' => $map_path,
-            'commune_id' => $request->commune['id']
-        ]);
+        try {
+            //$result['data'] = $this->service->maj($request, $ligue);
+            $ligue->update([
+                'libelle' => $request->libelle,
+                'sigle' => $request->sigle,
+                'adresse' => $request->adresse,
+                'telephone' => $request->telephone,
+                'email' => $request->email,
+                'date_creation' => $request->date_creation,
+                'page_web' => $request->page_web,
+                'instagram' => $request->instagram,
+                'logo' => $map_path
+            ]);
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
 
-        return Redirect::route('quartiers.index');
+        return Redirect::route('ligregio.index');
     }
 
     /**
      * Supprimer un quartier.
      *
-     * @param  int $quartier
+     * @param  int $id
      * @return \Illuminate\Http\Response
     */
-    public function destroy($quartier){
-        $oneQuartier = Quartier::findOrFail($quartier);
+    public function destroy($id){
+        $ligue = LigueRegionale::findOrFail($id);
 
-        if($oneQuartier->map != 'map-default.png'){
-            Storage::delete('public/quartiers/'.$oneQuartier->map);
+        if($ligue->map != 'map-default.png'){
+            Storage::delete('public/ligueregional/'.$ligue->map);
         }
 
-        $oneQuartier->delete();
+        $ligue->delete();
 
-        return Redirect::route('quartiers.index');
+        return Redirect::route('ligregio.index');
     }
 }

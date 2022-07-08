@@ -24,7 +24,7 @@ class LigueRegionaleSeeder extends Seeder
                     'email' => 'lr-adrar.fbrim@gmail.com',
                     'adresse' => 'Adrar, Rue Ahmed Ould Sidi Baba',
                     'telephone' => '3300000001',
-                    'logo' => 'logo-fed.jpg'
+                    'logo' => 'map-default.jpg'
                 ]
             ]
         );

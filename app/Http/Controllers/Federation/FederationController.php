@@ -17,16 +17,18 @@ class FederationController extends Controller
 
     /**
      * @var service
-     * @var ligRegService
     */
     protected $service;
+    /**
+     * @var ligRegService
+    */
     protected $ligRegService;
 
     /**
      * FederationController Constructor
      *
-     * @param FederationService $service
-     * @param LigueRegionaleService $ligRegService
+     * @param App\Services\Federation\FederationService $service
+     * @param App\Services\Federation\LigueRegionaleService $ligRegService
      *
      */
     public function __construct(FederationService $service, LigueRegionaleService $ligRegService )

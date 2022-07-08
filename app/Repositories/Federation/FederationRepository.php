@@ -44,6 +44,19 @@ class FederationRepository {
     }
 
     /**
+     * Retourne la fédération activée dans la base de données.
+     *
+     * @return Federation $model
+     */
+    public function simplifiedFede()
+    {
+        return $this->model
+            ->select('id','libelle')
+            ->where('visible', 1)
+            ->get();
+    }
+
+    /**
      * Recupérer une fédération par son id
      *
      * @param $id

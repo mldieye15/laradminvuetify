@@ -83,6 +83,7 @@ Route::middleware('auth:sanctum')->group(function() {
         //  ligue-regional
         Route::get('/lig-regio',            [LigueRegionalController::class, 'index'])->name('ligregio.index');
         Route::get('/lig-regio/new',        [LigueRegionalController::class, 'create'])->name('ligregio.create');
+        Route::post('/lig-regio/edit',      [LigueRegionalController::class, 'edit'])->name('ligregio.edit');
         Route::get('/lig-regio/{ligue}',    [LigueRegionalController::class, 'show'])->name('ligregio.show');
         Route::post('/lig-regio',           [LigueRegionalController::class, 'store'])->name('ligregio.store');
         Route::put('/lig-regio/{ligue}',    [LigueRegionalController::class, 'update'])->name('ligregio.update');
