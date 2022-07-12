@@ -10,6 +10,7 @@
                     <v-row>
                         <v-col cols="12" sm="12" md="4" >
                             <v-select  v-model="selectedRegion" :items="regionSansLigRegio" label="Régions" item-text="sigle" item-value="id" single-line return-object></v-select>
+                            <span v-if="errors.rattachement" class="font-weight-light red--text">{{ errors.rattachement[0] }}</span>
                         </v-col>
                         <v-col cols="12" sm="12" md="8" >
                             <v-text-field v-model="form.adresse" label="Adresse"></v-text-field>
@@ -134,7 +135,7 @@ export default {
     created () {},
     methods: {
         save () {
-            this.form.region = this.selectedRegion
+            //this.form.region = this.selectedRegion
             Inertia.post(`/app/fede/lig-regio`, {
                 _method: 'post',
                 libelle: this.form.libelle,
@@ -146,7 +147,8 @@ export default {
                 page_web: this.form.page_web,
                 instagram: this.form.instagram,
                 logo: this.form.logo,
-                region: this.selectedRegion
+                region: this.selectedRegion,
+                rattachement: this.selectedRegion.id
             });
         },
     },

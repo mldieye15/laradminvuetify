@@ -9,6 +9,8 @@ use App\Http\Controllers\Localisation\LocalisationController;
 use App\Http\Controllers\Localisation\PaysController;
 use App\Http\Controllers\Localisation\QuartierController;
 use App\Http\Controllers\Localisation\RegionController;
+use App\Http\Controllers\Structures\CentreFormationController;
+use App\Http\Controllers\Structures\ClubController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -79,7 +81,6 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/federations',                [FederationController::class, 'store'])->name('federations.store');
         Route::put('/federations/{federation}',    [FederationController::class, 'update'])->name('federations.update');
         Route::delete('/federations/{federation}', [FederationController::class, 'destroy'])->name('federations.destroy');
-
         //  ligue-regional
         Route::get('/lig-regio',            [LigueRegionalController::class, 'index'])->name('ligregio.index');
         Route::get('/lig-regio/new',        [LigueRegionalController::class, 'create'])->name('ligregio.create');
@@ -88,6 +89,35 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/lig-regio',           [LigueRegionalController::class, 'store'])->name('ligregio.store');
         Route::put('/lig-regio/{ligue}',    [LigueRegionalController::class, 'update'])->name('ligregio.update');
         Route::delete('/lig-regio/{ligue}', [LigueRegionalController::class, 'destroy'])->name('ligregio.destroy');
+    });
 
+    Route::group([
+        'prefix' => 'app/fede/structures',
+        'namespace' => 'App\Http\Controllers\Structures'
+    ],function(){
+        //  club
+        Route::get('/clubs',           [ClubController::class, 'index'])->name('club.index');
+        Route::get('/clubs/new',       [ClubController::class, 'create'])->name('club.create');
+        Route::post('/clubs/edit',     [ClubController::class, 'edit'])->name('club.edit');
+        Route::get('/clubs/{club}',    [ClubController::class, 'show'])->name('club.show');
+        Route::post('/clubs',          [ClubController::class, 'store'])->name('club.store');
+        Route::put('/clubs/{club}',    [ClubController::class, 'update'])->name('club.update');
+        Route::delete('/clubs/{club}', [ClubController::class, 'destroy'])->name('club.destroy');
+        //  centre-formation
+        Route::get('/centre-formation',                 [CentreFormationController::class, 'index'])->name('centreform.index');
+        Route::get('/centre-formation/new',             [CentreFormationController::class, 'create'])->name('centreform.create');
+        Route::post('/centre-formation/edit',           [CentreFormationController::class, 'edit'])->name('centreform.edit');
+        Route::get('/centre-formation/{centreform}',    [CentreFormationController::class, 'show'])->name('centreform.show');
+        Route::post('/centre-formation',                [CentreFormationController::class, 'store'])->name('centreform.store');
+        Route::put('/centre-formation/{centreform}',    [CentreFormationController::class, 'update'])->name('centreform.update');
+        Route::delete('/centre-formation/{centreform}', [CentreFormationController::class, 'destroy'])->name('centreform.destroy');
+        //  associations
+        Route::get('/associations',           [ClubController::class, 'index'])->name('association.index');
+        Route::get('/associations/new',       [ClubController::class, 'create'])->name('association.create');
+        Route::post('/associations/edit',     [ClubController::class, 'edit'])->name('association.edit');
+        Route::get('/associations/{association}',    [ClubController::class, 'show'])->name('association.show');
+        Route::post('/associations',          [ClubController::class, 'store'])->name('association.store');
+        Route::put('/associations/{association}',    [ClubController::class, 'update'])->name('association.update');
+        Route::delete('/associations/{association}', [ClubController::class, 'destroy'])->name('association.destroy');
     });
 });

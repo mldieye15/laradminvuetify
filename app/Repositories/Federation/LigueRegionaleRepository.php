@@ -32,6 +32,17 @@ class LigueRegionaleRepository {
     }
 
     /**
+     * Retourne tous les ligues régionales avec le minimum: id, libelle, sigle.
+     *
+     * @return LigueRegionale $model
+     */
+    public function minimalLigReg()
+    {
+        return $this->model
+            ->get(['id','libelle','sigle']);
+    }
+
+    /**
      * Recupérer un ligue regional par son id
      *
      * @param $id

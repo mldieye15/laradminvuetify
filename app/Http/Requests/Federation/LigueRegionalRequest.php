@@ -26,9 +26,9 @@ class LigueRegionalRequest extends FormRequest
         return [
             'libelle' => 'required|max:255',
             'sigle' => 'required|max:20',
-            'federation_id' => 'exists:App\Models\Federation\Federation,id',
-            'region_id' => 'exists:App\Models\Localisation\Region,id',
-            'email' => 'required|email|unique:federations',
+            //'federation_id' => 'exists:App\Models\Federation\Federation,id',
+            'rattachement' => 'exists:regions,id',
+            'email' => 'required|email|unique:ligue_regionales',
             'adresse' => 'required|max:255',
             'telephone' => 'required|max:20',
         ];

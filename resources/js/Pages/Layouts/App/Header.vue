@@ -116,17 +116,17 @@
                 </template>
                 <v-list-item>
                     <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Club</v-list-item-title></inertia-link>
+                        <inertia-link class="mx-auto" :href="route('club.index')" :class="route().current('club.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Club</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
                     <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Centre de formation</v-list-item-title></inertia-link>
+                        <inertia-link class="mx-auto" :href="route('centreform.index')" :class="route().current('centreform.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Centre de formation</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
                     <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Association</v-list-item-title></inertia-link>
+                        <inertia-link class="mx-auto" :href="route('association.index')" :class="route().current('association.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Association</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
              </v-list-group>

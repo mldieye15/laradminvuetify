@@ -156,7 +156,7 @@ export default {
                 date_creation: this.form.date_creation,
                 page_web: this.form.page_web,
                 instagram: this.form.instagram,
-                logo: this.form.logo,
+                logo: this.form.logo
             })
             /*if (this.editedIndex > -1) {
                 Object.assign(this.quartiers[this.editedIndex], this.form);
@@ -189,9 +189,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-.btn-to-top{
-
-}
-</style>

@@ -47,7 +47,7 @@
                                 <v-row class="mb-0 mx-auto">
                                     <v-text-field class="mb-3 mx-auto" v-model="searchLigue" append-icon="mdi-magnify" label="Search" single-line hide-details ></v-text-field>
                                     <v-spacer></v-spacer>
-                                     <inertia-link  class="-mb-40" :href="route('ligregio.create')">
+                                     <inertia-link  class="mt-4" :href="route('ligregio.create')">
                                         <v-btn color="primary" dark class="mb-0">Nouveau</v-btn>
                                     </inertia-link>
 

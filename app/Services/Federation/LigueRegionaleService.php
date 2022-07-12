@@ -34,6 +34,16 @@ class LigueRegionaleService {
     }
 
     /**
+     * Retourne tous les ligues régionales..
+     *
+     * @return String
+     */
+    public function minimalLigReg()
+    {
+        return $this->dao->minimalLigReg();
+    }
+
+    /**
      * Retourne la fédération activée dans la base de données.
      *
      * @return String
@@ -101,7 +111,7 @@ class LigueRegionaleService {
                 'email' => $item->email,
                 'adresse' => $item->adresse,
                 'telephone' => $item->telephone,
-                //'logo' => asset('storage/ligueregional/'.$item->logo),
+                'logo' => asset('storage/ligueregional/'.$item->logo),
                 'region' => json_encode([
                     'id' => $item->region->id,
                     'sigle' => $item->region->sigle,
@@ -211,8 +221,8 @@ class LigueRegionaleService {
             ]);
 
             //  supression du map rataché autre que le map par défaut
-            if($ligue->map != 'map-default.jpg'){
-                Storage::delete('public/ligueregional/'.$ligue->map);
+            if($ligue->logo != 'map-default.jpg'){
+                Storage::delete('public/ligueregional/'.$ligue->logo);
             }
 
             $map_path = $request->file('logo')->store('ligueregional', 'public');
