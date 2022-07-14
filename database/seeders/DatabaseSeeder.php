@@ -14,7 +14,9 @@ use Database\Seeders\Localisation\QuartierSeeder;
 use Database\Seeders\Structures\AssociationSeeder;
 use Database\Seeders\Structures\CentreFormationSeeder;
 use Database\Seeders\Structures\ClubSeeder;
+use Database\Seeders\User\PersonneSeeder;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -38,5 +40,14 @@ class DatabaseSeeder extends Seeder
         $this->call(CentreFormationSeeder::class);
         $this->call(AssociationSeeder::class);
         $this->call(UserSeeder::class);
+        //  $$$$$$$$$$$$$$$$$$
+        //  initialisation de la table
+        DB::table('ref_id_natio_sportifs')->insert([
+            'suffixe'=>'AA',
+            'codification'=>16,
+            'current'=>1
+        ]);
+        //  $$$$$$$$$$$$$$$$$$
+        $this->call(PersonneSeeder::class);
     }
 }

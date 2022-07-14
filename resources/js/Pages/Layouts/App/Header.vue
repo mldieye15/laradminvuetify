@@ -139,6 +139,11 @@
                 </template>
                 <v-list-item>
                     <v-list-item-content>
+                        <inertia-link class="mx-auto" :href="route('personne.index')" :class="route().current('personne.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Personnes</v-list-item-title></inertia-link>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                    <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Joueurs</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>

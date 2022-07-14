@@ -4,7 +4,6 @@ namespace App\Services\Structures;
 
 use App\Models\Structures\Club;
 use App\Repositories\Structures\AssociationRepository;
-use App\Repositories\Structures\ClubRepository;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 use InvalidArgumentException;

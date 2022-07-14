@@ -11,6 +11,7 @@ use App\Http\Controllers\Localisation\QuartierController;
 use App\Http\Controllers\Localisation\RegionController;
 use App\Http\Controllers\Structures\CentreFormationController;
 use App\Http\Controllers\Structures\ClubController;
+use App\Http\Controllers\User\PersonneController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -119,5 +120,19 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/associations',          [ClubController::class, 'store'])->name('association.store');
         Route::put('/associations/{association}',    [ClubController::class, 'update'])->name('association.update');
         Route::delete('/associations/{association}', [ClubController::class, 'destroy'])->name('association.destroy');
+    });
+
+    Route::group([
+        'prefix' => 'app/effective',
+        'namespace' => 'App\Http\Controllers\Structures'
+    ],function(){
+        //  personnes
+        Route::get('/personnes',               [PersonneController::class, 'index'])->name('personne.index');
+        Route::get('/personnes/new',           [PersonneController::class, 'create'])->name('personne.create');
+        Route::post('/personnes/edit',         [PersonneController::class, 'edit'])->name('personne.edit');
+        Route::get('/personnes/{personne}',    [PersonneController::class, 'show'])->name('personne.show');
+        Route::post('/personnes',              [PersonneController::class, 'store'])->name('personne.store');
+        Route::put('/personnes/{personne}',    [PersonneController::class, 'update'])->name('personne.update');
+        Route::delete('/personnes/{personne}', [PersonneController::class, 'destroy'])->name('personne.destroy');
     });
 });
