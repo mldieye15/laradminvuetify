@@ -73,9 +73,9 @@ class PersonneService {
                 'active' => $item->active,
                 'photo' => asset('storage/personnes/'.$item->photo),
                 /*'pays_naiss' => json_encode([
-                    'id' => $item->pays_naiss->id,
-                    'libelle' => $item->pays_naiss->libelle,
-                    'sigle' => $item->pays_naiss->sigle,
+                    'id' => $item->paysNaiss->id,
+                    'libelle' => $item->paysNaiss->libelle,
+                    'sigle' => $item->paysNaiss->sigle,
                 ]),
                 'pays_natio' => json_encode([
                     'id' => $item->pays['id'],

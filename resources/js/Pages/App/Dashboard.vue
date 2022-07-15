@@ -136,15 +136,15 @@
                 {
                     action: 'mdi-folder-open',
                     items: [
-                        { 
+                        {
                             title: 'Fédération',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Ligue régional',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Centre de formation',
                             route: 'basicdata.index'
                         },
@@ -154,19 +154,19 @@
                 {
                     action: 'mdi-ticket',
                     items: [
-                        { 
+                        {
                             title: 'Licences',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Commissions',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Equipe nationale',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'La fédération',
                             route: 'basicdata.index'
                         },
@@ -177,19 +177,19 @@
                 {
                     action: 'mdi-briefcase',
                     items: [
-                        { 
+                        {
                             title: 'Ligue régionale',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Club',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Centre de formation',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Association',
                             route: 'basicdata.index'
                         },
@@ -205,15 +205,15 @@
                         { title: 'Médecins',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Entraîneurs',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Techniciens',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Mangers',
                             route: 'basicdata.index'
                         }
@@ -223,11 +223,11 @@
                 {
                     action: 'mdi-google-controller',
                     items: [
-                        { 
+                        {
                             title: 'Rencontre',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Résultats',
                             route: 'basicdata.index'
                         },
@@ -248,10 +248,10 @@
                 {
                     action: 'mdi-database-cog',
                     items: [
-                        { 
+                        {
                             title: 'Localisation',
                             route: 'app/intial-data/',
-                            
+
                         },
                     ],
                     title: 'Données de base',
@@ -259,11 +259,11 @@
                 {
                     action: 'mdi-cog-transfer',
                     items: [
-                        { 
+                        {
                             title: 'Calendrier',
                             route: 'basicdata.index'
                         },
-                        { 
+                        {
                             title: 'Programmation match',
                             route: 'basicdata.index'
                         },

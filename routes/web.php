@@ -9,6 +9,16 @@ use App\Http\Controllers\Localisation\LocalisationController;
 use App\Http\Controllers\Localisation\PaysController;
 use App\Http\Controllers\Localisation\QuartierController;
 use App\Http\Controllers\Localisation\RegionController;
+use App\Http\Controllers\SiteWeb\AssocaitionPubController;
+use App\Http\Controllers\SiteWeb\CalendrierPubController;
+use App\Http\Controllers\SiteWeb\CentrePubController;
+use App\Http\Controllers\SiteWeb\ClubPubController;
+use App\Http\Controllers\SiteWeb\MatchPubController;
+use App\Http\Controllers\SiteWeb\MediatequePubController;
+use App\Http\Controllers\SiteWeb\OrganisationPubController;
+use App\Http\Controllers\SiteWeb\PresentationPubController;
+use App\Http\Controllers\SiteWeb\ReglementPubController;
+use App\Http\Controllers\SiteWeb\ResultatPubController;
 use App\Http\Controllers\Structures\CentreFormationController;
 use App\Http\Controllers\Structures\ClubController;
 use App\Http\Controllers\User\PersonneController;
@@ -26,6 +36,66 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+Route::name('public.')->group(function() {
+    Route::group([
+        'prefix' => 'public',
+        'namespace' => 'App\Http\Controllers\SiteWeb'
+    ],function(){
+
+        Route::group([
+            'prefix' => 'structures',
+            'namespace' => 'App\Http\Controllers\Structures'
+        ],function(){
+            //  club
+            Route::get('/clubs', [ClubPubController::class, 'index'])->name('club.index');
+
+            //  centre-formation
+            Route::get('/centre-formation', [CentrePubController::class, 'index'])->name('centreform.index');
+
+            //  association
+            Route::get('/associations', [AssocaitionPubController::class, 'index'])->name('association.index');
+        });
+
+        Route::group([
+            'prefix' => 'federation',
+            'namespace' => 'App\Http\Controllers\Structures'
+        ],function(){
+            //  presentation
+            Route::get('/presentation', [PresentationPubController::class, 'index'])->name('presentation.index');
+
+            //  organisation
+            Route::get('/organisation', [OrganisationPubController::class, 'index'])->name('organisation.index');
+
+            //  mediateque
+            Route::get('/mediateque', [MediatequePubController::class, 'index'])->name('mediateque.index');
+        });
+
+        Route::group([
+            'prefix' => 'activites',
+            'namespace' => 'App\Http\Controllers\Structures'
+        ],function(){
+            //  calendrier
+            Route::get('/calendrier', [CalendrierPubController::class, 'index'])->name('calendrier.index');
+
+            //  matchs
+            Route::get('/matchs', [MatchPubController::class, 'index'])->name('match.index');
+
+            //  resultats
+            Route::get('/resultats', [ResultatPubController::class, 'index'])->name('resultat.index');
+        });
+
+        Route::group([
+            'prefix' => 'textes',
+            'namespace' => 'App\Http\Controllers\Structures'
+        ],function(){
+            //  reglements
+            Route::get('/reglements', [ReglementPubController::class, 'index'])->name('reglement.index');
+        });
+    });
+
+});
+
 //Route::get('/a-propos', [WelcomeController::class, 'index'])->name('about');
 //Route::get('/contact', [WelcomeController::class, 'index'])->name('contact');
 
