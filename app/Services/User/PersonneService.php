@@ -224,9 +224,9 @@ class PersonneService {
             'prenoms','nom','sexe','surnom','taille','poids','fonction','ne_vers','date_naiss','lieu_naiss','adresse','telephone','civilite','email','type_piece_ident','piece_ident','annee_naiss','ne_vers_naiss','cin','passport',
             'page_web','facebook','whatsapp','telegram','instagram','tiktok','active'
         ]);
-
+        
         try {
-            $result = $this->dao->add($data, $map_path, $request->pays['id'], $request->nationalite['id']);//addLigReg($data, $map_path, $request->region['id'], $federation);
+            $result = $this->dao->add($data, $map_path, $request->pays['id'], $request->nationalite['id']);
         } catch (Exception $e) {
             throw new InvalidArgumentException('Ajout impossible');
         }

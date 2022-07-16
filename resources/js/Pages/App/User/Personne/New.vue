@@ -51,15 +51,15 @@
                             </v-radio-group>
                         </v-col>
                         <v-col cols="12" sm="12" md="3" >
-                            <v-select v-model="selectedCivilite" :items="civilites" label="Situation matrimoniale" item-text="sigle" item-value="id" single-line return-object></v-select>
-                             <span v-if="errors.pays_natio" class="font-weight-light red--text">{{ errors.pays_natio[0] }}</span>
+                            <v-select v-model="selectedCivilite" :items="civilites" :menu-props="{ top: true, offsetY: true }" label="Situation matrimoniale" item-text="sigle" item-value="id" return-object></v-select><!-- single-line: enlevé pour avoir le nom du label en haut -->
+                             <span v-if="errors.civilite" class="font-weight-light red--text">{{ errors.civilite[0] }}</span>
                         </v-col>
                         <v-col cols="12" sm="12" md="3" >
-                            <v-select v-model="selectedPaysNaiss" :items="pays" label="Pays de naissance" item-text="sigle" item-value="id" single-line return-object></v-select>
+                            <v-select v-model="selectedPaysNaiss" :items="pays" :menu-props="{ top: true, offsetY: true }" label="Pays de naissance" item-text="sigle" item-value="id" return-object></v-select>
                              <span v-if="errors.pays_naiss" class="font-weight-light red--text">{{ errors.pays_naiss[0] }}</span>
                         </v-col>
                         <v-col cols="12" sm="12" md="3" >
-                            <v-select v-model="selectedPaysNatio" :items="pays" label="Pays de nationalité" item-text="sigle" item-value="id" single-line return-object></v-select>
+                            <v-select v-model="selectedPaysNatio" :items="pays" :menu-props="{ top: true, offsetY: true }" label="Pays de nationalité" item-text="sigle" item-value="id" return-object></v-select>
                              <span v-if="errors.pays_natio" class="font-weight-light red--text">{{ errors.pays_natio[0] }}</span>
                         </v-col>
                         <v-col cols="12" sm="6" md="3" >
@@ -79,7 +79,7 @@
                             <span v-if="errors.telephone" class="font-weight-light red--text">{{ errors.telephone[0] }}</span>
                         </v-col>
                         <v-col cols="12" sm="12" md="3" >
-                            <v-select v-model="selectedPiece" :items="type_piece_ident" label="Type de piéce" item-text="sigle" item-value="id" single-line return-object></v-select>
+                            <v-select v-model="selectedPiece" :menu-props="{ top: true, offsetY: true }" :items="type_piece_ident" label="Type de piéce d'identité" item-text="sigle" item-value="id" return-object></v-select>
                              <span v-if="errors.type_piece_ident" class="font-weight-light red--text">{{ errors.type_piece_ident[0] }}</span>
                         </v-col>
                         <v-col cols="12" sm="6" md="3" >
@@ -87,14 +87,10 @@
                             <span v-if="errors.piece_ident" class="font-weight-light red--text">{{ errors.piece_ident[0] }}</span>
                         </v-col>
                         <v-col cols="12" sm="6" md="3" >
-                            <v-text-field  v-model="form.telephone" label="Téléphone"></v-text-field>
-                            <span v-if="errors.telephone" class="font-weight-light red--text">{{ errors.telephone[0] }}</span>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="3" >
                             <v-text-field  v-model="form.email" label="Adress email"></v-text-field>
                             <span v-if="errors.email" class="font-weight-light red--text">{{ errors.email[0] }}</span>
                         </v-col>
-                        <v-col cols="12" sm="4" md="2" >
+                        <v-col cols="12" sm="4" md="1" >
                             <v-text-field  v-model="form.taille" label="Taille"></v-text-field>
                             <span v-if="errors.taille" class="font-weight-light red--text">{{ errors.taille[0] }}</span>
                         </v-col>
@@ -135,7 +131,7 @@ export default {
         AppLayout,
         Breadcrumbs
     },
-    props:  ['pays', 'errors'],
+    props:  ['pays', 'currentPays', 'errors'],
     data () {
       return {
         searchLigue: '',
@@ -178,42 +174,42 @@ export default {
             taille: null,
             poids: null,
             fonction: null,
-            ne_vers: null,
+            ne_vers: 0,
             date_naiss: null,
             lieu_naiss: null,
             adresse: null,
-            civilite: null,
             ne_vers: null,
             photo: null,
             email: null,
-            type_piece_ident: null,
             piece_ident: null,
             annee_naiss: null,
             ne_vers_naiss: null,
             cin: null,
             passport:null,
             telephone: null,
+            page_web: null,
             facebook: null,
             whatsapp: null,
             telegram: null,
             instagram: null,
             tiktok: null,
             active: true,
-            ligue: this.selectedLigue,
             pays_naiss: this.selectedPaysNaiss,
             pays_natio: this.selectedPaysNatio,
+            civilite: this.selectedCivilite,
+            type_piece_ident: this.selectedPiece
         }),
         selectedPaysNaiss:{
-            id: 0,
-            sigle: 'Mauritanie'
+            id: null,
+            sigle: null
         },
         selectedPaysNatio:{
-            id: 0,
-            sigle: 'Mauritanie'
+            id: null,
+            sigle: null
         },
         type_piece_ident: [
             {
-                id: null,
+                id: 'CIN',
                 sigle: 'Carte nationale d\'identité'
             },
             {
@@ -230,12 +226,12 @@ export default {
             },
         ],
         selectedPiece:{
-            id: null,
+            id: 'CIN',
             sigle: 'Carte nationale d\'identité'
         },
         civilites: [
             {
-                id: 'null',
+                id: 'CELIBATAIRE',
                 sigle: 'Célibataire'
             },
             {
@@ -252,10 +248,60 @@ export default {
             },
         ],
         selectedCivilite:{
-            id: null,
+            id: 'CELIBATAIRE',
             sigle: 'Célibataire'
         },
         editedIndex: -1,
+        //
+        testStore: {
+            prenoms: 'Lamine',
+            nom: 'DIEYE',
+            sexe: 'HOMME',
+            surnom: 'mldieye',
+            taille: '1m 97',
+            poids: '82,5 kg',
+            fonction: 'Analyste',
+            date_naiss: '1992-05-08',
+            lieu_naiss: 'Guédiawaye',
+            adresse: '246, Parc Guédiawaye',
+            ne_vers: 0,
+            photo: null,
+            email: 'laminedev@gmail.com',
+            piece_ident: '1065EOJ',
+            annee_naiss: null,
+            ne_vers_naiss: null,
+            cin: null,
+            passport: null,
+            telephone: '7797833',
+            page_web: null,
+            facebook: null,
+            whatsapp: null,
+            telegram: null,
+            instagram: null,
+            tiktok: null,
+            active: true,
+            //
+            pays: {
+                id: 1,
+                sigle: 'Mauritanie'
+            },
+            nationalite: {
+                id: 1,
+                sigle: 'Mauritanie'
+            },
+            type_piece_ident:  {
+                id: 'CIN',
+                sigle: 'Carte nationale '
+            },
+            civilite:  {
+                id: 'CELIBATAIRE',
+                sigle: 'Célibataire'
+            },
+
+            pays_naiss: 1,
+            pays_natio: 1,
+        }
+        //
       }
     },
     computed: {},
@@ -264,9 +310,14 @@ export default {
         val && setTimeout(() => (this.activePicker = 'YEAR'))
       },
     },
-    created () {},
+    created () {
+        this.selectedPaysNaiss = Object.assign({}, this.currentPays[0]);
+        this.selectedPaysNatio = Object.assign({}, this.currentPays[0]);
+        this.form = this.testStore;
+    },
     methods: {
         save () {
+            console.log(this.form);
             Inertia.post(`/app/effective/personnes`, {
                 _method: 'post',
                 prenoms: this.form.prenoms,
@@ -280,25 +331,28 @@ export default {
                 date_naiss: this.form.date_naiss,
                 lieu_naiss: this.form.lieu_naiss,
                 adresse: this.form.adresse,
-                civilite: this.form.civilite.id,
                 ne_vers: this.form.ne_vers,
-                //photo: this.form.photo,
+                photo: this.form.photo,
                 email: this.form.email,
-                type_piece_ident: this.form.type_piece_ident,
                 piece_ident: this.form.piece_ident,
-                /*annee_naiss: this.form.annee_naiss,
+                annee_naiss: this.form.annee_naiss,
                 ne_vers_naiss: this.form.ne_vers_naiss,
                 cin: this.form.cin,
                 passport:this.form.passport,
                 telephone: this.form.telephone,
+                page_web: this.form.page_web,
                 facebook: this.form.facebook,
                 whatsapp: this.form.whatsapp,
                 telegram: this.form.telegram,
                 instagram: this.form.instagram,
                 tiktok: this.form.tiktok,
-                active: this.form.active,*/
+                active: this.form.active,
+                //
                 pays: this.selectedPaysNaiss,
                 nationalite: this.selectedPaysNatio,
+                type_piece_ident: this.selectedPiece.id,
+                civilite: this.selectedCivilite.id,
+
                 pays_naiss: this.selectedPaysNaiss.id,
                 pays_natio: this.selectedPaysNatio.id,
             });

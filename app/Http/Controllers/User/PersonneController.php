@@ -59,14 +59,16 @@ class PersonneController extends Controller
    */
    public function create(){
        $pays = $this->paysService->minimalPays();
+       $currentPays = $this->paysService->getCurrentPays();
 
        return Inertia::render('App/User/Personne/New', [
-           'pays' => $pays
+           'pays' => $pays,
+           'currentPays' => $currentPays,
        ]);
    }
 
    /**
-    * Retourne la page de création d'une assocaition.
+    * Retourne la page de modification d'une personne.
     *  @return \Illuminate\Http\Response
    */
    public function edit(Request $request){
@@ -80,16 +82,16 @@ class PersonneController extends Controller
    }
 
    /**
-    * Retourne une assocaition.
+    * Retourne une personne.
     *
     *  @param $id
     *  @return \Illuminate\Http\Response
    */
    public function show($id){
-       $association = $this->service->getById($id);
+       $personne = $this->service->getById($id);
 
        return Inertia::render('App/User/Personne/Details', [
-           'association' => $association,
+           'personne' => $personne,
        ]);
    }
 
@@ -101,9 +103,8 @@ class PersonneController extends Controller
    */
    public function store(PersonneRequest $request)
    {
-    dd($request)
-;       try {
-           $result['data'] = $this->service->add($request);
+       try {
+           $result = $this->service->add($request);
        } catch (Exception $e) {
            $result = [
                'status' => 500,

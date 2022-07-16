@@ -36,8 +36,8 @@ class CreatePersonnesTable extends Migration
             $table->string('piece_ident')->nullable();
             $table->string('annee_naiss',4)->nullable();
             $table->string('ne_vers_naiss',60)->nullable();
-            $table->string('cin')->unique()->nullable();
-            $table->string('passport')->unique()->nullable();
+            $table->string('cin')->nullable();
+            $table->string('passport')->nullable();
             $table->string('page_web')->nullable();
             $table->string('facebook')->nullable();
             $table->string('whatsapp')->nullable();

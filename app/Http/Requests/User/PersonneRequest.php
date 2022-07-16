@@ -32,7 +32,7 @@ class PersonneRequest extends FormRequest
             'fonction' => 'max:60',
             'date_naiss' => 'date|required',
             'lieu_naiss' => 'required|min:2',
-            'cin' => 'alpha_num|min:2',
+            //'cin' => '',
             'adresse' => 'required',
             'telephone' => 'required|max:20',
             'email' => 'email|unique:users',

@@ -119,7 +119,7 @@ class PersonneRepository {
     public function add($data, $photo, $pays_naiss, $pays_natio)
     {
         $model = new $this->model;
-
+        
         $model->prenoms = $data['prenoms'];
         $model->nom = $data['nom'];
         $model->sexe = $data['sexe'];
@@ -150,7 +150,6 @@ class PersonneRepository {
         $model->photo = $photo;
         $model->pays_naiss = $pays_naiss;
         $model->pays_natio = $pays_natio;
-
         $model->save();
 
         return $model->fresh();

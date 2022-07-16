@@ -45,6 +45,16 @@ class PaysService {
     }
 
     /**
+     * Retourne le pays en cours.
+     *
+     * @return String
+     */
+    public function getCurrentPays()
+    {
+        return $this->dao->getCurrentPays();
+    }
+
+    /**
      * Retourne une assocaition avec toutes les informations.
      *
      * @return String

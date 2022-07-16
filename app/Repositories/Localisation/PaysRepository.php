@@ -47,6 +47,19 @@ class PaysRepository {
      * @param $id
      * @return mixed
      */
+    public function getCurrentPays()
+    {
+        return $this->model
+            ->select('id','libelle','sigle')
+            ->where('current', 1)
+            ->get();
+    }
+    /**
+     * Recupérer un pays par son id
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getById($id)
     {
         return $this->model
