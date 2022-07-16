@@ -96,9 +96,6 @@ Route::name('public.')->group(function() {
 
 });
 
-//Route::get('/a-propos', [WelcomeController::class, 'index'])->name('about');
-//Route::get('/contact', [WelcomeController::class, 'index'])->name('contact');
-
 /*
 Route::get('/', function () {
     //return view('welcome');

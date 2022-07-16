@@ -32,6 +32,16 @@ class PaysRepository {
     }
 
     /**
+     * Retourne tous les pays avec le minimum d'inforamtion.
+     *
+     * @return App\Models\Localisation\Pays $model
+     */
+    public function minimalPays(){
+        return $this->model
+            ->get(['id','libelle','sigle']);
+    }
+
+    /**
      * Recupérer un pays par son id
      *
      * @param $id

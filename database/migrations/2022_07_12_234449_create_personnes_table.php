@@ -33,7 +33,7 @@ class CreatePersonnesTable extends Migration
             $table->string('email')->nullable();
             //$table->string('type_piece_ident')->unique()->nullable();   // CIN, PASSPORT, APPRENANT, PROFESSIONNEL
             $table->enum('type_piece_ident', ['CIN', 'PASSPORT', 'APPRENANT', 'PROFESSIONNEL'])->default('CIN');
-            $table->string('piece_ident')->unique()->nullable();
+            $table->string('piece_ident')->nullable();
             $table->string('annee_naiss',4)->nullable();
             $table->string('ne_vers_naiss',60)->nullable();
             $table->string('cin')->unique()->nullable();

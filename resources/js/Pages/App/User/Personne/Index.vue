@@ -6,7 +6,7 @@
                 <v-row class="mb-0 mx-auto pa-1">
                     <v-text-field class="mb-3 mx-auto" v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details ></v-text-field>
                     <v-spacer></v-spacer>
-                        <inertia-link  class="mt-4" :href="route('club.create')">
+                        <inertia-link  class="mt-4" :href="route('personne.create')">
                         <v-btn color="primary" dark class="mb-0">Nouveau</v-btn>
                     </inertia-link>
                 </v-row>

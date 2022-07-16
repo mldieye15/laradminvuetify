@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Structures\StructureRequest;
+use App\Http\Requests\User\PersonneRequest;
 use App\Models\Federation\LigueRegionale;
 use App\Models\Structures\Association;
 use App\Services\Localisation\PaysService;
@@ -57,10 +58,10 @@ class PersonneController extends Controller
     *  @return \Illuminate\Http\Response
    */
    public function create(){
-       $ligueRegionales = $this->ligueService->minimalLigReg();
+       $pays = $this->paysService->minimalPays();
 
-       return Inertia::render('App/Structures/Association/New', [
-           'ligueRegionales' => $ligueRegionales
+       return Inertia::render('App/User/Personne/New', [
+           'pays' => $pays
        ]);
    }
 
@@ -70,11 +71,11 @@ class PersonneController extends Controller
    */
    public function edit(Request $request){
        $association = $this->service->getByIdTransformed($request->club);
-       $ligueRegionales = $this->ligueService->minimalLigReg();
+       $pays = $this->paysService->minimalPays();
 
-       return Inertia::render('App/Structures/Association/Edit', [
+       return Inertia::render('App/User/Personne/Edit', [
            'association' => $association,
-           'ligueRegionales' => $ligueRegionales
+           'pays' => $pays
        ]);
    }
 
@@ -87,7 +88,7 @@ class PersonneController extends Controller
    public function show($id){
        $association = $this->service->getById($id);
 
-       return Inertia::render('App/Structures/Association/Details', [
+       return Inertia::render('App/User/Personne/Details', [
            'association' => $association,
        ]);
    }
@@ -95,12 +96,13 @@ class PersonneController extends Controller
    /**
     * Ajouter un ligue régional.
     *
-    * @param  App\Http\Requests\Structures\StructureRequest $request
+    * @param  use App\Http\Requests\User\PersonneRequest; $request
     * @return \Illuminate\Http\Response
    */
-   public function store(StructureRequest $request)
+   public function store(PersonneRequest $request)
    {
-       try {
+    dd($request)
+;       try {
            $result['data'] = $this->service->add($request);
        } catch (Exception $e) {
            $result = [
@@ -109,7 +111,7 @@ class PersonneController extends Controller
            ];
        }
 
-       return Redirect::route('association.index');
+       return Redirect::route('personne.index');
    }
 
    /**
@@ -150,7 +152,7 @@ class PersonneController extends Controller
            'ligue_regionale_id' => $request->ligue['id']
        ]);
 
-       return Redirect::route('association.index');
+       return Redirect::route('personne.index');
    }
 
    /**
@@ -168,6 +170,6 @@ class PersonneController extends Controller
 
        $ligue->delete();
 
-       return Redirect::route('association.index');
+       return Redirect::route('personne.index');
    }
 }

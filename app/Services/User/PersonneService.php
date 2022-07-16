@@ -124,7 +124,7 @@ class PersonneService {
                 'tiktok' => $item->tiktok,
                 'active' => $item->active,
                 'photo' => asset('storage/personnes/'.$item->photo),
-                'pays_naiss' => json_encode([
+                /*'pays_naiss' => json_encode([
                     'id' => $item->pays_naiss->id,
                     'libelle' => $item->pays_naiss->libelle,
                     'sigle' => $item->pays_naiss->sigle,
@@ -133,7 +133,7 @@ class PersonneService {
                     'id' => $item->pays_natio->id,
                     'libelle' => $item->pays_natio->libelle,
                     'sigle' => $item->pays_natio->sigle,
-                ]),
+                ]),*/
             ];
         });
     }
@@ -177,7 +177,7 @@ class PersonneService {
                 'tiktok' => $item->tiktok,
                 'active' => $item->active,
                 'photo' => asset('storage/personnes/'.$item->photo),
-                'pays_naiss' => json_encode([
+                /*'pays_naiss' => json_encode([
                     'id' => $item->pays_naiss->id,
                     'libelle' => $item->pays_naiss->libelle,
                     'sigle' => $item->pays_naiss->sigle,
@@ -186,7 +186,7 @@ class PersonneService {
                     'id' => $item->pays_natio->id,
                     'libelle' => $item->pays_natio->libelle,
                     'sigle' => $item->pays_natio->sigle,
-                ]),
+                ]),*/
             ];
         });
     }
@@ -226,7 +226,7 @@ class PersonneService {
         ]);
 
         try {
-            $result = $this->dao->add($data, $map_path, $request->pays_naiss['id'], $request->pays_natio['id']);//addLigReg($data, $map_path, $request->region['id'], $federation);
+            $result = $this->dao->add($data, $map_path, $request->pays['id'], $request->nationalite['id']);//addLigReg($data, $map_path, $request->region['id'], $federation);
         } catch (Exception $e) {
             throw new InvalidArgumentException('Ajout impossible');
         }

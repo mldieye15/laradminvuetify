@@ -35,6 +35,16 @@ class PaysService {
     }
 
     /**
+     * Retourne tous les pays avec le minimum d'infomation.
+     *
+     * @return String
+     */
+    public function minimalPays()
+    {
+        return $this->dao->minimalPays();
+    }
+
+    /**
      * Retourne une assocaition avec toutes les informations.
      *
      * @return String
