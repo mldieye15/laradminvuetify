@@ -178,7 +178,6 @@ export default {
             date_naiss: null,
             lieu_naiss: null,
             adresse: null,
-            ne_vers: null,
             photo: null,
             email: null,
             piece_ident: null,
@@ -313,7 +312,7 @@ export default {
     created () {
         this.selectedPaysNaiss = Object.assign({}, this.currentPays[0]);
         this.selectedPaysNatio = Object.assign({}, this.currentPays[0]);
-        this.form = this.testStore;
+        //this.form = this.testStore;
     },
     methods: {
         save () {
@@ -327,11 +326,10 @@ export default {
                 taille: this.form.taille,
                 poids: this.form.poids,
                 fonction: this.form.fonction,
-                //ne_vers: this.form.ne_vers,
+                ne_vers: this.form.ne_vers,
                 date_naiss: this.form.date_naiss,
                 lieu_naiss: this.form.lieu_naiss,
                 adresse: this.form.adresse,
-                ne_vers: this.form.ne_vers,
                 photo: this.form.photo,
                 email: this.form.email,
                 piece_ident: this.form.piece_ident,

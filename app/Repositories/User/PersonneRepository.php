@@ -150,6 +150,7 @@ class PersonneRepository {
         $model->photo = $photo;
         $model->pays_naiss = $pays_naiss;
         $model->pays_natio = $pays_natio;
+        //dd($model);
         $model->save();
 
         return $model->fresh();
