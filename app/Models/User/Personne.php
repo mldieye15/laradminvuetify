@@ -51,15 +51,15 @@ class Personne extends Model
     /**
      * Return the user's country.
      */
-    public function pays_naiss(){
-        return $this->belongsTo(Pays::class);
+    public function pays(){
+        return $this->belongsTo('App\Models\Localisation\Pays', 'pays_naiss');
     }
 
     /**
      * Return the user's nationality.
      */
-    public function pays_natio(){
-        return $this->belongsTo(Pays::class);
+    public function nationalite(){
+        return $this->belongsTo(Pays::class, 'pays_natio');
     }
 
 

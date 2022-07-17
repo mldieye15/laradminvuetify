@@ -72,16 +72,16 @@ class PersonneService {
                 'tiktok' => $item->tiktok,
                 'active' => $item->active,
                 'photo' => asset('storage/personnes/'.$item->photo),
-                /*'pays_naiss' => json_encode([
-                    'id' => $item->paysNaiss->id,
-                    'libelle' => $item->paysNaiss->libelle,
-                    'sigle' => $item->paysNaiss->sigle,
+                'pays_naiss' => json_encode([
+                    'id' => $item->pays->id,
+                    'libelle' => $item->pays->libelle,
+                    'sigle' => $item->pays->sigle,
                 ]),
                 'pays_natio' => json_encode([
-                    'id' => $item->pays['id'],
-                    'libelle' => $item->pays_natio->libelle,
-                    'sigle' => $item->pays_natio->sigle,
-                ]),*/
+                    'id' => $item->nationalite->id,
+                    'libelle' => $item->nationalite->libelle,
+                    'sigle' => $item->nationalite->sigle,
+                ]),
             ];
         });
     }
@@ -124,16 +124,16 @@ class PersonneService {
                 'tiktok' => $item->tiktok,
                 'active' => $item->active,
                 'photo' => asset('storage/personnes/'.$item->photo),
-                /*'pays_naiss' => json_encode([
-                    'id' => $item->pays_naiss->id,
-                    'libelle' => $item->pays_naiss->libelle,
-                    'sigle' => $item->pays_naiss->sigle,
+                'pays_naiss' => json_encode([
+                    'id' => $item->pays->id,
+                    'libelle' => $item->pays->libelle,
+                    'sigle' => $item->pays->sigle,
                 ]),
                 'pays_natio' => json_encode([
-                    'id' => $item->pays_natio->id,
-                    'libelle' => $item->pays_natio->libelle,
-                    'sigle' => $item->pays_natio->sigle,
-                ]),*/
+                    'id' => $item->nationalite->id,
+                    'libelle' => $item->nationalite->libelle,
+                    'sigle' => $item->nationalite->sigle,
+                ]),
             ];
         });
     }
@@ -177,16 +177,16 @@ class PersonneService {
                 'tiktok' => $item->tiktok,
                 'active' => $item->active,
                 'photo' => asset('storage/personnes/'.$item->photo),
-                /*'pays_naiss' => json_encode([
-                    'id' => $item->pays_naiss->id,
-                    'libelle' => $item->pays_naiss->libelle,
-                    'sigle' => $item->pays_naiss->sigle,
+                'pays_naiss' => json_encode([
+                    'id' => $item->pays->id,
+                    'libelle' => $item->pays->libelle,
+                    'sigle' => $item->pays->sigle,
                 ]),
                 'pays_natio' => json_encode([
-                    'id' => $item->pays_natio->id,
-                    'libelle' => $item->pays_natio->libelle,
-                    'sigle' => $item->pays_natio->sigle,
-                ]),*/
+                    'id' => $item->nationalite->id,
+                    'libelle' => $item->nationalite->libelle,
+                    'sigle' => $item->nationalite->sigle,
+                ]),
             ];
         });
     }

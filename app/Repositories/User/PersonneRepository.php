@@ -49,7 +49,7 @@ class PersonneRepository {
      * @param $id
      * @return mixed
      */
-    public function getPersById($id)
+    public function getById($id)
     {
         return $this->model
             ->where('id', $id)

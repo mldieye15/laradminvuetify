@@ -48,6 +48,7 @@ class CreatePersonnesTable extends Migration
 
             $table->unsignedBigInteger('pays_naiss');
             $table->foreign('pays_naiss')->references('id')->on('pays');
+            
             $table->unsignedBigInteger('pays_natio');
             $table->foreign('pays_natio')->references('id')->on('pays');
 

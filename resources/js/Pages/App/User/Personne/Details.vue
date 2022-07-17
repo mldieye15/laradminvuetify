@@ -17,11 +17,11 @@
                 </v-tab>
 
                 <v-tab href="#tab-2">
-                    Joueurs
+                    Carriére
                 </v-tab>
 
                 <v-tab href="#tab-3">
-                    Techniciens
+                    Licences
                 </v-tab>
 
                 <v-tab href="#tab-4">
@@ -29,7 +29,7 @@
                 </v-tab>
 
                 <v-tab href="#tab-5">
-                    Communauté
+                    Statistique
                 </v-tab>
 
                 <v-tab href="#tab-6">
@@ -40,7 +40,7 @@
             <v-tabs-items v-model="tab">
                 <v-tab-item
                     value="presentation"
-                    v-for='item in association'
+                    v-for='item in personne'
                     :key='item._id'
                 >
                     <v-container>
@@ -50,36 +50,47 @@
                                     <v-card-subtitle>Présentation</v-card-subtitle>
                                 </v-expansion-panel-header>
                                 <v-expansion-panel-content>
-                                    <v-card class="px-1 py-1" elevation="0">
-                                        <v-row>
-                                            <v-col cols="6">
-                                                <v-list-item-content>
-                                                    <v-list-item-title class="text-h5">
-                                                    {{item.libelle}} <span class="subtitle-1">({{item.sigle}})</span>
+                                    <v-card class="px-1 py-1 mx-auto" elevation="1">
+                                        <v-row cols="8">
+                                            <v-col >
+                                                <v-list-item-content class="ma-5 pa-10">
+                                                    <!--<v-avatar size="110" class="mx-auto">
+                                                    <img :src="item.photo" alt="photo pr">
+                                                </v-avatar>-->
+                                                    <v-list-item-title class="text-h5 ">
+                                                        <v-row>
+                                                            <v-col cols="12" sm="12" md="8">
+                                                                <LogoFederation />
+                                                            </v-col>
+                                                            <v-col cols="12" sm="12" md="4">
+                                                                <v-avatar size="110" class="mx-auto">
+                                                                    <img :src="item.photo" alt="Photo profile">
+                                                                </v-avatar>
+                                                            </v-col>
+                                                        </v-row>
+                                                        
                                                     </v-list-item-title>
-                                                    <v-list-item-subtitle>Adresse: <span class="subtitle-2">{{item.adresse}}</span>. -- Email: <span class="subtitle-2">{{item.email}}</span></v-list-item-subtitle>
-                                                    <v-list-item-subtitle>Téléphone: <span class="subtitle-2">{{item.telephone}}</span>. -- Fax: <span class="subtitle-2">{{item.fax}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Nom et Prénoms: <span class="subtitle-2">{{item.nom}} {{item.prenoms}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Numéro CIN: <span class="subtitle-2">{{item.piece_ident}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Date de naissance: <span class="subtitle-2">{{item.date_naiss}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Lieu de naissance: <span class="subtitle-2">{{item.lieu_naiss}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Nationalité: <span class="subtitle-2">{{JSON.parse(item.pays_natio).sigle}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Sexe: <span class="subtitle-2">{{item.sexe}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Fonction: <span class="subtitle-2">{{item.fonction}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Téléphone: <span class="subtitle-2">{{item.telephone}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Date de Adresse: <span class="subtitle-2">{{item.adresse}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Catégorie: <span class="subtitle-2">En cours</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Taille: <span class="subtitle-2">{{item.taille}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Poids: <span class="subtitle-2">{{item.poids}}</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Ligue: <span class="subtitle-2">En cours</span></v-list-item-subtitle>
+                                                    <v-list-item-subtitle>Club: <span class="subtitle-2">En cours</span></v-list-item-subtitle>
                                                 </v-list-item-content>
-                                                <v-avatar size="110" class="mx-auto">
-                                                    <img :src="item.logo" alt="Logo FB RIM">
-                                                </v-avatar>
+                                                
                                                 <v-list-item-content>
                                                     <v-list-item-subtitle>Communauté: <span><v-icon>mdi-twitter</v-icon></span> &nbsp;&nbsp;<span><v-icon>mdi-facebook</v-icon></span> &nbsp;</v-list-item-subtitle>
                                                 </v-list-item-content>
                                             </v-col>
-                                            <v-col cols="6">
-                                                <v-list-item-content>
-                                                    <v-list-item-title class="text-h5">
-                                                    {{item.libelle}} <span class="subtitle-1">({{item.sigle}})</span>
-                                                    </v-list-item-title>
-                                                    <v-list-item-subtitle>Adresse: <span class="subtitle-2">{{item.adresse}}</span>. -- Email: <span class="subtitle-2">{{item.email}}</span></v-list-item-subtitle>
-                                                    <v-list-item-subtitle>Téléphone: <span class="subtitle-2">{{item.telephone}}</span>. -- Fax: <span class="subtitle-2">{{item.fax}}</span></v-list-item-subtitle>
-                                                </v-list-item-content>
-                                                <v-card-text></v-card-text>
-                                                <v-avatar size="110" class="mx-auto">
-                                                    <img :src="item.logo" alt="Logo FB RIM">
-                                                </v-avatar>
-                                            </v-col>
+                                            
                                         </v-row>
                                     </v-card>
                                 </v-expansion-panel-content>
@@ -114,17 +125,20 @@
 import AppLayout from '../../../Layouts/App/AppLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
 import Breadcrumbs from '../../../../components/Breadcrumbs.vue';
+import LogoFederation from '../../../../components/LogoFederation.vue';
 
 export default {
     name: 'Details',
     components:{
-    AppLayout,
-    Breadcrumbs
-},
-    props:  ['association', 'errors'],
+        AppLayout,
+        Breadcrumbs,
+        LogoFederation
+    },
+    props:  ['personne', 'errors'],
     data () {
       return {
         searchLigue: '',
+        
         items: [
             {
                 text: 'Tableau de bord',
@@ -142,15 +156,15 @@ export default {
                 route: 'ligregio.index',
             },
             {
-                text: 'Assoication',
+                text: 'Personne',
                 disabled: false,
-                route: 'association.index',
+                route: 'personne.index',
             },
             {
                 text: 'Détails',
                 disabled: true,
-                route: 'association.index',
-            },
+                route: 'personne.show',
+            }
         ],
         //
         headers: [

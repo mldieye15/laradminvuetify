@@ -24,7 +24,7 @@
                         </div>
                     </template>
                     <template v-slot:item.actions="{ item }">
-                        <inertia-link class="mx-auto" :href="`/app/fede/structures/associations/${item.id}`" ><v-icon small class="mr-2" >mdi-eye</v-icon></inertia-link>
+                        <inertia-link class="mx-auto" :href="`/app/effective/personnes/${item.id}`" ><v-icon small class="mr-2" >mdi-eye</v-icon></inertia-link>
                         <v-icon small class="mr-2" @click="editItem(item.id)" color="blue darken">mdi-pencil</v-icon>
                         <v-icon small class="mr-2" @click="deleteItem(item.id)" color="red darken">mdi-delete</v-icon>
                     </template>
@@ -81,6 +81,8 @@ export default {
             },
             { text: 'Prénoms', value: 'prenoms' },
             { text: 'Sexe', value: 'sexe' },
+            { text: 'Date de naissance', value: 'date_naiss' },
+            { text: 'Lieu de naissance', value: 'lieu_naiss' },
             { text: 'Piéce', value: 'piece_ident' },
             { text: 'Actions', value: 'actions', sortable: false },
         ],
@@ -94,15 +96,15 @@ export default {
     methods: {
         editItem(item){
             console.log(item);
-            Inertia.post(`/app/fede/structures/associations/edit`, {
+            Inertia.post(`/app/effective/personnes/edit`, {
                 _method: 'post',
-                club: item,
+                personne: item,
             });
         },
         deleteItem(item){
             console.log(item);
             //this.$inertia.delete(`/app/fede/lig-regio/${item}`);
-            Inertia.post(`/app/fede/structures/associations/${item}`, {
+            Inertia.post(`/app/effective/personnes/${item}`, {
                 _method: 'delete'
             });
         }

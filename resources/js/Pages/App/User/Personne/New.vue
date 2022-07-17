@@ -356,8 +356,7 @@ export default {
             });
         },
         dateNaiss (date) {
-        this.$refs.menu.save(this.form.date_naiss)
-
+            this.$refs.menu.save(this.form.date_naiss)
         },
     },
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\Structures\StructureRequest;
 use App\Http\Requests\User\PersonneRequest;
 use App\Models\Federation\LigueRegionale;
 use App\Models\Structures\Association;
+use App\Models\User\Personne;
 use App\Services\Localisation\PaysService;
 use App\Services\User\PersonneService;
 use Exception;
@@ -72,11 +73,11 @@ class PersonneController extends Controller
     *  @return \Illuminate\Http\Response
    */
    public function edit(Request $request){
-       $association = $this->service->getByIdTransformed($request->club);
+       $personne = $this->service->getByIdTransformed($request->personne);
        $pays = $this->paysService->minimalPays();
 
        return Inertia::render('App/User/Personne/Edit', [
-           'association' => $association,
+           'personne' => $personne,
            'pays' => $pays
        ]);
    }
@@ -88,7 +89,7 @@ class PersonneController extends Controller
     *  @return \Illuminate\Http\Response
    */
    public function show($id){
-       $personne = $this->service->getById($id);
+       $personne = $this->service->getByIdTransformed($id);
 
        return Inertia::render('App/User/Personne/Details', [
            'personne' => $personne,
@@ -98,7 +99,7 @@ class PersonneController extends Controller
    /**
     * Ajouter un ligue régional.
     *
-    * @param  use App\Http\Requests\User\PersonneRequest; $request
+    * @param  App\Http\Requests\User\PersonneRequest $request
     * @return \Illuminate\Http\Response
    */
    public function store(PersonneRequest $request)
@@ -116,60 +117,80 @@ class PersonneController extends Controller
    }
 
    /**
-    * Metre à jour un ligue régional.
+    * Metre à jour une personne.
     *
-    * @param  App\Http\Requests\Structures\ClubRequest  $request
+    * @param  App\Http\Requests\User\PersonneRequest  $request
     * @param  int $id
     * @return \Illuminate\Http\Response
    */
-   public function update($id, StructureRequest $request){
-       $club = Association::findOrFail($id) ;
+   public function update($id, PersonneRequest $request){
+       $personne = Personne::findOrFail($id) ;
 
-       $map_path = $club->logo;
-       if ($request->hasFile('logo')) {
+       $map_path = $personne->photo;
+       if ($request->hasFile('photo')) {
            $request->validate([
                'logo' => 'image|mimes:jpg,jpeg,png,svg|max:5120',
            ]);
 
            //  supression du map rataché autre que le map par défaut
-           if($club->logo != 'map-default.png'){
-               Storage::delete('public/associations/'.$club->logo);
+           if($personne->photo != 'default-pers.jpg'){
+               Storage::delete('public/personnes/'.$personne->photo);
            }
 
-           $map_path = $request->file('logo')->store('associations', 'public');
-           $map_path = (explode('associations/', $map_path))[1];
+           $map_path = $request->file('photo')->store('personnes', 'public');
+           $map_path = (explode('personnes/', $map_path))[1];
        }
 
-       $club->update([
-           'libelle' => $request->libelle,
-           'sigle' => $request->sigle,
-           'adresse' => $request->adresse,
-           'telephone' => $request->telephone,
-           'email' => $request->email,
-           'date_creation' => $request->date_creation,
-           'page_web' => $request->page_web,
-           'instagram' => $request->instagram,
-           'logo' => $map_path,
-           'ligue_regionale_id' => $request->ligue['id']
+       $personne->update([
+            'prenoms' => $request->prenoms,
+            'nom' => $request->nom,
+            'sexe' => $request->sexe,
+            'surnom' => $request->surnom,
+            'taille' => $request->taille,
+            'poids' => $request->poids,
+            'fonction' => $request->fonction,
+            'ne_vers' => $request->ne_vers,
+            'date_naiss' => $request->date_naiss,
+            'lieu_naiss' => $request->lieu_naiss,
+            'adresse' => $request->adresse,
+            'telephone' => $request->telephone,
+            'civilite' => $request->civilite,
+            'email' => $request->email,
+            'type_piece_ident' => $request->type_piece_ident,
+            'piece_ident' => $request->piece_ident,
+            'annee_naiss' => $request->annee_naiss,
+            'ne_vers_naiss' => $request->ne_vers_naiss,
+            'cin' => $request->cin,
+            'passport' => $request->passport,
+            'page_web' => $request->page_web,
+            'facebook' => $request->facebook,
+            'whatsapp' => $request->whatsapp,
+            'telegram' => $request->telegram,
+            'instagram' => $request->instagram,
+            'tiktok' => $request->tiktok,
+            'active' => $request->active,
+            'photo' => $map_path,
+            'pays_naiss' => $request->pays['id'],
+            'pays_natio' => $request->nationalite['id']
        ]);
 
        return Redirect::route('personne.index');
    }
 
    /**
-    * Supprimer un quartier.
+    * Supprimer une personne.
     *
     * @param  int $id
     * @return \Illuminate\Http\Response
    */
    public function destroy($id){
-       $ligue = LigueRegionale::findOrFail($id);
+       $personne = Personne::findOrFail($id);
 
-       if($ligue->map != 'map-default.png'){
-           Storage::delete('public/associations/'.$ligue->logo);
+       if($personne->photo != 'map-default.png'){
+           Storage::delete('public/personnes/'.$personne->photo);
        }
 
-       $ligue->delete();
+       $personne->delete();
 
        return Redirect::route('personne.index');
    }
