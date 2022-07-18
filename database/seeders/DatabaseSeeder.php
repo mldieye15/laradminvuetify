@@ -11,9 +11,11 @@ use Database\Seeders\Localisation\RegionSeeder;
 use Database\Seeders\Localisation\DepartementSeeder;
 use Database\Seeders\Localisation\CommuneSeeder;
 use Database\Seeders\Localisation\QuartierSeeder;
+use Database\Seeders\Params\FonctionPratiquantSeeder;
 use Database\Seeders\Structures\AssociationSeeder;
 use Database\Seeders\Structures\CentreFormationSeeder;
 use Database\Seeders\Structures\ClubSeeder;
+use Database\Seeders\Params\GradePratiquantSeeder;
 use Database\Seeders\User\PersonneSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -49,5 +51,7 @@ class DatabaseSeeder extends Seeder
         ]);
         //  $$$$$$$$$$$$$$$$$$
         $this->call(PersonneSeeder::class);
+        $this->call(GradePratiquantSeeder::class);
+        $this->call(FonctionPratiquantSeeder::class);
     }
 }

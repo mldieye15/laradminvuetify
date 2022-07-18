@@ -18,9 +18,14 @@
                     sort-by="calories"
                     class="elevation-1"
                 >
-                    <template v-slot:item.ligue_regionale="{ item }">
+                    <template v-slot:item.photo="{ item }">
+                        <div class="ma-1">
+                            <v-img :src="item.photo" :alt="item.photo" aspect-ratio="1" max-width="110" max-height="110" class="mx-auto"></v-img>
+                        </div>
+                    </template>
+                    <template v-slot:item.pays_natio="{ item }">
                         <div class="m-1">
-                            {{JSON.parse(item.ligue_regionale).sigle}}
+                            {{JSON.parse(item.pays_natio).sigle}}
                         </div>
                     </template>
                     <template v-slot:item.actions="{ item }">
@@ -73,6 +78,7 @@ export default {
         ],
         //
         headers: [
+            { text: 'Photo', value: 'photo' },
             {
             text: 'Nom',
             align: 'start',
@@ -84,6 +90,7 @@ export default {
             { text: 'Date de naissance', value: 'date_naiss' },
             { text: 'Lieu de naissance', value: 'lieu_naiss' },
             { text: 'Piéce', value: 'piece_ident' },
+            { text: 'Nationalité', value: 'pays_natio' },
             { text: 'Actions', value: 'actions', sortable: false },
         ],
         tab: null,

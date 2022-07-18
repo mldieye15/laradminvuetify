@@ -139,22 +139,22 @@
                 </template>
                 <v-list-item>
                     <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('personne.index')" :class="route().current('personne.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Personnes</v-list-item-title></inertia-link>
+                        <inertia-link class="mx-auto" :href="route('personne.index')" :class="route().current('personne.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Inscription</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
                     <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Joueurs</v-list-item-title></inertia-link>
+                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Recrutement</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
                     <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Entraîneurs</v-list-item-title></inertia-link>
+                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Renouvellement</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
                     <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Techniciens</v-list-item-title></inertia-link>
+                        <inertia-link class="mx-auto" :href="route('welcome')" :class="route().current('welcome') ? 'nav-current' : 'no-current'"><v-list-item-title >Licences</v-list-item-title></inertia-link>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
@@ -200,17 +200,13 @@
                 </v-list-item>
              </v-list-group>
 
-             <v-list-group prepend-icon="mdi-database-cog" no-action >
+             <!--<v-list-group prepend-icon="mdi-database-cog" no-action >
                 <template v-slot:activator >
                     <v-list-item-content>
                         <v-list-item-title>Données de base</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                <!--<v-list-item>
-                    <v-list-item-content>
-                        <inertia-link class="mx-auto" :href="route('basicdata.index')" :class="route().current('basicdata.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Localisation</v-list-item-title></inertia-link>
-                    </v-list-item-content>
-                </v-list-item>-->
+            
                 <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('pays.index')" :class="route().current('pays.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Pays</v-list-item-title></inertia-link>
@@ -234,6 +230,125 @@
                 <v-list-item>
                     <v-list-item-content>
                         <inertia-link class="mx-auto" :href="route('quartiers.index')" :class="route().current('quartiers.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Quartiers</v-list-item-title></inertia-link>
+                    </v-list-item-content>
+                </v-list-item>
+             </v-list-group>-->
+            
+            <v-list-group prepend-icon="mdi-database-cog" no-action >
+                <template v-slot:activator>
+                    <v-list-item-content>
+                        <v-list-item-title>Données de base</v-list-item-title>
+                    </v-list-item-content>
+                </template>
+                <v-list-item>
+                    <v-list-item-content>
+                        <v-list-group no-action sub-group>
+                            <template v-slot:activator>
+                                <v-list-item-content no-action >
+                                    <v-list-item-title>Localisation</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('pays.index')" :class="route().current('pays.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Pays</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('regions.index')" :class="route().current('regions.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Régions</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('departements.index')" :class="route().current('departements.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Départements</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('communes.index')" :class="route().current('communes.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Communes</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('quartiers.index')" :class="route().current('quartiers.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Quartiers</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list-group>
+                    </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-list-item-content>
+                        <v-list-group no-action sub-group>
+                            <template v-slot:activator>
+                                <v-list-item-content no-action >
+                                    <v-list-item-title>Pratiquants</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('pratiquant.grade.index')" :class="route().current('pratiquant.grade.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Grades</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('pratiquant.fonction.index')" :class="route().current('pratiquant.fonction.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Fonctions</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('pratiquant.grade.index')" :class="route().current('pratiquant.grade.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Côtés</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list-group>
+                    </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-list-item-content>
+                        <v-list-group no-action sub-group>
+                            <template v-slot:activator>
+                                <v-list-item-content no-action >
+                                    <v-list-item-title>Techniciens</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('pays.index')" :class="route().current('pays.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Grades</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('regions.index')" :class="route().current('regions.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Fonctions</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list-group>
+                    </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-list-item-content>
+                        <v-list-group no-action sub-group>
+                            <template v-slot:activator>
+                                <v-list-item-content no-action >
+                                    <v-list-item-title>Médecins</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('pays.index')" :class="route().current('pays.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Grades</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <inertia-link class="mx-auto" :href="route('regions.index')" :class="route().current('regions.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Fonctions</v-list-item-title></inertia-link>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list-group>
                     </v-list-item-content>
                 </v-list-item>
              </v-list-group>
@@ -282,6 +397,9 @@ export default {
 }
 </script>
 <style scoped>
+    .v-list-item__title{
+        color:#f4f4f4;
+    }
     .border {
         border-left: 4px solid white;
         color: white;
@@ -289,9 +407,12 @@ export default {
     .nav-current{
         border-right: 4px solid #FFEBEE;
         font-style: italic;
-        color: #F3E5F5 !important
+        color: bisque !important
     }
     .no-current{
         color: white !important
     }
+    /*.v-list-item__title, .v-list-item__icon .v-list-group__header__prepend-icon{
+        color:bisque;
+    }*/
 </style>

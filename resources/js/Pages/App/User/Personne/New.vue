@@ -7,6 +7,7 @@
             </v-card-title>
             <v-card-text>
                 <v-container>
+                    <div class="overline mb-4">Information personnelle</div>
                     <v-row>
                         <v-col cols="12" sm="6" md="3">
                             <v-text-field v-model="form.prenoms" label="Prénoms"></v-text-field>
@@ -101,9 +102,59 @@
                         <v-col cols="12" sm="6" md="3" >
                             <v-file-input v-model="form.photo" label="photo" v-if="editedIndex > -1 && form.photo!= null" @input="form.logo"></v-file-input>
                             <v-file-input v-model="form.photo" label="Photo" v-else @input="form.photo = $event.target.photo[0]"></v-file-input>
-                            <v-img :v-show="editedIndex >-1" :src="form.photo" :alt="form.photo" aspect-ratio="1" max-width="90" max-height="90" class="ma-1"></v-img>
+                            <!--<v-img :v-show="editedIndex >-1" :src="form.photo" :alt="form.photo" aspect-ratio="1" max-width="90" max-height="90" class="ma-1"></v-img>-->
                             <span v-if="errors.photo" class="font-weight-light red--text">{{ errors.photo[0] }}</span>
                         </v-col>
+                        <v-col cols="12" sm="6" md="3" >
+                            <v-img :v-show="editedIndex >-1" :src="form.photo" :alt="form.photo" aspect-ratio="1" max-width="90" max-height="90" class="ma-1"></v-img>
+                        </v-col>
+                    </v-row>
+                    <div class="overline ">Information professionnelle</div><br/>
+                    <v-row>
+                        <v-tabs
+                            v-model="tab"
+                            background-color="black ligthen-4"
+                            centered
+                            dark
+                            icons-and-text
+                        >
+                            <v-tabs-slider></v-tabs-slider>
+                            <v-tab href="#pratiquant">
+                                Pratiquants
+                            </v-tab>
+                            <v-tab href="#technicien">
+                                Techniciens
+                            </v-tab>
+                            <v-tab href="#medecin">
+                                Médecins
+                            </v-tab>
+
+                            <v-tabs-items v-model="tab">
+                                <v-tab-item value="pratiquant" key="pratiquant">
+                                    <v-container>
+                                        <v-card flat>
+                                            <v-card-text>pratiquant</v-card-text>
+                                        </v-card>
+                                    </v-container>
+                                </v-tab-item>
+
+                                <v-tab-item value="technicien" key="technicien">
+                                    <v-container>
+                                        <v-card flat>
+                                            <v-card-text>Technicien</v-card-text>
+                                        </v-card>
+                                    </v-container>
+                                </v-tab-item>
+
+                                <v-tab-item value="medecin" key="medecin">
+                                    <v-container>
+                                        <v-card flat>
+                                            <v-card-text>Médecin</v-card-text>
+                                        </v-card>
+                                    </v-container>
+                                </v-tab-item>
+                            </v-tabs-items>
+                        </v-tabs>
                     </v-row>
                 </v-container>
             </v-card-text>
@@ -134,6 +185,7 @@ export default {
     props:  ['pays', 'currentPays', 'errors'],
     data () {
       return {
+        tab: null,
         searchLigue: '',
         activePicker: null,
         date: null,

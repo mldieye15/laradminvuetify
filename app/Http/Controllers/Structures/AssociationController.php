@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Structures\StructureRequest;
 use App\Models\Federation\LigueRegionale;
 use App\Models\Structures\Association;
-use App\Services\Structures\ClubService;
 use App\Services\Federation\LigueRegionaleService;
 use App\Services\Structures\AssociationService;
 use Exception;

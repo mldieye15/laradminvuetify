@@ -9,6 +9,9 @@ use App\Http\Controllers\Localisation\LocalisationController;
 use App\Http\Controllers\Localisation\PaysController;
 use App\Http\Controllers\Localisation\QuartierController;
 use App\Http\Controllers\Localisation\RegionController;
+use App\Http\Controllers\Params\CotePratiquantController;
+use App\Http\Controllers\Params\FonctionPratiquantController;
+use App\Http\Controllers\Params\GradePratiquantController;
 use App\Http\Controllers\SiteWeb\AssocaitionPubController;
 use App\Http\Controllers\SiteWeb\CalendrierPubController;
 use App\Http\Controllers\SiteWeb\CentrePubController;
@@ -19,6 +22,7 @@ use App\Http\Controllers\SiteWeb\OrganisationPubController;
 use App\Http\Controllers\SiteWeb\PresentationPubController;
 use App\Http\Controllers\SiteWeb\ReglementPubController;
 use App\Http\Controllers\SiteWeb\ResultatPubController;
+use App\Http\Controllers\Structures\AssociationController;
 use App\Http\Controllers\Structures\CentreFormationController;
 use App\Http\Controllers\Structures\ClubController;
 use App\Http\Controllers\User\PersonneController;
@@ -135,9 +139,31 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::delete('/communes/{commune}', [CommuneController::class, 'destroy'])->name('communes.destroy');
         // quartiers
         Route::get('/quartiers', [QuartierController::class, 'index'])->name('quartiers.index');
-        Route::post('/quartiers', [CommuneController::class, 'store'])->name('quartiers.store');
-        Route::put('/quartiers/{quartier}', [CommuneController::class, 'update'])->name('quartiers.update');
-        Route::delete('/quartiers/{quartier}', [CommuneController::class, 'destroy'])->name('quartiers.destroy');
+        Route::post('/quartiers', [QuartierController::class, 'store'])->name('quartiers.store');
+        Route::put('/quartiers/{quartier}', [QuartierController::class, 'update'])->name('quartiers.update');
+        Route::delete('/quartiers/{quartier}', [QuartierController::class, 'destroy'])->name('quartiers.destroy');
+        
+    });
+
+    Route::group([
+        'prefix' => 'app/intial-data/pratiquants',
+        'namespace' => 'App\Http\Controllers\Params'
+    ],function(){
+        // grades
+        Route::get('/grades',            [GradePratiquantController::class, 'index'])->name('pratiquant.grade.index');
+        Route::post('/grades',           [GradePratiquantController::class, 'store'])->name('pratiquant.grade.store');
+        Route::put('/grades/{grade}',    [GradePratiquantController::class, 'update'])->name('pratiquant.grade.update');
+        Route::delete('/grades/{grade}', [GradePratiquantController::class, 'destroy'])->name('pratiquant.grade.destroy');
+        // fonctions
+        Route::get('/fonctions',               [FonctionPratiquantController::class, 'index'])->name('pratiquant.fonction.index');
+        Route::post('/fonctions',              [FonctionPratiquantController::class, 'store'])->name('pratiquant.fonction.store');
+        Route::put('/fonctions/{fonction}',    [FonctionPratiquantController::class, 'update'])->name('pratiquant.fonction.update');
+        Route::delete('/fonctions/{fonction}', [FonctionPratiquantController::class, 'destroy'])->name('pratiquant.fonction.destroy');
+        // cotes
+        Route::get('/cotes',           [CotePratiquantController::class, 'index'])->name('pratiquant.cote.index');
+        Route::post('/fonctions',      [CotePratiquantController::class, 'store'])->name('pratiquant.cote.store');
+        Route::put('/cotes/{cote}',    [CotePratiquantController::class, 'update'])->name('pratiquant.cote.update');
+        Route::delete('/cotes/{cote}', [CotePratiquantController::class, 'destroy'])->name('pratiquant.cote.destroy');
     });
 
     Route::group([
@@ -180,13 +206,13 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::put('/centre-formation/{centreform}',    [CentreFormationController::class, 'update'])->name('centreform.update');
         Route::delete('/centre-formation/{centreform}', [CentreFormationController::class, 'destroy'])->name('centreform.destroy');
         //  associations
-        Route::get('/associations',           [ClubController::class, 'index'])->name('association.index');
-        Route::get('/associations/new',       [ClubController::class, 'create'])->name('association.create');
-        Route::post('/associations/edit',     [ClubController::class, 'edit'])->name('association.edit');
-        Route::get('/associations/{association}',    [ClubController::class, 'show'])->name('association.show');
-        Route::post('/associations',          [ClubController::class, 'store'])->name('association.store');
-        Route::put('/associations/{association}',    [ClubController::class, 'update'])->name('association.update');
-        Route::delete('/associations/{association}', [ClubController::class, 'destroy'])->name('association.destroy');
+        Route::get('/associations',                  [AssociationController::class, 'index'])->name('association.index');
+        Route::get('/associations/new',              [AssociationController::class, 'create'])->name('association.create');
+        Route::post('/associations/edit',            [AssociationController::class, 'edit'])->name('association.edit');
+        Route::get('/associations/{association}',    [AssociationController::class, 'show'])->name('association.show');
+        Route::post('/associations',                 [ClubControAssociationControllerller::class, 'store'])->name('association.store');
+        Route::put('/associations/{association}',    [AssociationController::class, 'update'])->name('association.update');
+        Route::delete('/associations/{association}', [ClubCoAssociationControllerntroller::class, 'destroy'])->name('association.destroy');
     });
 
     Route::group([

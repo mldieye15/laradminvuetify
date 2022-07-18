@@ -101,7 +101,15 @@
                                     <v-card-subtitle>Organisation</v-card-subtitle>
                                 </v-expansion-panel-header>
                                 <v-expansion-panel-content>
-                                    Organisation
+                                    <v-card>
+                                        <v-card-text>
+                                        <p class="text-lg-right">Right align on large viewport sizes</p>
+                                        <p class="text-md-center">Center align on medium viewport sizes</p>
+                                        <p class="text-sm-left">Left align on small viewport sizes</p>
+                                        <p class="text-xs-center">Center align on all viewport sizes</p>
+                                        <p class="text-xs-right">Right align on all viewport sizes</p>
+                                        </v-card-text>
+                                    </v-card>
                                 </v-expansion-panel-content>
                             </v-expansion-panel>
                         </v-expansion-panels>
@@ -163,7 +171,7 @@ export default {
             {
                 text: 'Détails',
                 disabled: true,
-                route: 'personne.show',
+                route: 'personne.index',
             }
         ],
         //
