@@ -20,5 +20,5 @@ class CotePratiquant extends Model
         'libelle',
         'sigle',
         'active'
-    ];s
+    ];
 }

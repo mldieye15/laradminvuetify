@@ -11,6 +11,7 @@ use Database\Seeders\Localisation\RegionSeeder;
 use Database\Seeders\Localisation\DepartementSeeder;
 use Database\Seeders\Localisation\CommuneSeeder;
 use Database\Seeders\Localisation\QuartierSeeder;
+use Database\Seeders\Params\CotePratiquantSeeder;
 use Database\Seeders\Params\FonctionPratiquantSeeder;
 use Database\Seeders\Structures\AssociationSeeder;
 use Database\Seeders\Structures\CentreFormationSeeder;
@@ -53,5 +54,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PersonneSeeder::class);
         $this->call(GradePratiquantSeeder::class);
         $this->call(FonctionPratiquantSeeder::class);
+        $this->call(CotePratiquantSeeder::class);
     }
 }
