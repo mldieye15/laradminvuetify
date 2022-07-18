@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Structures\StructureRequest;
 use App\Http\Requests\User\PersonneRequest;
-use App\Models\Federation\LigueRegionale;
-use App\Models\Structures\Association;
 use App\Models\User\Personne;
 use App\Services\Localisation\PaysService;
+use App\Services\Params\CotePratiquantService;
+use App\Services\Params\FonctionPratiquantService;
 use App\Services\User\PersonneService;
 use Exception;
 use Illuminate\Http\Request;
@@ -24,21 +23,38 @@ class PersonneController extends Controller
   protected $service;
 
   /**
-   * @var ligueService
+   * @var paysService
   */
- protected $ligueService;
+ protected $paysService;
 
+ /**
+   * @var cotePratiqService
+  */
+ protected $cotePratiqService;
+
+ /**
+   * @var fonctPratiqService
+  */
+ protected $fonctPratiqService;
   /**
    * PersonneController Constructor
    *
-   * @param App\Services\Localisation\PaysService $paysService
    * @param App\Services\User\PersonneService $service
+   * @param App\Services\Params\FonctionPratiquantService $fonctPratiqService
+   * @param App\Services\Localisation\PaysService $paysService
+   * @param App\Services\Params\CotePratiquantService $cotePratiqService
    *
    */
-  public function __construct(PersonneService $service, PaysService $paysService)
+  public function __construct(PersonneService $service, 
+                              PaysService $paysService,
+                              CotePratiquantService $cotePratiqService,
+                              FonctionPratiquantService $fonctPratiqService
+                             )
   {
       $this->service = $service;
       $this->paysService = $paysService;
+      $this->cotePratiqService = $cotePratiqService;
+      $this->fonctPratiqService = $fonctPratiqService;
   }
 
    /**
@@ -55,16 +71,20 @@ class PersonneController extends Controller
    }
 
    /**
-    * Retourne la page de création d'un club.
+    * Retourne la page de création d'une personne.
     *  @return \Illuminate\Http\Response
    */
    public function create(){
        $pays = $this->paysService->minimalPays();
        $currentPays = $this->paysService->getCurrentPays();
+       $cotePratiquants = $this->cotePratiqService->getAll() ;
+       $fonctionPratiquants = $this->fonctPratiqService->getAll() ;
 
        return Inertia::render('App/User/Personne/New', [
            'pays' => $pays,
            'currentPays' => $currentPays,
+           'cotePratiquants' => $cotePratiquants,
+           'fonctionPratiquants' => $fonctionPratiquants
        ]);
    }
 
@@ -193,5 +213,27 @@ class PersonneController extends Controller
        $personne->delete();
 
        return Redirect::route('personne.index');
+   }
+
+   /**
+    * Retourne la page de création d'une personne.
+    *  @return \Illuminate\Http\Response
+   */
+   public function getStructByTypeStruct(Request $request){
+        $typeStruct = $request->typeStruct;
+        switch ($typeStruct) {
+            case 'CLUB':   //  Club
+                # code...
+                break;
+            case 'CENTRE':   //  Centre
+                # code...
+                break;
+            case 'ASC':   //  Association
+                # code...
+                break;
+            default:    //  Equipe nationale
+                # code...
+                break;
+        }
    }
 }

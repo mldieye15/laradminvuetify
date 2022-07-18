@@ -299,7 +299,7 @@
                             </v-list-item>
                             <v-list-item>
                                 <v-list-item-content>
-                                    <inertia-link class="mx-auto" :href="route('pratiquant.grade.index')" :class="route().current('pratiquant.grade.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Côtés</v-list-item-title></inertia-link>
+                                    <inertia-link class="mx-auto" :href="route('pratiquant.cote.index')" :class="route().current('pratiquant.cote.index') ? 'nav-current' : 'no-current'"><v-list-item-title >Côtés</v-list-item-title></inertia-link>
                                 </v-list-item-content>
                             </v-list-item>
                         </v-list-group>

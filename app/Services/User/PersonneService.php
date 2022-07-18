@@ -201,6 +201,7 @@ class PersonneService {
     {
         return $this->dao->getById($id);
     }
+    
 
     /**
      * Enregistrer une personne

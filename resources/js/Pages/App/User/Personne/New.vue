@@ -133,7 +133,26 @@
                                 <v-tab-item value="pratiquant" key="pratiquant">
                                     <v-container>
                                         <v-card flat>
-                                            <v-card-text>pratiquant</v-card-text>
+                                            <v-card-text>
+                                                <v-row>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedFonction" :menu-props="{ top: true, offsetY: true }" :items="fonctionPratiquants" label="Poste" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <span v-if="errors.type_piece_ident" class="font-weight-light red--text">{{ errors.type_piece_ident[0] }}</span>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedCote" :menu-props="{ top: true, offsetY: true }" :items="cotePratiquants" label="Côté" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <span v-if="errors.type_piece_ident" class="font-weight-light red--text">{{ errors.type_piece_ident[0] }}</span>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedType" :menu-props="{ top: true, offsetY: true }" :items="typeStrcuture" label="Type de structure" item-text="sigle" item-value="id" return-object @change="getStructures()"></v-select>
+                                                        <span v-if="errors.type_piece_ident" class="font-weight-light red--text">{{ errors.type_piece_ident[0] }}</span>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedStructure" :menu-props="{ top: true, offsetY: true }" :items="structures" label="Structure" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <span v-if="errors.type_piece_ident" class="font-weight-light red--text">{{ errors.type_piece_ident[0] }}</span>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-card-text>
                                         </v-card>
                                     </v-container>
                                 </v-tab-item>
@@ -182,7 +201,7 @@ export default {
         AppLayout,
         Breadcrumbs
     },
-    props:  ['pays', 'currentPays', 'errors'],
+    props:  ['pays', 'currentPays', 'cotePratiquants', 'fonctionPratiquants', 'errors'],
     data () {
       return {
         tab: null,
@@ -298,9 +317,40 @@ export default {
                 sigle: 'Veuf(ve)'
             },
         ],
-        selectedCivilite:{
-            id: 'CELIBATAIRE',
-            sigle: 'Célibataire'
+        selectedCote:{
+            id: 0,
+            sigle: 'Séléctionnez'
+        },
+        selectedFonction:{
+            id: 0,
+            sigle: 'Séléctionnez'
+        },
+        typeStrcuture:[
+            {
+                id: 'ASC',
+                sigle: 'Association'
+            },
+            {
+                id: 'CENTRE',
+                sigle: 'Centre de formation'
+            },
+            {
+                id: 'CLUB',
+                sigle: 'Club'
+            },
+            {
+                id: 'ASC',
+                sigle: 'Association'
+            },
+        ],
+        selectedType:{
+            id: '',
+            sigle: 'Séléctionnez'
+        },
+        structures: [],
+        selectedStructure:{
+            id: '',
+            sigle: 'Séléctionnez'
         },
         editedIndex: -1,
         //
@@ -410,6 +460,18 @@ export default {
         dateNaiss (date) {
             this.$refs.menu.save(this.form.date_naiss)
         },
+        getStructures(){
+            this.structures = [
+                {
+                    'id': 1,
+                    'sigle': 'Test1'
+                },
+                {
+                    'id': 2,
+                    'sigle': 'Test2'
+                },
+            ]
+        }
     },
 }
 </script>
