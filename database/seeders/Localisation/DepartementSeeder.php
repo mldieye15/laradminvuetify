@@ -21,7 +21,7 @@ class DepartementSeeder extends Seeder
                     'sigle' => 'Atar',
                     'codification' => 'ATR',
                     'region_id' => 1,
-                    'map' => 'atar.png'
+                    'map' => 'map-default.png'
                 ],
                 [
                     'libelle' => 'Département de Dakar',
