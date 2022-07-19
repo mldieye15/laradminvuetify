@@ -228,6 +228,7 @@ class PersonneService {
         
         try {
             $result = $this->dao->add($data, $map_path, $request->pays['id'], $request->nationalite['id']);
+            dd($result);
         } catch (Exception $e) {
             throw new InvalidArgumentException('Ajout impossible');
         }

@@ -117,4 +117,14 @@ class CentreFormationRepository {
         return $model;
     }
 
+    /**
+     * Retourne tous les centres de formation avec le minimum d'inforamtion.
+     *
+     * @return App\Models\Structures\CentreFormation $model
+     */
+    public function minimalCentreForm(){
+        return $this->model
+            ->get(['id','libelle','sigle']);
+    }
+
 }

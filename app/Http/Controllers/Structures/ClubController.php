@@ -171,4 +171,14 @@ class ClubController extends Controller
 
         return Redirect::route('club.index');
     }
+
+    /**
+     * Retourne le minuimum d'un club: id, libelle, sigle
+     *
+     */
+    public function ajaxListePays()
+    {
+        $clubs = $this->service->minimalClub();;
+        return response()->json($clubs);
+    }
 }

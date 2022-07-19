@@ -239,4 +239,15 @@ class AssociationService {
         return $result;
 
     }
+
+    /**
+     * Retourne tous les associations avec le minimum d'infomation.
+     *
+     * @return String
+     */
+    public function minimalAssociation()
+    {
+        return $this->dao->minimalAssociation();
+    }
+    
 }

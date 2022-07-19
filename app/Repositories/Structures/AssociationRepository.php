@@ -117,4 +117,13 @@ class AssociationRepository {
         return $model;
     }
 
+    /**
+     * Retourne tous les associations avec le minimum d'inforamtion.
+     *
+     * @return App\Models\Structures\Association $model
+     */
+    public function minimalAssociation(){
+        return $this->model
+            ->get(['id','libelle','sigle']);
+    }
 }

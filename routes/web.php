@@ -191,6 +191,7 @@ Route::middleware('auth:sanctum')->group(function() {
     ],function(){
         //  club
         Route::get('/clubs',           [ClubController::class, 'index'])->name('club.index');
+        Route::post('/ajax-club',       [ClubController::class, 'ajaxListePays'])->name('club.ajaxListePays');
         Route::get('/clubs/new',       [ClubController::class, 'create'])->name('club.create');
         Route::post('/clubs/edit',     [ClubController::class, 'edit'])->name('club.edit');
         Route::get('/clubs/{club}',    [ClubController::class, 'show'])->name('club.show');
@@ -199,6 +200,7 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::delete('/clubs/{club}', [ClubController::class, 'destroy'])->name('club.destroy');
         //  centre-formation
         Route::get('/centre-formation',                 [CentreFormationController::class, 'index'])->name('centreform.index');
+        Route::post('/ajax-centre-formation',           [CentreFormationController::class, 'ajaxListeCentreForm'])->name('club.ajaxListeCentreForm');
         Route::get('/centre-formation/new',             [CentreFormationController::class, 'create'])->name('centreform.create');
         Route::post('/centre-formation/edit',           [CentreFormationController::class, 'edit'])->name('centreform.edit');
         Route::get('/centre-formation/{centreform}',    [CentreFormationController::class, 'show'])->name('centreform.show');
@@ -207,6 +209,7 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::delete('/centre-formation/{centreform}', [CentreFormationController::class, 'destroy'])->name('centreform.destroy');
         //  associations
         Route::get('/associations',                  [AssociationController::class, 'index'])->name('association.index');
+        Route::post('/ajax-association',             [AssociationController::class, 'ajaxListeAssociation'])->name('club.ajaxListeAssociation');
         Route::get('/associations/new',              [AssociationController::class, 'create'])->name('association.create');
         Route::post('/associations/edit',            [AssociationController::class, 'edit'])->name('association.edit');
         Route::get('/associations/{association}',    [AssociationController::class, 'show'])->name('association.show');

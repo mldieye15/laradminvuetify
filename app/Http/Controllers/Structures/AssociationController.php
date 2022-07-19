@@ -170,4 +170,14 @@ class AssociationController extends Controller
 
        return Redirect::route('association.index');
    }
+
+   /**
+     * Retourne le minuimum d'une association: id, libelle, sigle
+     *
+     */
+    public function ajaxListeAssociation()
+    {
+        $centreForms = $this->service->minimalAssociation();;
+        return response()->json($centreForms);
+    }
 }

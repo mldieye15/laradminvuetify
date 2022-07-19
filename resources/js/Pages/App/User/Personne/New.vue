@@ -137,19 +137,18 @@
                                                 <v-row>
                                                     <v-col cols="12" sm="12" md="3" >
                                                         <v-select v-model="selectedFonction" :menu-props="{ top: true, offsetY: true }" :items="fonctionPratiquants" label="Poste" item-text="sigle" item-value="id" return-object></v-select>
-                                                        <span v-if="errors.type_piece_ident" class="font-weight-light red--text">{{ errors.type_piece_ident[0] }}</span>
+                                                        <span v-if="errors.fonction_pratiq" class="font-weight-light red--text">{{ errors.fonction_pratiq[0] }}</span>
                                                     </v-col>
                                                     <v-col cols="12" sm="12" md="3" >
                                                         <v-select v-model="selectedCote" :menu-props="{ top: true, offsetY: true }" :items="cotePratiquants" label="Côté" item-text="sigle" item-value="id" return-object></v-select>
-                                                        <span v-if="errors.type_piece_ident" class="font-weight-light red--text">{{ errors.type_piece_ident[0] }}</span>
+                                                        <span v-if="errors.cote_pratiq" class="font-weight-light red--text">{{ errors.cote_pratiq[0] }}</span>
                                                     </v-col>
                                                     <v-col cols="12" sm="12" md="3" >
                                                         <v-select v-model="selectedType" :menu-props="{ top: true, offsetY: true }" :items="typeStrcuture" label="Type de structure" item-text="sigle" item-value="id" return-object @change="getStructures()"></v-select>
-                                                        <span v-if="errors.type_piece_ident" class="font-weight-light red--text">{{ errors.type_piece_ident[0] }}</span>
                                                     </v-col>
                                                     <v-col cols="12" sm="12" md="3" >
                                                         <v-select v-model="selectedStructure" :menu-props="{ top: true, offsetY: true }" :items="structures" label="Structure" item-text="sigle" item-value="id" return-object></v-select>
-                                                        <span v-if="errors.type_piece_ident" class="font-weight-light red--text">{{ errors.type_piece_ident[0] }}</span>
+                                                        <span v-if="errors.structure_pratiq" class="font-weight-light red--text">{{ errors.structure_pratiq[0] }}</span>
                                                     </v-col>
                                                 </v-row>
                                             </v-card-text>
@@ -194,6 +193,7 @@
 import AppLayout from '../../../Layouts/App/AppLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
 import Breadcrumbs from '../../../../components/Breadcrumbs.vue';
+import axios from 'axios';
 
 export default {
     name: 'New',
@@ -267,7 +267,11 @@ export default {
             pays_naiss: this.selectedPaysNaiss,
             pays_natio: this.selectedPaysNatio,
             civilite: this.selectedCivilite,
-            type_piece_ident: this.selectedPiece
+            type_piece_ident: this.selectedPiece,
+            //  création ins
+            cote_pratiq: this.selectedCote,
+            fonction_pratiq: this.selectedFonction,
+            structure_pratiq: this.selectedStructure,
         }),
         selectedPaysNaiss:{
             id: null,
@@ -317,6 +321,10 @@ export default {
                 sigle: 'Veuf(ve)'
             },
         ],
+        selectedCivilite:{
+            id: 'CELIBATAIRE',
+            sigle: 'Célibataire'
+        },
         selectedCote:{
             id: 0,
             sigle: 'Séléctionnez'
@@ -338,10 +346,10 @@ export default {
                 id: 'CLUB',
                 sigle: 'Club'
             },
-            {
-                id: 'ASC',
-                sigle: 'Association'
-            },
+            /*{
+                id: 'EQN',
+                sigle: 'Equipe nationale'
+            },*/
         ],
         selectedType:{
             id: '',
@@ -455,22 +463,45 @@ export default {
 
                 pays_naiss: this.selectedPaysNaiss.id,
                 pays_natio: this.selectedPaysNatio.id,
+                //  création ins
+                cote_pratiq: this.selectedCote,
+                fonction_pratiq: this.selectedFonction,
+                structure_pratiq: this.selectedStructure,
             });
         },
         dateNaiss (date) {
             this.$refs.menu.save(this.form.date_naiss)
         },
         getStructures(){
-            this.structures = [
-                {
-                    'id': 1,
-                    'sigle': 'Test1'
-                },
-                {
-                    'id': 2,
-                    'sigle': 'Test2'
-                },
-            ]
+            console.log(this.selectedType.id);
+            /*
+                id: 'ASC',
+                id: 'CENTRE',
+                id: 'CLUB',
+                id: 'EQN',
+            },
+            */
+            let choix_struct = this.selectedType.id;
+            let route = '';
+            switch (choix_struct) {
+                case 'ASC':
+                    route = '/app/fede/structures/ajax-association';
+                    break;
+
+                case 'CENTRE':
+                    route = '/app/fede/structures/ajax-centre-formation';
+                    break;
+                
+                default:
+                    route = '/app/fede/structures/ajax-club';
+                    break;
+            }
+            console.log(`${route}`);
+            //console.log(axios);
+            axios.post(`${route}`).then((response)=>{
+                console.log(response.data);
+                this.structures = response.data//.users
+            });
         }
     },
 }

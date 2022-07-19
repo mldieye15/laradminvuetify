@@ -240,5 +240,14 @@ class CentreFormationService {
         return $result;
     }
 
+    /**
+     * Retourne tous les centres de formations avec le minimum d'infomation.
+     *
+     * @return String
+     */
+    public function minimalCentreForm()
+    {
+        return $this->dao->minimalCentreForm();
+    }
 
 }

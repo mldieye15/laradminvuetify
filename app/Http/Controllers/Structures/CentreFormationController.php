@@ -170,4 +170,14 @@ class CentreFormationController extends Controller
 
        return Redirect::route('centreform.index');
    }
+
+   /**
+     * Retourne le minuimum d'un centre de formation: id, libelle, sigle
+     *
+     */
+    public function ajaxListeCentreForm()
+    {
+        $centreForms = $this->service->minimalCentreForm();;
+        return response()->json($centreForms);
+    }
 }

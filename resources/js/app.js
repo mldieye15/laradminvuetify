@@ -12,6 +12,7 @@ import Vue from 'vue'
 import { createInertiaApp, Head, Link  } from '@inertiajs/inertia-vue'
 import Vuetify from 'vuetify' // path to vuetify export
 import 'vuetify/dist/vuetify.min.css'
+//import axios from './axios';
 
 //import { ZiggyVue } from 'ziggy';
 //import { Ziggy } from './ziggy';
@@ -37,6 +38,7 @@ createInertiaApp({
                     iconfont: 'mdiSvg', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
                 },
             }),
+            //axios,
             render: h => h(App, props),
         }).$mount(el)
     },

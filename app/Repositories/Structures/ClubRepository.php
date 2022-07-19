@@ -116,4 +116,14 @@ class ClubRepository {
         return $model;
     }
 
+    /**
+     * Retourne tous les clubs avec le minimum d'inforamtion.
+     *
+     * @return App\Models\Structures\Club $model
+     */
+    public function minimalClub(){
+        return $this->model
+            ->get(['id','libelle','sigle']);
+    }
+    
 }
