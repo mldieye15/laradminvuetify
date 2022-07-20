@@ -31,19 +31,3 @@ class FederationSeeder extends Seeder
         );
     }
 }
-/*
-        'sologan',
-        'fax',
-        'date_creation',
-        'recipisse_numero',
-        'recipisse_date',
-        'recipisse_url',
-        'reglement_int_url',
-        'page_web',
-        'facebook',
-        'whatsapp',
-        'telegram',
-        'instagram',
-        'tiktok',
-        'visible'
-*/
