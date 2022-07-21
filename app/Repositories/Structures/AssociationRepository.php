@@ -97,6 +97,7 @@ class AssociationRepository {
         $model->page_web = $data['page_web'];
         $model->logo = $logo;
         $model->ligue_regionale_id = $ligue;
+        $model->type_structure_id = 4;  //   valeur fixée par défaut à ne pas changer
 
         $model->update();
 

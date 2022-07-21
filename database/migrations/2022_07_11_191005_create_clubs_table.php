@@ -36,6 +36,7 @@ class CreateClubsTable extends Migration
             $table->string('telegram')->nullable();
             $table->string('instagram')->nullable();
             $table->string('tiktok')->nullable();
+            $table->foreignId('type_structure_id')->constrained('type_structures')->onDelete('cascade');
             $table->timestamps();
         });
     }

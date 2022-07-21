@@ -38,7 +38,8 @@ class CentreFormation extends Model
         'telegram',
         'instagram',
         'tiktok',
-        'visible'
+        'visible',
+        'type_structure_id'
     ];
 
     public function ligue_regionale(){

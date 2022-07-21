@@ -25,7 +25,8 @@ class AssociationSeeder extends Seeder
                     'email' => 'cham1.lr-adrar@gmail.com',
                     'adresse' => 'Djokol, Rue Balhoultarit',
                     'telephone' => '3300000001',
-                    'logo' => 'map-default.png'
+                    'logo' => 'map-default.png',
+                    'type_structure_id' => 4
                 ]
             ]
         );

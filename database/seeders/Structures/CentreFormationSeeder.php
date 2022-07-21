@@ -24,25 +24,11 @@ class CentreFormationSeeder extends Seeder
                     'email' => 'cfjantart.lr-adrar@gmail.com',
                     'adresse' => 'Djokol, Rue Siral Finat',
                     'telephone' => '3300000001',
-                    'logo' => 'map-default.png'
+                    'logo' => 'map-default.png',
+                    'type_structure_id' => 3
                 ]
             ]
         );
     }
 }
-/*
-        'sologan',
-        'fax',
-        'date_creation',
-        'recipisse_numero',
-        'recipisse_date',
-        'recipisse_url',
-        'reglement_int_url',
-        'page_web',
-        'facebook',
-        'whatsapp',
-        'telegram',
-        'instagram',
-        'tiktok',
-        'visible'
-*/
+

@@ -96,6 +96,7 @@ class ClubRepository {
         $model->page_web = $data['page_web'];
         $model->logo = $logo;
         $model->ligue_regionale_id = $ligue;
+        $model->type_structure_id = 2;
 
         $model->update();
 

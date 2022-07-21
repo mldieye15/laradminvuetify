@@ -24,7 +24,8 @@ class ClubSeeder extends Seeder
                     'email' => 'abc.lr-adrar@gmail.com',
                     'adresse' => 'Gndikh, Rue Kamal Ahmad',
                     'telephone' => '3300000001',
-                    'logo' => 'map-default.png'
+                    'logo' => 'map-default.png',
+                    'type_structure_id' => 2
                 ]
             ]
         );

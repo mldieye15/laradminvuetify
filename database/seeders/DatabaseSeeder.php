@@ -17,6 +17,7 @@ use Database\Seeders\Structures\AssociationSeeder;
 use Database\Seeders\Structures\CentreFormationSeeder;
 use Database\Seeders\Structures\ClubSeeder;
 use Database\Seeders\Params\GradePratiquantSeeder;
+use Database\Seeders\Structures\TypeStructureSeeder;
 use Database\Seeders\User\PersonneSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SportSeeder::class);
         $this->call(FederationSeeder::class);
         $this->call(LigueRegionaleSeeder::class);
+        $this->call(TypeStructureSeeder::class);
         $this->call(ClubSeeder::class);
         $this->call(CentreFormationSeeder::class);
         $this->call(AssociationSeeder::class);

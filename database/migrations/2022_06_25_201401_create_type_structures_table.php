@@ -15,6 +15,9 @@ class CreateTypeStructuresTable extends Migration
     {
         Schema::create('type_structures', function (Blueprint $table) {
             $table->id();
+            $table->string('libelle', 60)->unique('uq_lib_typestruct');
+            $table->string('sigle',60)->unique('uq_sigle_typestruct');
+            $table->boolean('visible')->default(1);
             $table->timestamps();
         });
     }
