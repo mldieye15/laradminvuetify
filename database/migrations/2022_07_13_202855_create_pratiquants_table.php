@@ -19,7 +19,7 @@ class CreatePratiquantsTable extends Migration
             $table->foreignId('fonction_pratiquant_id')->constrained('fonction_pratiquants')->onDelete('cascade');
             $table->foreignId('cote_pratiquant_id')->constrained('cote_pratiquants')->onDelete('cascade');
             $table->string('ins',5)->unique('uq_ins');
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(false);
             //$table->unsignedBigInteger('personne_id');
             //$table->foreign('personne_id')->references('id')->on('personnes')->onDelete('cascade');
 

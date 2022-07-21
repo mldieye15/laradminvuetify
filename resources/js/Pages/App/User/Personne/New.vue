@@ -201,7 +201,7 @@ export default {
         AppLayout,
         Breadcrumbs
     },
-    props:  ['pays', 'currentPays', 'cotePratiquants', 'fonctionPratiquants', 'errors'],
+    props:  ['pays', 'currentPays', 'cotePratiquants', 'fonctionPratiquants', 'typeStructureListe','errors'],
     data () {
       return {
         tab: null,
@@ -333,7 +333,7 @@ export default {
             id: 0,
             sigle: 'Séléctionnez'
         },
-        typeStrcuture:[
+        /*typeStrcuture:[
             {
                 id: 'ASC',
                 sigle: 'Association'
@@ -346,11 +346,11 @@ export default {
                 id: 'CLUB',
                 sigle: 'Club'
             },
-            /*{
+            {
                 id: 'EQN',
                 sigle: 'Equipe nationale'
-            },*/
-        ],
+            },
+        ],*/
         selectedType:{
             id: '',
             sigle: 'Séléctionnez'
@@ -409,8 +409,25 @@ export default {
 
             pays_naiss: 1,
             pays_natio: 1,
-        }
+        },
         //
+        //  création ins
+        cote_pratiq: {
+            id: 2,
+            sigle: 'Droite'
+        },
+        selectedCote: {
+            id: 1,
+            sigle: 'Meneur'
+        },
+        fonction_pratiq: {
+            id: 1,
+            sigle: 'Meneur'
+        },
+        structure_pratiq: {
+            id: 2,
+            sigle: 'Club'
+        },
       }
     },
     computed: {},
@@ -420,8 +437,11 @@ export default {
       },
     },
     created () {
+        this.form = Object.assign({}, this.testStore);
         this.selectedPaysNaiss = Object.assign({}, this.currentPays[0]);
         this.selectedPaysNatio = Object.assign({}, this.currentPays[0]);
+        this.typeStrcuture = this.typeStructureListe; //Object.assign({}, this.typeStructureListe);
+        //this.typeStrcuture = JSON.parse(item.pays_natio);
         //this.form = this.testStore;
     },
     methods: {
@@ -475,20 +495,20 @@ export default {
         getStructures(){
             console.log(this.selectedType.id);
             /*
-                id: 'ASC',
-                id: 'CENTRE',
-                id: 'CLUB',
-                id: 'EQN',
+                id: 'ASC', 4
+                id: 'CENTRE', 3
+                id: 'CLUB', 2
+                id: 'EQN', 1
             },
             */
             let choix_struct = this.selectedType.id;
             let route = '';
             switch (choix_struct) {
-                case 'ASC':
+                case 4:
                     route = '/app/fede/structures/ajax-association';
                     break;
 
-                case 'CENTRE':
+                case 3:
                     route = '/app/fede/structures/ajax-centre-formation';
                     break;
                 
@@ -496,8 +516,8 @@ export default {
                     route = '/app/fede/structures/ajax-club';
                     break;
             }
-            console.log(`${route}`);
-            //console.log(axios);
+            //console.log(`${route}`);
+            
             axios.post(`${route}`).then((response)=>{
                 console.log(response.data);
                 this.structures = response.data//.users

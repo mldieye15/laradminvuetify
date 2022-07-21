@@ -12,7 +12,7 @@ class TypeStructureRepository {
     protected $model;
 
     /**
-     * ClubRepository constructor
+     * TypeStructureRepository constructor
      *
      * @param App\Models\Structures\TypeStructure $model
     */

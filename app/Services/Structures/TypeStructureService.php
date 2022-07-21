@@ -2,7 +2,6 @@
 
 namespace App\Services\Structures;
 
-use App\Models\Structures\TypeStructure;
 use App\Repositories\Structures\TypeStructureRepository;
 use Exception;
 use Illuminate\Support\Facades\Storage;

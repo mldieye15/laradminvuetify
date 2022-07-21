@@ -228,7 +228,6 @@ class PersonneService {
         
         try {
             $result = $this->dao->add($data, $map_path, $request->pays['id'], $request->nationalite['id']);
-            dd($result);
         } catch (Exception $e) {
             throw new InvalidArgumentException('Ajout impossible');
         }
@@ -256,7 +255,7 @@ class PersonneService {
             ]);
 
             //  supression du map rataché autre que le map par défaut
-            if($map_path != 'map-default.png'){
+            if($map_path != 'default-pers.jpg'){
                 Storage::delete('public/associations/'.$club->logo);
             }
 

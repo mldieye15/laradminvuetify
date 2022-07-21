@@ -8,7 +8,10 @@ use App\Models\User\Personne;
 use App\Services\Localisation\PaysService;
 use App\Services\Params\CotePratiquantService;
 use App\Services\Params\FonctionPratiquantService;
+use App\Services\User\PratiquantService;
+use App\Services\Structures\TypeStructureService;
 use App\Services\User\PersonneService;
+use App\Traits\RefGenerator;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -17,25 +20,37 @@ use Inertia\Inertia;
 
 class PersonneController extends Controller
 {
-    /**
+    use RefGenerator;
+/**
     * @var service
-   */
+*/
   protected $service;
 
-  /**
+/**
    * @var paysService
-  */
+*/
  protected $paysService;
 
- /**
+/**
    * @var cotePratiqService
-  */
+*/
  protected $cotePratiqService;
 
- /**
+/**
    * @var fonctPratiqService
-  */
- protected $fonctPratiqService;
+*/
+protected $fonctPratiqService;
+
+/**
+   * @var fonctPratiqService
+*/
+protected $typeStructService;
+ 
+/**
+   * @var pratiqService
+*/
+protected $pratiqService;
+
   /**
    * PersonneController Constructor
    *
@@ -43,18 +58,24 @@ class PersonneController extends Controller
    * @param App\Services\Params\FonctionPratiquantService $fonctPratiqService
    * @param App\Services\Localisation\PaysService $paysService
    * @param App\Services\Params\CotePratiquantService $cotePratiqService
+   * @param App\Services\Structures\TypeStructureService $typeStructService
+   * @param App\Services\Params\PratiquantService $pratiqService
    *
    */
   public function __construct(PersonneService $service, 
                               PaysService $paysService,
                               CotePratiquantService $cotePratiqService,
-                              FonctionPratiquantService $fonctPratiqService
+                              FonctionPratiquantService $fonctPratiqService,
+                              TypeStructureService $typeStructService,
+                              PratiquantService $pratiqService
                              )
   {
       $this->service = $service;
       $this->paysService = $paysService;
       $this->cotePratiqService = $cotePratiqService;
       $this->fonctPratiqService = $fonctPratiqService;
+      $this->typeStructService = $typeStructService;
+      $this->pratiqService = $pratiqService;
   }
 
    /**
@@ -79,12 +100,14 @@ class PersonneController extends Controller
        $currentPays = $this->paysService->getCurrentPays();
        $cotePratiquants = $this->cotePratiqService->getAll() ;
        $fonctionPratiquants = $this->fonctPratiqService->getAll() ;
+       $typeStructureListe = $this->typeStructService->getAll() ;
 
        return Inertia::render('App/User/Personne/New', [
            'pays' => $pays,
            'currentPays' => $currentPays,
            'cotePratiquants' => $cotePratiquants,
-           'fonctionPratiquants' => $fonctionPratiquants
+           'fonctionPratiquants' => $fonctionPratiquants,
+           'typeStructureListe' => $typeStructureListe,
        ]);
    }
 
@@ -117,7 +140,7 @@ class PersonneController extends Controller
    }
 
    /**
-    * Ajouter un ligue régional.
+    * Ajouter une personne.
     *
     * @param  App\Http\Requests\User\PersonneRequest $request
     * @return \Illuminate\Http\Response
@@ -126,6 +149,16 @@ class PersonneController extends Controller
    {
        try {
            $result = $this->service->add($request);
+           $pratiqData = [
+            'cote' => $request->cote_pratiq['id'],
+            'fonction' => $request->fonction_pratiq['id'],
+            'strucutre' => $request->structure_pratiq['id'],
+            'ins' => $this->getNatioSportifId(),
+            'personne' => $result['id']
+           ];
+           $pratiquant = $this->pratiqService->add($pratiqData);
+           //   $request->cote_pratiq['id'], $request->fonction_pratiq['id'], $request->structure_pratiq['id']
+           //dd($pratiquant);
        } catch (Exception $e) {
            $result = [
                'status' => 500,
@@ -206,7 +239,7 @@ class PersonneController extends Controller
    public function destroy($id){
        $personne = Personne::findOrFail($id);
 
-       if($personne->photo != 'map-default.png'){
+       if($personne->photo != 'default-pers.jpg'){
            Storage::delete('public/personnes/'.$personne->photo);
        }
 

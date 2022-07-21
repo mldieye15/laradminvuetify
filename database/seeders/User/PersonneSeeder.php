@@ -34,7 +34,7 @@ class PersonneSeeder extends Seeder
                     'adresse' => 'Géritar, El Mina',
                     'telephone' => '74010101',
                     'civilite' => 'HOMME',
-                    'photo'=>'photo2.jpg',
+                    'photo'=>'default-pers.jpg',
                     'email' => '',
                     'type_piece_ident' => 'APPRENANT',
                     'piece_ident' => '208I766',
