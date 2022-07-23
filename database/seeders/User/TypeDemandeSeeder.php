@@ -18,17 +18,17 @@ class TypeDemandeSeeder extends Seeder
             [
                 [
                     'libelle' => 'Pratiquants',
-                    'sigle' => 'Pratiquant',
+                    'sigle' => 'pratiquant',
                     'visible' => 1,
                 ],
                 [
                     'libelle' => 'Techniciens',
-                    'sigle' => 'Techniciens',
+                    'sigle' => 'technicien',
                     'visible' => 1,
                 ],
                 [
                     'libelle' => 'Médecins',
-                    'sigle' => 'Médecins',
+                    'sigle' => 'medecin',
                     'visible' => 1,
                 ]
             ]

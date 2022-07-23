@@ -119,18 +119,18 @@
                             icons-and-text
                         >
                             <v-tabs-slider></v-tabs-slider>
-                            <v-tab href="#pratiquant">
+                            <v-tab href="#pratiquant" @click="tabClicked('pratiquant')">
                                 Pratiquants
                             </v-tab>
-                            <v-tab href="#technicien">
+                            <v-tab href="#technicien" @click="tabClicked('technicien')">
                                 Techniciens
                             </v-tab>
-                            <v-tab href="#medecin">
+                            <v-tab href="#medecin" @click="tabClicked('medecin')">
                                 Médecins
                             </v-tab>
 
                             <v-tabs-items v-model="tab">
-                                <v-tab-item value="pratiquant" key="pratiquant">
+                                <v-tab-item value="pratiquant" key="pratiquant" >
                                     <v-container>
                                         <v-card flat>
                                             <v-card-text>
@@ -149,9 +149,6 @@
                                                     <v-col cols="12" sm="12" md="3" >
                                                         <v-select v-model="selectedStructure" :menu-props="{ top: true, offsetY: true }" :items="structures" label="Structure" item-text="sigle" item-value="id" return-object></v-select>
                                                         <span v-if="errors.structure_pratiq" class="font-weight-light red--text">{{ errors.structure_pratiq[0] }}</span>
-                                                    </v-col>
-                                                    <v-col cols="12" sm="12" md="3" >
-                                                        <v-text-field  v-model="form.typepseonne" value="{{pratiquant.id}}" label="Type personne"></v-text-field>
                                                     </v-col>
                                                 </v-row>
                                             </v-card-text>
@@ -351,11 +348,11 @@ export default {
             id: 1,
             sigle: 'Pratiquant'
         },
-        pratiquant:{
+        technicien:{
             id: 2,
             sigle: 'Techniciens'
         },
-        pratiquant:{
+        medecin:{
             id: 3,
             sigle: 'Médecins'
         },
@@ -501,17 +498,14 @@ export default {
         dateNaiss (date) {
             this.$refs.menu.save(this.form.date_naiss)
         },
+        tabClicked(tab){
+            console.log(tab);
+        },
         getStructures(){
             console.log(this.selectedType.id);
-            /*
-                id: 'ASC', 4
-                id: 'CENTRE', 3
-                id: 'CLUB', 2
-                id: 'EQN', 1
-            },
-            */
             let choix_struct = this.selectedType.id;
             let route = '';
+            // Ces vleurs dépend des ids enregistrés dans la base de données
             switch (choix_struct) {
                 case 4:
                     route = '/app/fede/structures/ajax-association';

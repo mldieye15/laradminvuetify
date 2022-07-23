@@ -29,6 +29,6 @@ class CreateTypeDemandesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_structures');
+        Schema::dropIfExists('type_demandes');
     }
 }

@@ -34,6 +34,6 @@ class CreateDemandesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_natio_sport_identities');
+        Schema::dropIfExists('demandes');
     }
 }
