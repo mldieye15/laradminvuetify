@@ -19,6 +19,7 @@ use Database\Seeders\Structures\ClubSeeder;
 use Database\Seeders\Params\GradePratiquantSeeder;
 use Database\Seeders\Structures\TypeStructureSeeder;
 use Database\Seeders\User\PersonneSeeder;
+use Database\Seeders\User\TypeDemandeSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -57,5 +58,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GradePratiquantSeeder::class);
         $this->call(FonctionPratiquantSeeder::class);
         $this->call(CotePratiquantSeeder::class);
+        $this->call(TypeDemandeSeeder::class);
     }
 }

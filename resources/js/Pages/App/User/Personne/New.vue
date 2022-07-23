@@ -150,6 +150,9 @@
                                                         <v-select v-model="selectedStructure" :menu-props="{ top: true, offsetY: true }" :items="structures" label="Structure" item-text="sigle" item-value="id" return-object></v-select>
                                                         <span v-if="errors.structure_pratiq" class="font-weight-light red--text">{{ errors.structure_pratiq[0] }}</span>
                                                     </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-text-field  v-model="form.typepseonne" value="{{pratiquant.id}}" label="Type personne"></v-text-field>
+                                                    </v-col>
                                                 </v-row>
                                             </v-card-text>
                                         </v-card>
@@ -201,7 +204,7 @@ export default {
         AppLayout,
         Breadcrumbs
     },
-    props:  ['pays', 'currentPays', 'cotePratiquants', 'fonctionPratiquants', 'typeStructureListe','errors'],
+    props:  ['pays', 'currentPays', 'cotePratiquants', 'fonctionPratiquants', 'typeStructureListe', 'typeDemandeListe', 'errors'],
     data () {
       return {
         tab: null,
@@ -272,6 +275,7 @@ export default {
             cote_pratiq: this.selectedCote,
             fonction_pratiq: this.selectedFonction,
             structure_pratiq: this.selectedStructure,
+            typersonne: 'PRAT'
         }),
         selectedPaysNaiss:{
             id: null,
@@ -333,24 +337,6 @@ export default {
             id: 0,
             sigle: 'Séléctionnez'
         },
-        /*typeStrcuture:[
-            {
-                id: 'ASC',
-                sigle: 'Association'
-            },
-            {
-                id: 'CENTRE',
-                sigle: 'Centre de formation'
-            },
-            {
-                id: 'CLUB',
-                sigle: 'Club'
-            },
-            {
-                id: 'EQN',
-                sigle: 'Equipe nationale'
-            },
-        ],*/
         selectedType:{
             id: '',
             sigle: 'Séléctionnez'
@@ -360,6 +346,20 @@ export default {
             id: '',
             sigle: 'Séléctionnez'
         },
+        //  ces valeurs doivent faire une correspondance avec les ids trouvés en base de données
+        pratiquant:{
+            id: 1,
+            sigle: 'Pratiquant'
+        },
+        pratiquant:{
+            id: 2,
+            sigle: 'Techniciens'
+        },
+        pratiquant:{
+            id: 3,
+            sigle: 'Médecins'
+        },
+        //
         editedIndex: -1,
         //
         testStore: {
@@ -389,6 +389,11 @@ export default {
             instagram: null,
             tiktok: null,
             active: true,
+            //
+            typersonne: {
+                id: 1,
+                libelle: 'Pratiquant'
+            },
             //
             pays: {
                 id: 1,
@@ -421,6 +426,10 @@ export default {
             sigle: 'Meneur'
         },
         fonction_pratiq: {
+            id: 1,
+            sigle: 'Meneur'
+        },
+        selectedFonction:{
             id: 1,
             sigle: 'Meneur'
         },

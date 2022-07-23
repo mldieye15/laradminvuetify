@@ -10,14 +10,14 @@ use InvalidArgumentException;
 class PratiquantService {
 
     /**
-     * @var App\Repositories\Structures\PratiquantRepository
+     * @var App\Repositories\User\PratiquantRepository
     */
     protected $dao;
 
     /**
      * ClubService constructor
      *
-     * @param App\Repositories\Structures\PratiquantRepository $dao
+     * @param App\Repositories\User\PratiquantRepository $dao
     */
     public function __construct(PratiquantRepository $dao){
         $this->dao = $dao;

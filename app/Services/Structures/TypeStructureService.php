@@ -45,7 +45,7 @@ class TypeStructureService {
                 'id' => $item->id,
                 'libelle' => $item->libelle,
                 'sigle' => $item->sigle,
-                'visible' => $item->email
+                'visible' => $item->visible
             ];
         });
     }
@@ -63,7 +63,7 @@ class TypeStructureService {
                 'id' => $item->id,
                 'libelle' => $item->libelle,
                 'sigle' => $item->sigle,
-                'visible' => $item->email
+                'visible' => $item->visible
             ];
         });
     }

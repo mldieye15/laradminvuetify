@@ -11,6 +11,7 @@ use App\Services\Params\FonctionPratiquantService;
 use App\Services\User\PratiquantService;
 use App\Services\Structures\TypeStructureService;
 use App\Services\User\PersonneService;
+use App\Services\User\TypeDemandeService;
 use App\Traits\RefGenerator;
 use Exception;
 use Illuminate\Http\Request;
@@ -45,11 +46,17 @@ protected $fonctPratiqService;
    * @var fonctPratiqService
 */
 protected $typeStructService;
+
  
 /**
    * @var pratiqService
 */
-protected $pratiqService;
+//protected $pratiqService;
+
+/**
+   * @var typeDemandeService
+*/
+protected $typeDemandeService;
 
   /**
    * PersonneController Constructor
@@ -67,7 +74,8 @@ protected $pratiqService;
                               CotePratiquantService $cotePratiqService,
                               FonctionPratiquantService $fonctPratiqService,
                               TypeStructureService $typeStructService,
-                              PratiquantService $pratiqService
+                              //PratiquantService $pratiqService,
+                              TypeDemandeService $typeDemandeService
                              )
   {
       $this->service = $service;
@@ -75,7 +83,8 @@ protected $pratiqService;
       $this->cotePratiqService = $cotePratiqService;
       $this->fonctPratiqService = $fonctPratiqService;
       $this->typeStructService = $typeStructService;
-      $this->pratiqService = $pratiqService;
+      //$this->pratiqService = $pratiqService;
+      $this->typeDemandeService = $typeDemandeService;
   }
 
    /**
@@ -101,6 +110,7 @@ protected $pratiqService;
        $cotePratiquants = $this->cotePratiqService->getAll() ;
        $fonctionPratiquants = $this->fonctPratiqService->getAll() ;
        $typeStructureListe = $this->typeStructService->getAll() ;
+       $typeDemandeListe = $this->typeDemandeService->getAll();
 
        return Inertia::render('App/User/Personne/New', [
            'pays' => $pays,
@@ -108,6 +118,7 @@ protected $pratiqService;
            'cotePratiquants' => $cotePratiquants,
            'fonctionPratiquants' => $fonctionPratiquants,
            'typeStructureListe' => $typeStructureListe,
+           'typeDemandeListe' => $typeDemandeListe
        ]);
    }
 
@@ -156,7 +167,7 @@ protected $pratiqService;
             'ins' => $this->getNatioSportifId(),
             'personne' => $result['id']
            ];
-           $pratiquant = $this->pratiqService->add($pratiqData);
+           //$pratiquant = $this->pratiqService->add($pratiqData);
            //   $request->cote_pratiq['id'], $request->fonction_pratiq['id'], $request->structure_pratiq['id']
            //dd($pratiquant);
        } catch (Exception $e) {

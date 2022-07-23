@@ -22,7 +22,4 @@ class TypeStructure extends Model
         'visible'
     ];
 
-    public function ligue_regionale(){
-        return $this->belongsTo(LigueRegionale::class);
-    }
 }
