@@ -24,13 +24,11 @@ class Demande extends Model
      */
     protected $fillable = [
         'personne_id',
+        'type_demande_id',
         'fonction_pratiquant_id',
         'cote_pratiquant_id',
         'type_structure_id',
-        'club_id',
-        'centre_formation_id',
-        'association_id',
-        'type_demande_id'
+        'structure'
     ];
 
     /**

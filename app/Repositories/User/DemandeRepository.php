@@ -55,12 +55,11 @@ class DemandeRepository {
         $model = new $this->model;
         //dd($data);
         $model->personne_id = $data['personne'];
+        $model->type_demande_id = $data['typedemande'];
         $model->fonction_pratiquant_id = $data['fonction'];
         $model->cote_pratiquant_id = $data['cote'];
         $model->type_structure_id = $data['typestructure'];
-        $model->club_id = $data['club'];
-        $model->centre_formation_id = $data['centreform'];
-        $model->association_id = $data['association'];
+        $model->structure = $data['structure'];
 
         $model->save();
 
@@ -100,5 +99,5 @@ class DemandeRepository {
 
         return $model;
     }
-    
+
 }

@@ -150,6 +150,10 @@
                                                         <v-select v-model="selectedStructure" :menu-props="{ top: true, offsetY: true }" :items="structures" label="Structure" item-text="sigle" item-value="id" return-object></v-select>
                                                         <span v-if="errors.structure_pratiq" class="font-weight-light red--text">{{ errors.structure_pratiq[0] }}</span>
                                                     </v-col>
+                                                    <v-col v-show="true" cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedTypeDemande" :menu-props="{ top: true, offsetY: true }" :items="typeDemandeListe" label="Type demande" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <!--<span v-if="errors.fonction_pratiq" class="font-weight-light red--text">{{ errors.fonction_pratiq[0] }}</span>-->
+                                                    </v-col>
                                                 </v-row>
                                             </v-card-text>
                                         </v-card>
@@ -159,7 +163,29 @@
                                 <v-tab-item value="technicien" key="technicien">
                                     <v-container>
                                         <v-card flat>
-                                            <v-card-text>Technicien</v-card-text>
+                                            <v-card-text>
+                                                <v-row>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedFonction" :menu-props="{ top: true, offsetY: true }" :items="fonctionPratiquants" label="Poste" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <span v-if="errors.fonction_pratiq" class="font-weight-light red--text">{{ errors.fonction_pratiq[0] }}</span>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedCote" :menu-props="{ top: true, offsetY: true }" :items="cotePratiquants" label="Côté" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <span v-if="errors.cote_pratiq" class="font-weight-light red--text">{{ errors.cote_pratiq[0] }}</span>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedType" :menu-props="{ top: true, offsetY: true }" :items="typeStrcuture" label="Type de structure" item-text="sigle" item-value="id" return-object @change="getStructures()"></v-select>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedStructure" :menu-props="{ top: true, offsetY: true }" :items="structures" label="Structure" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <span v-if="errors.structure_pratiq" class="font-weight-light red--text">{{ errors.structure_pratiq[0] }}</span>
+                                                    </v-col>
+                                                    <v-col v-show="true" cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedTypeDemande" :menu-props="{ top: true, offsetY: true }" :items="typeDemandeListe" label="Type demande" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <!--<span v-if="errors.fonction_pratiq" class="font-weight-light red--text">{{ errors.fonction_pratiq[0] }}</span>-->
+                                                    </v-col>
+                                                </v-row>
+                                            </v-card-text>
                                         </v-card>
                                     </v-container>
                                 </v-tab-item>
@@ -167,7 +193,29 @@
                                 <v-tab-item value="medecin" key="medecin">
                                     <v-container>
                                         <v-card flat>
-                                            <v-card-text>Médecin</v-card-text>
+                                            <v-card-text>
+                                                <v-row>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedFonction" :menu-props="{ top: true, offsetY: true }" :items="fonctionPratiquants" label="Poste" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <span v-if="errors.fonction_pratiq" class="font-weight-light red--text">{{ errors.fonction_pratiq[0] }}</span>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedCote" :menu-props="{ top: true, offsetY: true }" :items="cotePratiquants" label="Côté" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <span v-if="errors.cote_pratiq" class="font-weight-light red--text">{{ errors.cote_pratiq[0] }}</span>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedType" :menu-props="{ top: true, offsetY: true }" :items="typeStrcuture" label="Type de structure" item-text="sigle" item-value="id" return-object @change="getStructures()"></v-select>
+                                                    </v-col>
+                                                    <v-col cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedStructure" :menu-props="{ top: true, offsetY: true }" :items="structures" label="Structure" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <span v-if="errors.structure_pratiq" class="font-weight-light red--text">{{ errors.structure_pratiq[0] }}</span>
+                                                    </v-col>
+                                                    <v-col v-show="true" cols="12" sm="12" md="3" >
+                                                        <v-select v-model="selectedTypeDemande" :menu-props="{ top: true, offsetY: true }" :items="typeDemandeListe" label="Type demande" item-text="sigle" item-value="id" return-object></v-select>
+                                                        <!--<span v-if="errors.fonction_pratiq" class="font-weight-light red--text">{{ errors.fonction_pratiq[0] }}</span>-->
+                                                    </v-col>
+                                                </v-row>
+                                            </v-card-text>
                                         </v-card>
                                     </v-container>
                                 </v-tab-item>
@@ -272,7 +320,7 @@ export default {
             cote_pratiq: this.selectedCote,
             fonction_pratiq: this.selectedFonction,
             structure_pratiq: this.selectedStructure,
-            typersonne: 'PRAT'
+            typersonne: 'pratiquant'
         }),
         selectedPaysNaiss:{
             id: null,
@@ -387,10 +435,7 @@ export default {
             tiktok: null,
             active: true,
             //
-            typersonne: {
-                id: 1,
-                libelle: 'Pratiquant'
-            },
+            typersonne: 'pratiquant',
             //
             pays: {
                 id: 1,
@@ -434,6 +479,10 @@ export default {
             id: 2,
             sigle: 'Club'
         },
+        selectedTypeDemande:{
+            id: 1,
+            sigle: 'Pratiquant'
+        }
       }
     },
     computed: {},
@@ -492,14 +541,17 @@ export default {
                 //  création ins
                 cote_pratiq: this.selectedCote,
                 fonction_pratiq: this.selectedFonction,
-                structure_pratiq: this.selectedStructure,
+                type_struct: this.selectedType,
+                structure: this.selectedStructure,
+                typedemande: this.selectedTypeDemande
             });
         },
         dateNaiss (date) {
             this.$refs.menu.save(this.form.date_naiss)
         },
         tabClicked(tab){
-            console.log(tab);
+            this.form.typersonne = tab;
+            console.log(this.form.typersonne);
         },
         getStructures(){
             console.log(this.selectedType.id);
@@ -514,13 +566,13 @@ export default {
                 case 3:
                     route = '/app/fede/structures/ajax-centre-formation';
                     break;
-                
+
                 default:
                     route = '/app/fede/structures/ajax-club';
                     break;
             }
             //console.log(`${route}`);
-            
+
             axios.post(`${route}`).then((response)=>{
                 console.log(response.data);
                 this.structures = response.data//.users

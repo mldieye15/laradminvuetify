@@ -10,6 +10,7 @@ use App\Services\Params\CotePratiquantService;
 use App\Services\Params\FonctionPratiquantService;
 use App\Services\User\PratiquantService;
 use App\Services\Structures\TypeStructureService;
+use App\Services\User\DemandeService;
 use App\Services\User\PersonneService;
 use App\Services\User\TypeDemandeService;
 use App\Traits\RefGenerator;
@@ -47,7 +48,7 @@ protected $fonctPratiqService;
 */
 protected $typeStructService;
 
- 
+
 /**
    * @var pratiqService
 */
@@ -58,6 +59,11 @@ protected $typeStructService;
 */
 protected $typeDemandeService;
 
+/**
+   * @var demandeService
+*/
+protected $demandeService;
+
   /**
    * PersonneController Constructor
    *
@@ -67,15 +73,17 @@ protected $typeDemandeService;
    * @param App\Services\Params\CotePratiquantService $cotePratiqService
    * @param App\Services\Structures\TypeStructureService $typeStructService
    * @param App\Services\Params\PratiquantService $pratiqService
+   * @param App\Services\User\DemandeService $demandeService
    *
    */
-  public function __construct(PersonneService $service, 
+  public function __construct(PersonneService $service,
                               PaysService $paysService,
                               CotePratiquantService $cotePratiqService,
                               FonctionPratiquantService $fonctPratiqService,
                               TypeStructureService $typeStructService,
                               //PratiquantService $pratiqService,
-                              TypeDemandeService $typeDemandeService
+                              TypeDemandeService $typeDemandeService,
+                              DemandeService $demandeService
                              )
   {
       $this->service = $service;
@@ -85,6 +93,7 @@ protected $typeDemandeService;
       $this->typeStructService = $typeStructService;
       //$this->pratiqService = $pratiqService;
       $this->typeDemandeService = $typeDemandeService;
+      $this->demandeService = $demandeService;
   }
 
    /**
@@ -160,16 +169,18 @@ protected $typeDemandeService;
    {
        try {
            $result = $this->service->add($request);
-           $pratiqData = [
-            'cote' => $request->cote_pratiq['id'],
+
+           $demandeData = [
+            'personne' => $result['id'],
+            'typedemande' => $request->typedemande['id'],
             'fonction' => $request->fonction_pratiq['id'],
-            'strucutre' => $request->structure_pratiq['id'],
-            'ins' => $this->getNatioSportifId(),
-            'personne' => $result['id']
+            'cote' => $request->cote_pratiq['id'],
+            'typestructure' => $request->type_struct['id'],
+            'structure' => $request->structure['id'],
+            //'ins' => $this->getNatioSportifId(),
            ];
-           //$pratiquant = $this->pratiqService->add($pratiqData);
-           //   $request->cote_pratiq['id'], $request->fonction_pratiq['id'], $request->structure_pratiq['id']
-           //dd($pratiquant);
+           //$demande =
+           $this->demandeService->add($demandeData);
        } catch (Exception $e) {
            $result = [
                'status' => 500,
