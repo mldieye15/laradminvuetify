@@ -126,5 +126,17 @@ class ClubRepository {
         return $this->model
             ->get(['id','libelle','sigle']);
     }
-    
+
+    /**
+     * Retourne tous les clubs avec le minimum d'inforamtion.
+     *
+     * @return App\Models\Structures\Club $model
+     */
+    public function minimalClubByLigue($ligue){
+        return $this->model
+            ->where('ligue_regionale_id', $ligue)
+            ->get(['id','libelle','sigle']);
+    }
+    //
+
 }

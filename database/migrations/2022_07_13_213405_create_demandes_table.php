@@ -21,6 +21,7 @@ class CreateDemandesTable extends Migration
             $table->foreignId('cote_pratiquant_id')->constrained('cote_pratiquants')->onDelete('cascade');
             $table->foreignId('type_structure_id')->constrained('type_structures')->onDelete('cascade');
             $table->integer('structure');
+            $table->boolean('traite')->default(0);
             //$table->foreignId('centre_formation_id')->nullable()->constrained('centre_formations')->onDelete('cascade');
             //$table->foreignId('association_id')->nullable()->constrained('associations')->onDelete('cascade');
             $table->timestamps();

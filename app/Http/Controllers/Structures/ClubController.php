@@ -176,9 +176,19 @@ class ClubController extends Controller
      * Retourne le minuimum d'un club: id, libelle, sigle
      *
      */
-    public function ajaxListePays()
+    public function ajaxListeClub()
     {
         $clubs = $this->service->minimalClub();;
+        return response()->json($clubs);
+    }
+
+    /**
+     * Retourne le minuimum d'un club: id, libelle, sigle
+     *
+     */
+    public function ajaxListeClubByLigue($ligue)
+    {
+        $clubs = $this->service->minimalClubByLigue($ligue);
         return response()->json($clubs);
     }
 }

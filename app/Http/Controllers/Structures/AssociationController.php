@@ -180,4 +180,14 @@ class AssociationController extends Controller
         $centreForms = $this->service->minimalAssociation();;
         return response()->json($centreForms);
     }
+
+    /**
+     * Retourne le minuimum d'un centre de formation: id, libelle, sigle
+     *
+     */
+    public function ajaxListeAssociationByLigue($ligue)
+    {
+        $associations = $this->service->minimalAssociationByLigue($ligue);
+        return response()->json($associations);
+    }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Federation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Federation\LigueRegionalRequest;
 use App\Models\Federation\LigueRegionale;
-use App\Models\Localisation\Quartier;
 use App\Services\Federation\FederationService;
 use App\Services\Federation\LigueRegionaleService;
 use Exception;

@@ -26,6 +26,7 @@ use App\Http\Controllers\Structures\AssociationController;
 use App\Http\Controllers\Structures\CentreFormationController;
 use App\Http\Controllers\Structures\ClubController;
 use App\Http\Controllers\User\PersonneController;
+use App\Http\Controllers\User\AutorisationController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -142,7 +143,7 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/quartiers', [QuartierController::class, 'store'])->name('quartiers.store');
         Route::put('/quartiers/{quartier}', [QuartierController::class, 'update'])->name('quartiers.update');
         Route::delete('/quartiers/{quartier}', [QuartierController::class, 'destroy'])->name('quartiers.destroy');
-        
+
     });
 
     Route::group([
@@ -190,17 +191,19 @@ Route::middleware('auth:sanctum')->group(function() {
         'namespace' => 'App\Http\Controllers\Structures'
     ],function(){
         //  club
-        Route::get('/clubs',           [ClubController::class, 'index'])->name('club.index');
-        Route::post('/ajax-club',       [ClubController::class, 'ajaxListePays'])->name('club.ajaxListePays');
-        Route::get('/clubs/new',       [ClubController::class, 'create'])->name('club.create');
-        Route::post('/clubs/edit',     [ClubController::class, 'edit'])->name('club.edit');
-        Route::get('/clubs/{club}',    [ClubController::class, 'show'])->name('club.show');
-        Route::post('/clubs',          [ClubController::class, 'store'])->name('club.store');
-        Route::put('/clubs/{club}',    [ClubController::class, 'update'])->name('club.update');
-        Route::delete('/clubs/{club}', [ClubController::class, 'destroy'])->name('club.destroy');
+        Route::get('/clubs',              [ClubController::class, 'index'])->name('club.index');
+        Route::post('/ajax-club',         [ClubController::class, 'ajaxListeClub'])->name('club.ajaxListeClub');
+        Route::post('/ajax-club/{ligue}', [ClubController::class, 'ajaxListeClubByLigue'])->name('club.ajaxListeClubByLigue');
+        Route::get('/clubs/new',          [ClubController::class, 'create'])->name('club.create');
+        Route::post('/clubs/edit',        [ClubController::class, 'edit'])->name('club.edit');
+        Route::get('/clubs/{club}',       [ClubController::class, 'show'])->name('club.show');
+        Route::post('/clubs',             [ClubController::class, 'store'])->name('club.store');
+        Route::put('/clubs/{club}',       [ClubController::class, 'update'])->name('club.update');
+        Route::delete('/clubs/{club}',    [ClubController::class, 'destroy'])->name('club.destroy');
         //  centre-formation
         Route::get('/centre-formation',                 [CentreFormationController::class, 'index'])->name('centreform.index');
         Route::post('/ajax-centre-formation',           [CentreFormationController::class, 'ajaxListeCentreForm'])->name('club.ajaxListeCentreForm');
+        Route::post('/ajax-centre-formation/{ligue}',   [CentreFormationController::class, 'ajaxListeCentreFormByLigue'])->name('club.ajaxListeCentreFormByLigue');
         Route::get('/centre-formation/new',             [CentreFormationController::class, 'create'])->name('centreform.create');
         Route::post('/centre-formation/edit',           [CentreFormationController::class, 'edit'])->name('centreform.edit');
         Route::get('/centre-formation/{centreform}',    [CentreFormationController::class, 'show'])->name('centreform.show');
@@ -230,5 +233,13 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/personnes',              [PersonneController::class, 'store'])->name('personne.store');
         Route::put('/personnes/{personne}',    [PersonneController::class, 'update'])->name('personne.update');
         Route::delete('/personnes/{personne}', [PersonneController::class, 'destroy'])->name('personne.destroy');
+        //  autorisation
+        Route::get('/autorisation',               [AutorisationController::class, 'index'])->name('autorisation.index');
+        Route::get('/autorisation/new',           [AutorisationController::class, 'create'])->name('autorisation.create');
+        Route::post('/autorisation/edit',         [AutorisationController::class, 'edit'])->name('autorisation.edit');
+        Route::get('/autorisation/{personne}',    [AutorisationController::class, 'show'])->name('autorisation.show');
+        Route::post('/autorisation',              [AutorisationController::class, 'store'])->name('autorisation.store');
+        Route::put('/autorisation/{personne}',    [AutorisationController::class, 'update'])->name('autorisation.update');
+        Route::delete('/autorisation/{personne}', [AutorisationController::class, 'destroy'])->name('autorisation.destroy');
     });
 });

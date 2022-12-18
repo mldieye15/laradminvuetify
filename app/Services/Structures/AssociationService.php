@@ -249,5 +249,16 @@ class AssociationService {
     {
         return $this->dao->minimalAssociation();
     }
-    
+
+    /**
+     * Retourne tous les centres de formations avec le minimum d'infomation selon la ligue .
+     *
+     * @param $ligue
+     * @return String
+     */
+    public function minimalAssociationByLigue($ligue)
+    {
+        return $this->dao->minimalAssociationByLigue($ligue);
+    }
+
 }

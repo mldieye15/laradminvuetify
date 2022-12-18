@@ -128,4 +128,15 @@ class CentreFormationRepository {
             ->get(['id','libelle','sigle']);
     }
 
+    /**
+     * Retourne tous les centres de formation avec le minimum d'inforamtion.
+     *
+     * @return App\Models\Structures\CentreFormation $model
+     */
+    public function minimalCentreFormByLigue($ligue){
+        return $this->model
+            ->where('ligue_regionale_id', $ligue)
+            ->get(['id','libelle','sigle']);
+    }
+
 }

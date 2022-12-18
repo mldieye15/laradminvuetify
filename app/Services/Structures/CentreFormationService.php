@@ -250,4 +250,15 @@ class CentreFormationService {
         return $this->dao->minimalCentreForm();
     }
 
+    /**
+     * Retourne tous les centres de formations avec le minimum d'infomation selon la ligue .
+     *
+     * @param $ligue
+     * @return String
+     */
+    public function minimalCentreFormByLigue($ligue)
+    {
+        return $this->dao->minimalCentreFormByLigue($ligue);
+    }
+
 }

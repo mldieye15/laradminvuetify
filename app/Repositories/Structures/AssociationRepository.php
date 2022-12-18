@@ -119,12 +119,23 @@ class AssociationRepository {
     }
 
     /**
-     * Retourne tous les associations avec le minimum d'inforamtion.
+     * Retourne toutes les associations avec le minimum d'inforamtion.
      *
      * @return App\Models\Structures\Association $model
      */
     public function minimalAssociation(){
         return $this->model
+            ->get(['id','libelle','sigle']);
+    }
+
+    /**
+     * Retourne toutes les associations avec le minimum d'inforamtion.
+     *
+     * @return App\Models\Structures\Association $model
+     */
+    public function minimalAssociationByLigue($ligue){
+        return $this->model
+            ->where('ligue_regionale_id', $ligue)
             ->get(['id','libelle','sigle']);
     }
 }

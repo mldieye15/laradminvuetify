@@ -249,4 +249,15 @@ class ClubService {
     {
         return $this->dao->minimalClub();
     }
+
+    /**
+     * Retourne tous les clubs avec le minimum d'infomation selon la ligue .
+     *
+     * @param $ligue
+     * @return String
+     */
+    public function minimalClubByLigue($ligue)
+    {
+        return $this->dao->minimalClubByLigue($ligue);
+    }
 }

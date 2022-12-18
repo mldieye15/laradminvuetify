@@ -180,4 +180,14 @@ class CentreFormationController extends Controller
         $centreForms = $this->service->minimalCentreForm();;
         return response()->json($centreForms);
     }
+
+    /**
+     * Retourne le minuimum d'un centre de formation: id, libelle, sigle
+     *
+     */
+    public function ajaxListeCentreFormByLigue($ligue)
+    {
+        $centres = $this->service->minimalCentreFormByLigue($ligue);
+        return response()->json($centres);
+    }
 }
